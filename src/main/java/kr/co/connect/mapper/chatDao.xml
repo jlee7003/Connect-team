@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.connect.chat.dao.ichatDao"> <!--content.xml에서 모든 xml을 찾는다  -->
+  
+   <select id="chatlist" resultType="kr.co.connect.chat.Chat"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM CHAT WHERE GROUPS=#{param1} ORDER BY ID DESC LIMIT 0,20
+   </select>
+   
+   	<insert id="writechat">
+	INSERT INTO CHAT(USERNAME,CONTENT,GROUPS)
+			VALUES(#{param1},#{param2},#{param3})
+	</insert>
+		<insert id="writechatstr">
+	INSERT INTO CHAT(USERNAME,CONTENT,GROUPS)
+			VALUES(#{param1},#{param2},#{param3})
+	</insert>
+
+
+	   <select id="getchatlist" resultType="kr.co.connect.chat.Chat"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM CHAT WHERE GROUPS=#{param1} AND WHERE CHARTIME > ? ORDER BY ID DESC LIMIT 0,20
+   </select>
+</mapper>
