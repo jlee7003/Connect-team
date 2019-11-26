@@ -8,7 +8,9 @@
 	<name>Connect2</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<!-- pom.xml 에서 사용할 속성들 -->
 	<properties>
+		<!-- 버전 관리를 위한 속성들  -->
 		<webapp.lib>${basedir}/lib</webapp.lib>
 		<java-version>1.6</java-version>
 		<org.springframework-version>4.3.25.RELEASE
@@ -16,12 +18,10 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+	
 	<dependencies>
 
-
-
-
-		<!-- Spring -->
+		<!-- Spring - context -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -34,6 +34,8 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- spring-webmvc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
