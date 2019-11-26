@@ -21,8 +21,9 @@ public class ChatSubmitServlet extends HttpServlet {
 		response.setContentType("text/html);charset=UTF-8");
 		String username= URLDecoder.decode(request.getParameter("username"),"UTF-8");
 		String content = URLDecoder.decode(request.getParameter("content"),"UTF-8");
-//		String groups="1";
 		String groups= URLDecoder.decode(request.getParameter("groups"),"UTF-8");
+		System.out.println("username: " +username);
+		System.out.println("groups: " +groups);
 		if(username == null || username.equals("")|| content == null || content.equals("")) {
 			response.getWriter().write("0");
 			System.out.println("제발1");

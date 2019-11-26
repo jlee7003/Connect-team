@@ -153,6 +153,7 @@ function getInfiniteChat(){
 				<!-- 				<form action="" method="post"> -->
 				<input type="hidden" name="username" id=username value="${user}">
 				<input type="hidden" name="groups" id=username value="${groups}">
+				<input type="text" name="groups" id=groups value="${groups}">
 				<textarea name=content id=content></textarea>
 				<p>
 					<input type=submit value="전송" id=citizenRegistration
