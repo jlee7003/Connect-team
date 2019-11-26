@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.connect.member.dao.imemberDao"> <!--content.xml에서 모든 xml을 찾는다  -->
+
+
+	<insert id="write"><!-- 태그 이름은 구분하기 편하라고 write라고 해준것 -->
+	INSERT INTO MEMBERS(USERNAME,PHONE,EMAIL,PASSWORD,BIRTH,SEX,GROUPS,WRITEDAY)
+			VALUES(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},NOW())
+	</insert>
+
+<!--  -->
+   <select id="list" resultType="kr.co.connect.member.Member"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM BOARD ORDER BY ID DESC
+   </select>
+   
+    <select id="content" resultType="kr.co.connect.member.Member"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM BOARD WHERE ID=#{PARAM1}
+   </select>
+   
+   <select id="update" resultType="kr.co.connect.member.Member"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM BOARD WHERE ID=#{PARAM1}
+   </select>
+   
+     <select id="findid" resultType="kr.co.connect.member.Member">
+  	 SELECT * FROM MEMBERS WHERE PHONE=#{param1} AND USERNAME=#{param2}
+   </select>
+   
+      <select id="findpwd" resultType="kr.co.connect.member.Member">
+  	 SELECT * FROM MEMBERS WHERE PHONE=#{param1} AND USERNAME=#{param2} AND EMAIL=#{param3}
+   </select>
+   
+   <select id="login" resultType="kr.co.connect.member.Member">
+  	 SELECT * FROM MEMBERS WHERE EMAIL=#{param1} AND PASSWORD=#{param2}
+   </select>
+
+   <update id="updateok" > <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     UPDATE BOARD SET NAME=#{param1},TITLE=#{param2},CONTENT=#{param3} WHERE ID=#{param4}
+   </update>
+   
+   <delete id="delete"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     DELETE FROM BOARD WHERE ID=#{PARAM1}
+   </delete>
+   
+</mapper>
