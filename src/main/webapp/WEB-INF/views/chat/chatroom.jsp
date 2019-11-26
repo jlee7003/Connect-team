@@ -15,12 +15,14 @@ var lastID = 0;
 function submitFunction() {
 	var username= $('#username').val();
 	var content= $('#content').val();
+	var groups= $('#groups').val();
 	$.ajax({
 		type:"POST",
 		url: "./chatSubmitServlet",
 		data: {
 			username: encodeURIComponent(username),
-			content: encodeURIComponent(content)
+			content: encodeURIComponent(content),
+			groups: encodeURIComponent(groups)
 		},
 	success: function(result){
 		if(result == 1)

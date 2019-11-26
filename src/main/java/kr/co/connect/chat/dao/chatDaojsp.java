@@ -67,15 +67,14 @@ public class chatDaojsp {
 	}
 
 	/* a */
-	public ArrayList<Chat> getChatLlistByRecent(int number, String groups) {
+	public ArrayList<Chat> getChatLlistByRecent(int number) {
 		ArrayList<Chat> chatList = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from chat where id > (select max(id) - ? from chat) and groups = ? order by chattime";
+		String sql = "select * from chat where id > (select max(id) - ? from chat) order by chattime";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, number);
-			pstmt.setInt(2, Integer.parseInt(groups));
 			rs = pstmt.executeQuery();
 			chatList = new ArrayList<Chat>();
 			while (rs.next()) {
@@ -111,15 +110,14 @@ public class chatDaojsp {
 	}
 	
 	
-	public ArrayList<Chat> getChatLlistByRecent(String id, String groups) {
+	public ArrayList<Chat> getChatLlistByRecent(String id) {
 		ArrayList<Chat> chatList = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from chat where id > ? and groups = ? order by chattime";
+		String sql = "select * from chat where id > ? order by chattime";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(id));
-			pstmt.setInt(2, Integer.parseInt(groups));
 			rs = pstmt.executeQuery();
 			chatList = new ArrayList<Chat>();
 			while (rs.next()) {
