@@ -7,9 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/connect/resources/main.css?ver=3">
+<link rel="stylesheet" href="/connect/resources/main.css?ver=4">
 <script src="/connect/resources/main.js?ver=3"></script>
 </head>
+<style>
+.joinus {
+	width: 500px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+.margin_10 {
+	margin: 10px;
+}
+</style>
 <script>
 /* joinus1 */
  	function phonealert()
@@ -28,7 +39,7 @@
 	function submit_check() 
 	{
 		
-	if(document.joinform.name.value == "") 
+	if(document.joinform.username.value == "") 
 		{
 		document.all.innertext1.innerHTML = "<b style='color:#828282'>이름을 입력해주세요</b>";
 		document.joinform.name.focus();
@@ -97,23 +108,23 @@
 		<div class="login container" align=center>
 			<form method="post" action="login_ok">
 				<table>
-										 <%
- if(session.getAttribute("userid")==null)//세션변수가 없다면
- {
- %>
+					<%
+						if (session.getAttribute("userid") == null)//세션변수가 없다면
+						{
+					%>
 					<tr>
-						<td ><span class="font_design">Email</span></td>
+						<td><span class="font_design">Email</span></td>
 					</tr>
 					<tr>
 						<td><input type=text name=email
-							class="input_width bd_radius height_26 inputtag"></td>
+							class="input_width bd_radius height_20 inputtag"></td>
 					</tr>
 					<tr>
 						<td class="font_design">Password</td>
-					</tr> 
+					</tr>
 					<tr>
 						<td><input type=password name=password
-							class="input_width bd_radius height_26 inputtag"></td>
+							class="input_width bd_radius height_20 inputtag"></td>
 					</tr>
 					<tr>
 						<td>${err}</td>
@@ -123,25 +134,23 @@
 						<td></td>
 					</tr>
 					<tr>
-						<td>					
-
-<!-- <a href="Joinus">LOGIN</a><p> -->
-<input type="submit" value="Login"><p>
-<span>로그인 해주세요</span>
-<%}
- else
- {
- %>
-	<div><input type=button onclick="location='logout'" value=logout></div>
- <%=session.getAttribute("username")%>님 환영합니다!
- <a href="chatroom">chatroom</a>
- <%
- }
- %>
- </td>
 						<td>
-	
-                        </td>
+							<!-- <a href="Joinus">LOGIN</a><p> --> <input type="submit"
+							value="Login">
+							<p>
+								<span>로그인 해주세요</span>
+								<%
+									} else {
+								%>
+							
+							<div>
+								<input type=button onclick="location='logout'" value=logout>
+							</div> <%=session.getAttribute("username")%>님 환영합니다! <a href="chatroom">chatroom</a>
+							<%
+								}
+							%>
+						</td>
+						<td></td>
 					</tr>
 				</table>
 			</form>
@@ -149,12 +158,12 @@
 
 		</div>
 
-
-		<div class="container_w50" align=center>
+		<!-- joinus -->
+		<div class="joinus container" align=center>
 			<!-- width, height:auto -->
 
 			<div>
-				<h1>Join us</h1>
+				<h1 class="margin_10">Join us</h1>
 			</div>
 			<form method=post action="Joinus_ok" name=joinform
 				onsubmit="return submit_check()">
@@ -162,46 +171,46 @@
 					<tr>
 						<td onclick=alert();>이름</td>
 						<td><input type="text" name="username"
-							class="input_width bd_radius height_26" onblur=alertout()></td>
+							class="input_width bd_radius height_20" onblur=alertout()></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td>
-							<div id=innertext1 class="height_26 font_size_14"></div>
+							<div id=innertext1 class="height_20 font_size_14"></div>
 						</td>
 					</tr>
 					<tr>
 						<td>핸드폰번호</td>
 						<td><input type="text" name="phone"
-							class="input_width bd_radius height_26" onclick=phonealert()
+							class="input_width bd_radius height_20" onclick=phonealert()
 							onblur=alertout()></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td>
-							<div id=innertext2 class="height_26 font_size_14"></div>
+							<div id=innertext2 class="height_20 font_size_14"></div>
 						</td>
 					</tr>
 					<tr>
 						<td>이메일</td>
 						<td><input type="text" name="email"
-							class="input_width bd_radius height_26" onblur=alertout()></td>
+							class="input_width bd_radius height_20" onblur=alertout()></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td>
-							<div id="innertext3" class="height_26 font_size_14"></div>
+							<div id="innertext3" class="height_20 font_size_14"></div>
 						</td>
 					</tr>
 					<tr>
 						<td>비밀번호</td>
 						<td><input type="password" name="password"
-							class="input_width bd_radius height_26" onblur=alertout()></td>
+							class="input_width bd_radius height_20" onblur=alertout()></td>
 					</tr>
 					<tr>
 						<td></td>
 						<td>
-							<div id=innertext4 class="height_26 font_size_14"></div>
+							<div id=innertext4 class="height_20 font_size_14"></div>
 						</td>
 					</tr>
 					<tr>
@@ -230,7 +239,7 @@
 					<tr>
 						<td></td>
 						<td>
-							<div id=innertext5 class="height_26 font_size_14"></div>
+							<div id=innertext5 class="height_20 font_size_14"></div>
 						</td>
 					</tr>
 					<tr>
@@ -241,7 +250,7 @@
 					<tr>
 						<td></td>
 						<td>
-							<div id=innertext6 class="height_26 font_size_14"></div>
+							<div id=innertext6 class="height_20 font_size_14"></div>
 						</td>
 					</tr>
 					<tr align=center>

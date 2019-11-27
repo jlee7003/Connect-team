@@ -21,9 +21,21 @@ input:focus {
 	width: 50%;
 	height: auto;
 }
+.container {
+	height: auto;
+}
 
 .height_26 {
 	height: 26px;
+}
+.height_24 {
+	height: 24px;
+}
+.height_22 {
+	height: 22px;
+}
+.height_20 {
+	height: 20px;
 }
 
 .bd_radius {
@@ -52,6 +64,7 @@ input:focus {
 	width: 50%;
 	height: 100%;
 }
+
 .inputtag
 {
     -webkit-appearance: none;
