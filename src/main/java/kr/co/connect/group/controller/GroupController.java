@@ -23,7 +23,7 @@ public class GroupController {
 //	public GroupMapperInterface groupMapper;
 
 	// 클라이언트가 요청한 주소(url)에 대한 응답 페이지를 매핑
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "connect/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 	
 		Date date = new Date();
