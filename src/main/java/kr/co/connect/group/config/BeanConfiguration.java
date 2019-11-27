@@ -12,7 +12,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import kr.co.connect.group.mapper.GroupMapperInterface;
 
 @Configuration
-@ComponentScan(basePackages = { "kr.co.connect.group.beans" })
+@ComponentScan(basePackages = { "kr.co.connect.group.*" })
 public class BeanConfiguration {
 	
 	@Bean
