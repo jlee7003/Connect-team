@@ -23,6 +23,7 @@
 	
 	<!-- annotation-config @Configuration -->
 	<context:annotation-config />
+	<context:component-scan base-package="kr.co.connect" />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
@@ -36,9 +37,6 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-
-	<context:component-scan
-		base-package="kr.co.connect" />
 
 	<!-- mybatis를 위한 소스 -->
 	<beans:bean name="dataSource"
