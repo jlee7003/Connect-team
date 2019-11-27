@@ -7,13 +7,23 @@ import org.mybatis.spring.mapper.MapperFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import kr.co.connect.group.mapper.GroupMapperInterface;
 
+// @EnableWebMvc : <mvc:annotation-driven /> 과 동일
+// DispatcherServlet 은 @Configuration 파일을 읽어서 내부적으로 스프링 컨테이너를 생성 (ApplicationContext)
+// web 에 필요한 빈들을 대부분 자동 생성 
+// 추가 설정 필요시, WebMvcConfigurerAdapter 클래스를 상속받고 오버라이드 
+
 @Configuration
-@ComponentScan(basePackages = { "kr.co.connect.group.*" })
-public class BeanConfiguration {
+@ComponentScan(basePackages = "kr.co.connect.*") // @Controller 도 포함 
+@EnableAspectJAutoProxy
+@EnableWebMvc 
+public class BeanConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Bean
 	public DriverManagerDataSource dataSource() {
