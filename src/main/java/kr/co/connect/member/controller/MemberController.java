@@ -22,8 +22,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/Joinus" ,produces="text/plain;charset=UTF-8")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String Joinus(String err,Model model)
-	{
-		
+	{		
 		model.addAttribute("err",err);
 		return "member/Joinus"; //실제 주소(실제로 입력이 되는 주소)
 	}
