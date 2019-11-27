@@ -1,29 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/spring/root-context.xml</param-value>
-  </context-param>
+  
+  <!-- contextClass : 스프링 컨테이너를 받아들일 파라미터 이름 -->
+  <!-- AnnotationConfigWebApplicationContext : 어노테이션을 인식할 수 있는 클래스  -->
+<!--   <context-param> -->
+<!--     <param-name>contextClass</param-name> -->
+<!--     <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value> -->
+<!--   </context-param> -->
+
+<!--   <context-param> -->
+<!--     <param-name>contextConfigLocation</param-name> -->
+<!--     <param-value>kr.co.connect.config.AppConfig.class</param-value> -->
+<!--   </context-param> -->
+
+  
+    
+  <!-- ContextLoaderListener : Servlet Context 의 라이프사이클에 맞추어 컨테이너를 Servlet Context 에 추가/삭세 하도록 함  -->
+  <!-- ContextLoader : Listener 가 상속받을 클래스, 실질적으로 컨테이너를 Servlet Context 에 등록(생성+세팅)하는 역할을 함  -->
+  <!-- 컨테이너 등록을 위해 Class Type 과 Configuration file 을 Servlet Context 의 파라미터로부터 전달 받음  -->
+  <!-- 이 두 개의 파라미터들을 위의 <context-param>에서 설정 -->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
+  
+  <!-- Dispatcher Servlet 등록 (클라이언트(브라우저)의 모든 요청을 처음 받아들이는 클래스)  -->
   <servlet>
     <servlet-name>appServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    
+    <!-- 초기 파라미터 (여기서 지정한 설정파일을 이용하여 스프링 컨테이너를 등록한다.) -->
     <init-param>
-    <!-- 
-    * xml or java file 선택 부분
-    * 이 페이지 상단에서 수정할 부분은 없나 ? 확인 필요  
-     -->
-     <!-- java file -->
 	  <param-name>contextClass</param-name>
    	  <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
-	 <!-- xml -->
+    </init-param>
+   	
+   	<init-param>
+   		<param-name>contextConfigLocation</param-name>
+   		<param-value>kr.co.connect.config.WebConfig.class</param-value>
+   	</init-param>
+
+<!-- * xml 파일로 컨테이너 생성하는 경우  -->
 <!--       <param-name>contextConfigLocation</param-name> -->
 <!--       <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value> -->
-    </init-param>
+
+
     <load-on-startup>1</load-on-startup>
   </servlet>
+  
+  
+  <!-- Dispatcher Servlet 매핑  -->
+  <servlet-mapping>
+    <servlet-name>appServlet</servlet-name>
+    <url-pattern>/</url-pattern><!-- 모든 URL 요청을 수용  -->
+  </servlet-mapping>
+ 
+ 
+  
+  <!-- 채팅 관련 서블릿  -->
   <servlet>
     <servlet-name>ChatSubmitServlet</servlet-name>
     <servlet-class>kr.co.connect.chat.servlet.ChatSubmitServlet</servlet-class>
@@ -42,24 +76,7 @@
     <url-pattern>/chatListServlet</url-pattern>
   </servlet-mapping>
   
-  
-  <servlet-mapping>
-    <servlet-name>appServlet</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-  <filter>
-    <filter-name>encodingFilter</filter-name>
-    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-    <init-param>
-      <param-name>encoding</param-name>
-      <param-value>UTF-8</param-value>
-    </init-param>
-  </filter>
-  <filter-mapping>
-    <filter-name>encodingFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  <servlet>
+   <servlet>
     <description></description>
     <display-name>koko</display-name>
     <servlet-name>koko</servlet-name>
@@ -69,4 +86,22 @@
     <servlet-name>koko</servlet-name>
     <url-pattern>/koko</url-pattern>
   </servlet-mapping>
+  
+   
+  <!-- 인코딩 필터  -->
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  
+  <!-- 인코딩 필터 매핑  -->
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
 </web-app>
