@@ -12,8 +12,9 @@ import kr.co.connect.group.controller.GroupController;
 // web 에 필요한 빈들은 대부분 자동 생성 (HandlerMapping 등) 
 // 추가 설정 필요시, WebMvcConfigurerAdapter 클래스를 상속받고 오버라이드 
 
+//@ComponentScan(basePackages = "*", excludeFilters = @ComponentScan.Filter(kr.co.connect.group.controller.GroupController.class)) // @Controller 제외 
 @Configuration
-@ComponentScan(basePackages = "kr.co.connect", excludeFilters = @ComponentScan.Filter(GroupController.class)) // @Controller 제외 
+@ComponentScan(basePackages = "kr.co.connect")
 @EnableAspectJAutoProxy
 @EnableWebMvc
 public class AppConfig {
