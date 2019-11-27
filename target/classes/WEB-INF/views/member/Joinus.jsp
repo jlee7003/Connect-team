@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/connect/resources/main.css?ver=4">
+<link rel="stylesheet" href="/connect/resources/main.css?ver=7">
 <script src="/connect/resources/main.js?ver=3"></script>
 </head>
 <style>
@@ -21,86 +21,17 @@
 	margin: 10px;
 }
 </style>
-<script>
-/* joinus1 */
- 	function phonealert()
- 	{
- 		document.all.innertext2.innerHTML = "<b style='color:#828282'> '-' 표시 없이 입력해주세요</b>";
- 	}
- 	function alertout()
- 	{
- 		document.all.innertext1.innerHTML = "";
- 		document.all.innertext2.innerHTML = "";
- 		document.all.innertext3.innerHTML = "";
- 		document.all.innertext4.innerHTML = "";
- 		document.all.innertext5.innerHTML = "";
- 		document.all.innertext6.innerHTML = "";
- 	}
-	function submit_check() 
-	{
-		
-	if(document.joinform.username.value == "") 
-		{
-		document.all.innertext1.innerHTML = "<b style='color:#828282'>이름을 입력해주세요</b>";
-		document.joinform.name.focus();
-		return false;
-		}
-	else if(document.joinform.phone.value == "" )
-	{
-		document.all.innertext2.innerHTML = "<b style='color:#828282'>전화번호를 입력하세요</b>";
-		document.joinform.phone.focus();
-		return false;
-	}
-		else if (document.joinform.email.value == "") 
-		{
-			document.all.innertext3.innerHTML = "<b style='color:#828282'>아이디를 입력해주세요</b>";
-			document.joinform.email.focus();
-			return false;
-		} 
-		else if (document.joinform.email.value.length <= 5)
-		{
-			document.all.innertext3.innerHTML = "<b style='color:#828282'>아이디를 6자 이상으로 만들어주세요</b>";
-			document.joinform.email.focus();
-			return false;
-		}
-		else if (document.joinform.password.value == "")
-		{
-			document.all.innertext4.innerHTML = "<b style='color:#828282'>비밀번호를 입력 해주세요</b>";
-			document.joinform.password.focus();
-			return false;
-		}
-	
-		else if (document.joinform.password.value.length <= 5)
-		{
-			document.all.innertext4.innerHTML = "<b style='color:#828282'>비밀번호를 6자 이상으로 만들어주세요</b>";
-			document.joinform.password.focus();
-			return false;
-			
-		}
-		else if (document.joinform.month.value == "월" || document.joinform.day.value == "일")
-		{
-			document.all.innertext5.innerHTML = "<b style='color:#828282'>생년월일을 확인해주세요</b>";
-			return false;
-		}
-	
-   	 	else if(document.joinform.sex[0].checked == false && document.joinform.sex[1].checked == false  )
-	 		{
-   	 	document.all.innertext6.innerHTML = "<b style='color:#828282'>성별을 선택해주세요</b>";
-	 	return false;
-	 		}
-			
-		else
-			{
-			var birth=document.joinform.year.value+document.joinform.month.value+document.joinform.day.value; 
-			document.joinform.birth.value=birth;
-			alert(document.joinform.birth.value);
-			return true;
-			}
-	}
-</script>
+<!-- body 시작부 -->
 
 <body>
-	<div class="floor">
+<div class="floor_h5 shadow">
+<div class="font_design2"><img alt="logo" src="logo.PNG"></div>
+</div>
+
+<div class="floor_h10 ">
+
+</div>
+	<div class="floor_h50">
 		<!-- floor 에서의 높이는 전부 일정해야함 -->
 
 
@@ -270,4 +201,82 @@
 
 	</div>
 </body>
+
+<script>
+/* joinus1 */
+ 	function phonealert()
+ 	{
+ 		document.all.innertext2.innerHTML = "<b style='color:#828282'> '-' 표시 없이 입력해주세요</b>";
+ 	}
+ 	function alertout()
+ 	{
+ 		document.all.innertext1.innerHTML = "";
+ 		document.all.innertext2.innerHTML = "";
+ 		document.all.innertext3.innerHTML = "";
+ 		document.all.innertext4.innerHTML = "";
+ 		document.all.innertext5.innerHTML = "";
+ 		document.all.innertext6.innerHTML = "";
+ 	}
+	function submit_check() 
+	{
+		
+	if(document.joinform.username.value == "") 
+		{
+		document.all.innertext1.innerHTML = "<b style='color:#828282'>이름을 입력해주세요</b>";
+		document.joinform.name.focus();
+		return false;
+		}
+	else if(document.joinform.phone.value == "" )
+	{
+		document.all.innertext2.innerHTML = "<b style='color:#828282'>전화번호를 입력하세요</b>";
+		document.joinform.phone.focus();
+		return false;
+	}
+		else if (document.joinform.email.value == "") 
+		{
+			document.all.innertext3.innerHTML = "<b style='color:#828282'>아이디를 입력해주세요</b>";
+			document.joinform.email.focus();
+			return false;
+		} 
+		else if (document.joinform.email.value.length <= 5)
+		{
+			document.all.innertext3.innerHTML = "<b style='color:#828282'>아이디를 6자 이상으로 만들어주세요</b>";
+			document.joinform.email.focus();
+			return false;
+		}
+		else if (document.joinform.password.value == "")
+		{
+			document.all.innertext4.innerHTML = "<b style='color:#828282'>비밀번호를 입력 해주세요</b>";
+			document.joinform.password.focus();
+			return false;
+		}
+	
+		else if (document.joinform.password.value.length <= 5)
+		{
+			document.all.innertext4.innerHTML = "<b style='color:#828282'>비밀번호를 6자 이상으로 만들어주세요</b>";
+			document.joinform.password.focus();
+			return false;
+			
+		}
+		else if (document.joinform.month.value == "월" || document.joinform.day.value == "일")
+		{
+			document.all.innertext5.innerHTML = "<b style='color:#828282'>생년월일을 확인해주세요</b>";
+			return false;
+		}
+	
+   	 	else if(document.joinform.sex[0].checked == false && document.joinform.sex[1].checked == false  )
+	 		{
+   	 	document.all.innertext6.innerHTML = "<b style='color:#828282'>성별을 선택해주세요</b>";
+	 	return false;
+	 		}
+			
+		else
+			{
+			var birth=document.joinform.year.value+document.joinform.month.value+document.joinform.day.value; 
+			document.joinform.birth.value=birth;
+			alert(document.joinform.birth.value);
+			return true;
+			}
+	}
+</script>
 </html>

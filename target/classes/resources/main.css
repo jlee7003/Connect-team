@@ -6,12 +6,48 @@ html, body {
 	overflow: hidden;
 }
 
-.floor { /* floor를 사용할때 높이는 등분해서 사용해주어야함 */
+.floor_h50 { /* floor를 사용할때 높이는 등분해서 사용해주어야함 */
 	width: 100%;
 	height: 50%;
 	display: flex;
 }
-
+.floor_h5 { 
+	width: 100%;
+	height: 5%;
+	display: flex;
+}
+.floor_h10 { 
+	width: 100%;
+	height: 10%;
+	display: flex;
+}
+.floor_h20 { 
+	width: 100%;
+	height: 20%;
+	display: flex;
+}
+.floor_h30 { 
+	width: 100%;
+	height: 30%;
+	display: flex;
+}
+.floor_h40 { 
+	width: 100%;
+	height: 40%;
+	display: flex;
+}
+.floor_h60 { 
+	width: 100%;
+	height: 60%;
+	display: flex;
+}
+.shadow {
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+}
+.border_bottom_red{
+ border-bottom: 3px #73BBFF solid;
+}
+}
 input:focus {
 	outline: none;
 }
@@ -84,4 +120,12 @@ input:focus {
     font-family: inherit;
     font-size: 1.15384615rem;
     font-weight: 700;
+}
+.font_design2
+{
+    padding: 0 2px;
+    color: #0C0D0E;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 1.25rem;
 }
