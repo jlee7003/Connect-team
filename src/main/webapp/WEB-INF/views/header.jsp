@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/connect/resources/main.css?ver=header19">
+<link rel="stylesheet" href="/connect/resources/main.css?ver=header20">
 <script src="/connect/resources/main.js?ver=main"></script>
 </head>
 <body>
