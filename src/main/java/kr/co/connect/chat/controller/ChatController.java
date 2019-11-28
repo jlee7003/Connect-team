@@ -34,7 +34,6 @@ public class ChatController {
 	@RequestMapping("/chatroom")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String chatroom(Model model,HttpServletResponse response, Chat chat, HttpSession session, HttpServletRequest request) 
 	{
-		session.setAttribute("groups", 1);
 		String content=request.getParameter("content");
 		String groups=session.getAttribute("groups").toString();
 		String username=session.getAttribute("username").toString();

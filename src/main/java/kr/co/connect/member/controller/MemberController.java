@@ -26,6 +26,13 @@ public class MemberController {
 		model.addAttribute("err",err);
 		return "member/Joinus"; //실제 주소(실제로 입력이 되는 주소)
 	}
+	@RequestMapping("/login" )//브라우저에 입력된 주소(사용자가 입력하는 주소)
+	public String login(String err,Model model)
+	{
+		model.addAttribute("err",err);
+		return "member/login"; //실제 주소(실제로 입력이 되는 주소)
+	}
+	
 	
 	@RequestMapping("/Joinus_ok")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String Joinus_ok(Member member, HttpServletRequest request, HttpSession session) throws SQLException
@@ -51,13 +58,13 @@ public class MemberController {
 		{
 			System.out.println("wrong");
 			String err="wrong id or password";
-			return "redirect:/Joinus?err="+err;
+			return "redirect:/login?err="+err;
 		}
 		else
 		{
 			session.setAttribute("username", logtruevalue.getUsername());//이렇게 하면 select 하기 전의 Username이 들어감으로 X 결과값을 가져와야 함 하지만 어떻게??
 			session.setAttribute("userid", email);
-			session.setAttribute("groups", 1);
+			session.setAttribute("groups", logtruevalue.getGroups());
 			System.out.println(session.getAttribute("userid"));
 			return "redirect:/Joinus";
 		}
@@ -112,7 +119,7 @@ public class MemberController {
 		imemberDao dao=sqlSession.getMapper(imemberDao.class);
 	    dao.findpwd(dto.getPhone(), dto.getUsername(), dto.getEmail());
 	    model.addAttribute("Fpwd", dao.findpwd(dto.getPhone(), dto.getUsername(), dto.getEmail()));
-		return "member/findid"; //실제 주소(실제로 입력이 되는 주소)
+		return "member/findpwd_ok"; //실제 주소(실제로 입력이 되는 주소)
 	}
 	
 	@RequestMapping("/emailcheck")

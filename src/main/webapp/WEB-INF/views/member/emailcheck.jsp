@@ -44,6 +44,7 @@ function confirmemail(emailconfirm_value, authNum)
 			email = email1 + "@" + email2;
 		}
 	}
+	
 	// 위에서 작성한 java파일 객체 생성
 	EmailConfirm emailconfirm = new EmailConfirm();
 	String authNum = emailconfirm.connectEmail(email);

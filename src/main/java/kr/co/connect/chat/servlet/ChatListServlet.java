@@ -24,7 +24,7 @@ public class ChatListServlet extends HttpServlet {
 		String groups = request.getParameter("groups");
 		if(listType == null || listType.equals("")) response.getWriter().write("");
 		else if(listType.equals("today"))response.getWriter().write(getToday());
-		else if(listType.equals("ten"))response.getWriter().write(getTen(listType));
+		else if(listType.equals("ten"))response.getWriter().write(getTen(groups));
 		else {
 			try {
 				Integer.parseInt(listType); //숫자가 아니라면 오류 발생
@@ -73,7 +73,7 @@ public class ChatListServlet extends HttpServlet {
 	
 	
 	
-	public String getID(String id,String groups){
+	public String getID(String id, String groups){
 		StringBuffer result = new StringBuffer("");
 		result.append("{\"result\":[");//<- 제이슨 : 큰따옴표로 구분하고 어떠한 변수들의 이름을 지정하고 그것을 클라이언트에게 보내진담에 클라이언트는 다시 파싱해서 화면에 출력
 	    chatDaojsp chatDao =new chatDaojsp();

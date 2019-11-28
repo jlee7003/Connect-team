@@ -111,7 +111,7 @@ public class chatDaojsp {
 	}
 	
 	
-	public ArrayList<Chat> getChatLlistByRecent(String id, String groups) {
+	public ArrayList<Chat> getChatLlistByRecent(String id,String groups) {
 		ArrayList<Chat> chatList = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

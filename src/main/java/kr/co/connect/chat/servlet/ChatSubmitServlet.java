@@ -15,14 +15,15 @@ public class ChatSubmitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("제발");
 		response.setContentType("text/html);charset=UTF-8");
 		String username= URLDecoder.decode(request.getParameter("username"),"UTF-8");
 		String content = URLDecoder.decode(request.getParameter("content"),"UTF-8");
-//		String groups="1";
-		String groups=session.getAttribute("groups").toString();
+		String groups= URLDecoder.decode(request.getParameter("groups"),"UTF-8");
+		System.out.println("username: " +username);
+		System.out.println("groups: " +groups);
 		if(username == null || username.equals("")|| content == null || content.equals("")) {
 			response.getWriter().write("0");
 			System.out.println("제발1");

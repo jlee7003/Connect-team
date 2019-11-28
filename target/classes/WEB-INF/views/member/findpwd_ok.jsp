@@ -71,97 +71,31 @@ function alert11()
 
 
 
-<!--  -->
+<!-- 1 -->
 <div class="floor_h70 flex center">
-		<div class="shadow padding_50 width25 login_minw login_minh">
-			<div class="login container" align=center>
+		<div class="shadow padding_50 width25 login_minw login_minh font_design_ns">
+				<div class="login container" align=center>
 				<div>
-					<div class="font_design2 container_w5">
+					<div class="font_design2 container_w5 ">
 						<img alt="logo" class="margin_left_10 padding" width=74 height=55
 							src="resources/img/logo2.PNG">
 					</div>
-					<hr>
-				</div>
-					<table>
-						<tr>
-							<td>&nbsp;</td>
-						</tr>
-						<!--  -->
-						<tr>
-							<td><span class="font_design">Phone</span></td>
-						</tr>
-						<tr>
-							<td><input type=text name=phone id=phone
-								class="input_width100 bd_radius height_20 inputtag"></td>
-						</tr>
-					<!--  -->
-						<tr>
-							<td class="font_design">Username</td>
-						</tr>
-						<tr >
-							<td align=center><input type=text name=username	id=username class="input_width100 bd_radius height_20 inputtag"></td>
-						</tr>
-							<!--  -->
-							<tr>
-							<td><span class="font_design">Email</span></td>
-						</tr>
-						<tr>
-							<td>
-							
-			<form name="insertform" action="checkemail">
-			<input type="text" name="email1" maxlength="15" class="input_width45 bd_radius height_20 inputtag" size=10 id=email1>
-			@ <select name="email2" id="email2" class="input_width40 bd_radius height_35 inputtag">
-				<option value="0">직접입력</option>
-				<option value="naver.com">naver.com</option>
-				<option value="daum.net">daum.net</option>
-				<option value="nate.com">nate.com</option>
-				<option value="gmail.com">gmail.com</option>
-			</select> <input type="button" name="emailconfirm_btn" value="인증" class="button_submit" onclick="emailcheck(insertform.email1.value, insertform.email2.value)">
-			<p>
-				<span id=aaa></span>
-		</form>
-							
-							
 <!-- 							<input type=text name=email -->
 <!-- 								class="input_width100 bd_radius height_20 inputtag"> -->
-								
-								
-								
-								
-								</td>
-						</tr>
-						<!--  -->
-						<tr>
-							<td></td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-						</tr>
-						<tr align=center>
-							<td align=center>
-								<p>
-							</td>
-							<td></td>
-						</tr>
-					</table>
-						${Fpwd.password}
-						<form method=post action=findpwd_ok name=plusemail
-					onsubmit="return checkall()">
-					<input type=hidden name=emailval value=0 id=hv>
-					<input type=hidden name=email> 
-					<input type=hidden name=username> 
-					<input type=hidden name=phone>
-				    <input type=submit class="input_login" value="확인" style="color:white"
-						id=aa3>
-				</form>
-
-
+			<div class="fontsize_115">
+			안녕하세요	${Fpwd.username} 고객님<p>
+			고객님의 고객정보는 아래와 같습니다.
+			</div >						
+			<div class="fontsize_1 padding_20">비밀번호 : ${Fpwd.password}</div>
+			
+			</div>
+			<hr>
+			<div class="margin_top_100">
+			<a href="/connect" class="">메인으로 가기</a>
 			</div>
 		</div>
-	</div>
+		</div>
+		</div>
 <!--  -->
 		<%-- <table border=1>
 			<tr>
@@ -228,3 +162,4 @@ function alert11()
 <jsp:include page="../footer.jsp" flush="false" />
 </body>
 </html>
+	
