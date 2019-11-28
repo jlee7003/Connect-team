@@ -16,70 +16,15 @@
 
 <body>
  <jsp:include page="../header.jsp" flush="false" />
-	<div class="floor_h50">
+	<div class="floor_h83 center shadow">
 		<!-- floor 에서의 높이는 전부 일정해야함 -->
 
-
-
-		<div class="login" align=center>
-			<form method="post" action="login_ok">
-				<table>
-					<%
-						if (session.getAttribute("userid") == null)//세션변수가 없다면
-						{
-					%>
-					<tr>
-						<td><span class="font_design">Email</span></td>
-					</tr>
-					<tr>
-						<td><input type=text name=email
-							class="input_width bd_radius height_20 inputtag"></td>
-					</tr>
-					<tr>
-						<td class="font_design">Password</td>
-					</tr>
-					<tr>
-						<td><input type=password name=password
-							class="input_width bd_radius height_20 inputtag"></td>
-					</tr>
-					<tr>
-						<td>${err}</td>
-					</tr>
-					<tr>
-						<td><a href="findid">Forgot password?</a></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>
-							<!-- <a href="Joinus">LOGIN</a><p> --> <input type="submit"
-							value="Login">
-							<p>
-								<span>로그인 해주세요</span>
-								<%
-									} else {
-								%>
-							
-							<div>
-								<input type=button onclick="location='logout'" value=logout>
-							</div> <%=session.getAttribute("username")%>님 환영합니다! <a href="chatroom">chatroom</a>
-							<%
-								}
-							%>
-						</td>
-						<td></td>
-					</tr>
-				</table>
-			</form>
-
-
-		</div>
-
 		<!-- joinus -->
-		<div class="joinus container" align=center>
+		<div class=" " align=center>
 			<!-- width, height:auto -->
 
 			<div>
-				<h1 class="margin_10">Join us</h1>
+				<h1 class="margin_10">Join to <span class="color_connect fontsize_">Connect</span></h1>
 			</div>
 			<form method=post action="Joinus_ok" name=joinform
 				onsubmit="return submit_check()">
