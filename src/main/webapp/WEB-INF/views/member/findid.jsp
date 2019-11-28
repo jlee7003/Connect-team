@@ -67,8 +67,103 @@ function alert11()
 
 </script>
 <body>
+<jsp:include page="../header.jsp" flush="false" />
 
-		<table border=1>
+
+
+<!--  -->
+<div class="floor_h70 flex center">
+		<div class="shadow padding_50 width25 login_minw login_minh">
+			<div class="login container" align=center>
+				<div>
+					<div class="font_design2 container_w5">
+						<img alt="logo" class="margin_left_10 padding" width=74 height=55
+							src="resources/img/logo2.PNG">
+					</div>
+					<hr>
+				</div>
+					<table>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<!--  -->
+						<tr>
+							<td><span class="font_design">Phone</span></td>
+						</tr>
+						<tr>
+							<td><input type=text name=phone id=phone
+								class="input_width100 bd_radius height_20 inputtag"></td>
+						</tr>
+					<!--  -->
+						<tr>
+							<td class="font_design">Username</td>
+						</tr>
+						<tr >
+							<td align=center><input type=text name=username	id=username class="input_width100 bd_radius height_20 inputtag"></td>
+						</tr>
+							<!--  -->
+							<tr>
+							<td><span class="font_design">Email</span></td>
+						</tr>
+						<tr>
+							<td>
+							
+			<form name="insertform" action="checkemail">
+			<input type="text" name="email1" maxlength="15" class="input_width45 bd_radius height_20 inputtag" size=10 id=email1>
+			@ <select name="email2" id="email2" class="input_width40 bd_radius height_35 inputtag">
+				<option value="0">직접입력</option>
+				<option value="naver.com">naver.com</option>
+				<option value="daum.net">daum.net</option>
+				<option value="nate.com">nate.com</option>
+				<option value="gmail.com">gmail.com</option>
+			</select> <input type="button" name="emailconfirm_btn" value="인증" class="button_submit" onclick="emailcheck(insertform.email1.value, insertform.email2.value)">
+			<p>
+				<span id=aaa></span>
+		</form>
+							
+							
+<!-- 							<input type=text name=email -->
+<!-- 								class="input_width100 bd_radius height_20 inputtag"> -->
+								
+								
+								
+								
+								</td>
+						</tr>
+						<!--  -->
+						<tr>
+							<td></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr align=center>
+							<td align=center>
+								<p>
+							</td>
+							<td></td>
+						</tr>
+					</table>
+						${Fpwd.password}
+						<form method=post action=findpwd_ok name=plusemail
+					onsubmit="return checkall()">
+					<input type=hidden name=emailval value=0 id=hv>
+					<input type=hidden name=email> 
+					<input type=hidden name=username> 
+					<input type=hidden name=phone>
+				    <input type=submit class="input_login" value="확인" style="color:white"
+						id=aa3>
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+<!--  -->
+		<%-- <table border=1>
 			<tr>
 				<td>전화번호</td>
 				<td><input type=text name=phone id=phone> </td>
@@ -85,7 +180,7 @@ function alert11()
 			<input type="text" name="email1" maxlength="15" size=10 id=email1>
 	<!-- 		<input type=hidden value=> -->
 	<!-- 		<input type=hidden value=> -->
-			@ <select name="email2" id=email2>
+			@ <select name="email2" id="email2">
 				<option value="0">직접입력</option>
 				<option value="naver.com">naver.com</option>
 				<option value="daum.net">daum.net</option>
@@ -118,7 +213,7 @@ function alert11()
 					<input type=hidden name=phone>
 				    <input type=submit value="확1인" style="color:white"
 						id=aa3>
-				</form>
+				</form> --%>
 
 
 <!-- 				<form method=post action=findid_ok.jsp name=plusemail -->
@@ -130,6 +225,6 @@ function alert11()
 <!-- 						id=aa3> -->
 <!-- 				</form> -->
 
-
+<jsp:include page="../footer.jsp" flush="false" />
 </body>
 </html>

@@ -27,6 +27,13 @@ public class MemberController {
 		model.addAttribute("err",err);
 		return "member/Joinus"; //실제 주소(실제로 입력이 되는 주소)
 	}
+	@RequestMapping("/login" )//브라우저에 입력된 주소(사용자가 입력하는 주소)
+	public String login(String err,Model model)
+	{
+		model.addAttribute("err",err);
+		return "member/login"; //실제 주소(실제로 입력이 되는 주소)
+	}
+	
 	
 	@RequestMapping("/Joinus_ok")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String Joinus_ok(Member member, HttpServletRequest request, HttpSession session) throws SQLException
@@ -52,7 +59,7 @@ public class MemberController {
 		{
 			System.out.println("wrong");
 			String err="wrong id or password";
-			return "redirect:/Joinus?err="+err;
+			return "redirect:/login?err="+err;
 		}
 		else
 		{
@@ -113,7 +120,7 @@ public class MemberController {
 		imemberDao dao=sqlSession.getMapper(imemberDao.class);
 	    dao.findpwd(dto.getPhone(), dto.getUsername(), dto.getEmail());
 	    model.addAttribute("Fpwd", dao.findpwd(dto.getPhone(), dto.getUsername(), dto.getEmail()));
-		return "member/findid"; //실제 주소(실제로 입력이 되는 주소)
+		return "member/findpwd_ok"; //실제 주소(실제로 입력이 되는 주소)
 	}
 	
 	@RequestMapping("/emailcheck")

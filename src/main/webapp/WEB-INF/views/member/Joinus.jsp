@@ -7,36 +7,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/connect/resources/main.css?ver=7">
-<script src="/connect/resources/main.js?ver=3"></script>
+<script src="/connect/resources/main.js?ver=login1"></script>
 </head>
 <style>
-.joinus {
-	width: 500px;
-	border: 1px solid black;
-	border-radius: 10px;
-}
 
-.margin_10 {
-	margin: 10px;
-}
 </style>
 <!-- body 시작부 -->
 
 <body>
-<div class="floor_h5 shadow">
-<div class="font_design2"><img alt="logo" src="logo.PNG"></div>
-</div>
-
-<div class="floor_h10 ">
-
-</div>
+ <jsp:include page="../header.jsp" flush="false" />
 	<div class="floor_h50">
 		<!-- floor 에서의 높이는 전부 일정해야함 -->
 
 
 
-		<div class="login container" align=center>
+		<div class="login" align=center>
 			<form method="post" action="login_ok">
 				<table>
 					<%
@@ -200,6 +185,7 @@
 
 
 	</div>
+	<jsp:include page="../footer.jsp" flush="false" />
 </body>
 
 <script>
