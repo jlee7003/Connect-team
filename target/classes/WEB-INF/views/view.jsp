@@ -12,7 +12,7 @@
 }
 </style>
 <body>
-
+<!-- test -->
 
  <%
  if(session.getAttribute("userid")==null)//세션변수가 없다면
