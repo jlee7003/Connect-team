@@ -11,7 +11,7 @@ public interface imemberDao
 {
    // 사용할 메소드를 추상메소드로 정의 한다.
 	//interface는 자기자신의 생성자를 만들수 없다
-	public void write(String username ,String phone ,String email ,String password ,String birth, String sex, String groups, String writeday);
+	public void write(String username ,String phone ,String email ,String password ,String birth, String sex, String writeday);
 	
 	  public ArrayList<Member> list(); 
 	  public Member content(String id);

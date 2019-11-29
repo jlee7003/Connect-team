@@ -8,8 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<insert id="write"><!-- 태그 이름은 구분하기 편하라고 write라고 해준것 -->
-	INSERT INTO MEMBERS(USERNAME,PHONE,EMAIL,PASSWORD,BIRTH,SEX,GROUPS,WRITEDAY)
-			VALUES(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},NOW())
+	INSERT INTO MEMBERS(USERNAME,PHONE,EMAIL,PASSWORD,BIRTH,SEX,WRITEDAY)
+			VALUES(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},NOW())
 	</insert>
 
 <!--  -->
