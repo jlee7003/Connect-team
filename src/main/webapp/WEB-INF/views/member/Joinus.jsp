@@ -10,12 +10,11 @@
 <script src="/connect/resources/main.js?ver=login1"></script>
 </head>
 <style>
-
 </style>
 <!-- body 시작부 -->
 
 <body>
- <jsp:include page="../header.jsp" flush="false" />
+	<jsp:include page="../header.jsp" flush="false" />
 	<div class="floor_h83 center shadow">
 		<!-- floor 에서의 높이는 전부 일정해야함 -->
 
@@ -24,7 +23,9 @@
 			<!-- width, height:auto -->
 
 			<div>
-				<h1 class="margin_10">Join to <span class="color_connect fontsize_">Connect</span></h1>
+				<h1 class="margin_10">
+					Join to <span class="color_connect fontsize_">Connect</span>
+				</h1>
 			</div>
 			<form method=post action="Joinus_ok" name=joinform
 				onsubmit="return submit_check()">
