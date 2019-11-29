@@ -73,7 +73,7 @@ public class MemberController {
 	public String view(Model model)
 	{
 			return "/view"; //실제 주소(실제로 입력이 되는 주소)
-	}
+	} 
 	@RequestMapping("/logout")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String logout(HttpServletRequest request, Model model)
 	{
