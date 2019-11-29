@@ -6,8 +6,24 @@ import org.springframework.stereotype.Component;
 public class GroupDto {
 
 	private int id;
+	private int groupid;
 	private String groupname;
 	private String manager;
+	private String email;
+	
+	public int getGroupid() {
+		return groupid;
+	}
+	public void setGroupid(int groupid) {
+		this.groupid = groupid;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	private String writeday;
 	
 	public int getId() {
