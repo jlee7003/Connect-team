@@ -8,8 +8,9 @@
 </head>
 <body>
 	<form action="/connect/group/makeGroupOk" method="post">
+		<input type="hidden" name="email" value="${email}" />
 		<input type="text" name="groupname" placeholder="그룹의 이름" />
-		<input type="text" name="manager" placeholder="그룹 관리자" />
+		<input type="text" name="manager" value="${email}" />
 		<input type="submit" value="그룹 만들기" />
 	</form>
 </body>
