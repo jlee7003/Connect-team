@@ -66,7 +66,7 @@ public class MemberController {
 			session.setAttribute("userid", email);
 			session.setAttribute("groups", logtruevalue.getGroups());
 			System.out.println(session.getAttribute("userid"));
-			return "redirect:/Joinus";
+			return "redirect:/";
 		}
 	}
 	@RequestMapping("/view")//브라우저에 입력된 주소(사용자가 입력하는 주소)

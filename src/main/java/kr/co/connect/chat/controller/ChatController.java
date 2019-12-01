@@ -9,15 +9,23 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.connect.chat.Chat;
 import kr.co.connect.chat.dao.ichatDao;
+import kr.co.connect.chat.mapper.ChatMapperInterface;
+import kr.co.connect.mapper.BeanConfigClass;
 
 @Controller
 public class ChatController {
+	
+	
+	AnnotationConfigApplicationContext ctx=new AnnotationConfigApplicationContext(BeanConfigClass.class);
+	
+	ChatMapperInterface mapper=ctx.getBean("getChatMapper",ChatMapperInterface.class);
 	
 	@Autowired //자동으로 아래의 메소드들과 연결시켜줌
 	 public SqlSession sqlSession;
@@ -60,7 +68,7 @@ public class ChatController {
 		String content=request.getParameter("content");
 		String username=request.getParameter("username");
 		ichatDao dao=sqlSession.getMapper(ichatDao.class);
-		dao.writechatstr(username,content,groups); //DB 작성하기
+		dao.writechat(username,content,groups); //DB 작성하기
 		dao.chatlist(groups); // DB저장후 20개 읽어오기
 		out.print("#");
 	}

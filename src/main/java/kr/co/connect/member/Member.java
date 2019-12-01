@@ -1,5 +1,10 @@
 package kr.co.connect.member;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("prototype")
 public class Member {
 	private String id;
 	private String username;
@@ -9,6 +14,7 @@ public class Member {
 	private String birth;
 	private String sex;
 	private String groups;
+	
 	public String getGroups() {
 		return groups;
 	}

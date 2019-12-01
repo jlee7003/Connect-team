@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="/connect/resources/main.js?ver=login1"></script>
 </head>
 <style>
 </style>
@@ -19,7 +18,10 @@
 		<!-- floor 에서의 높이는 전부 일정해야함 -->
 
 		<!-- joinus -->
-		<div class=" " align=center>
+		<div class="width40" align=center>
+			<img alt=""  src="resources/img/join.PNG">
+		</div>
+		<div class="width40" align=center>
 			<!-- width, height:auto -->
 
 			<div>

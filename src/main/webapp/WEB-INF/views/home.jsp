@@ -8,12 +8,10 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" flush="false" />
-	<div>
-	
+	<div class="floor_h100" >
+Welcome to the Connect.
+ Work together to take advantage of the group task service!
 	</div>
-<h1>
-	Hello world!  
-</h1>
 
 	<jsp:include page="footer.jsp" flush="false" />
 

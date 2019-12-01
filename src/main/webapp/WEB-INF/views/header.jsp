@@ -27,8 +27,30 @@
 </div>
 <div class="container_w30 flex center font_design3">
 <div class="margin_left_20 width33"><a href="#">GROUPS</a></div>
- <div class="margin_left_20 width33"><a href="#">JOINUS</a></div> 
- <div class="margin_left_20 width33"><a href="login">LOGIN</a></div>
+ <div class="margin_left_20 width33"><a href="Joinus">JOINUS</a></div> 
+ <div class="margin_left_20 width33">
+
+
+
+			<%
+				if (session.getAttribute("userid") == null)//세션변수가 없다면
+				{
+			%>
+			<a href="login">LOGIN</a>
+			<%
+				} else
+				{
+			%>
+			<a href="logout">LOGOUT</a>
+			<%
+			} 
+			%>
+			<!--  -->
+
+
+
+
+</div>
 <!--  -->
 </div>
 <div class="container_w10 flex center ">미정</div>
