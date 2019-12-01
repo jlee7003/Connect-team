@@ -78,44 +78,44 @@
       }
       
  4.xmlFile
- 
-<mapper namespace="kr.co.connect.member.dao.imemberDao"> <!--servlet-context.xml에서 내가 설정한 package의 모든 xml을 찾는다  -->
-  
- <insert id="write"><!-- 인터페이스에서 정의한 메소드의 이름을 아이디로 해준다. -->
-	INSERT INTO MEMBERS(USERNAME,PHONE,EMAIL,PASSWORD,BIRTH,SEX,GROUPS,WRITEDAY)
-			VALUES(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},NOW())
-	</insert>
+      내가 만든 interface 매핑해주고 아래와 같이 sql문을 작성해준다.
+	<mapper namespace="kr.co.connect.member.dao.imemberDao"> <!--servlet-context.xml에서 내가 설정한 package의 모든 xml을 찾는다  -->
 
-<!--  -->
-   <select id="list" resultType="kr.co.connect.member.Member"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
-     SELECT * FROM BOARD ORDER BY ID DESC
-   </select>
-   
-    <select id="content" resultType="kr.co.connect.member.Member">
-     SELECT * FROM BOARD WHERE ID=#{PARAM1}
-   </select>
-   
-   <select id="update" resultType="kr.co.connect.member.Member">
-     SELECT * FROM BOARD WHERE ID=#{PARAM1}
-   </select>
-   
-     <select id="findid" resultType="kr.co.connect.member.Member">
-  	 SELECT * FROM MEMBERS WHERE PHONE=#{param1} AND USERNAME=#{param2}
-   </select>
-   
-      <select id="findpwd" resultType="kr.co.connect.member.Member">
-  	 SELECT * FROM MEMBERS WHERE PHONE=#{param1} AND USERNAME=#{param2} AND EMAIL=#{param3}
-   </select>
-   
-   <select id="login" resultType="kr.co.connect.member.Member">
-  	 SELECT * FROM MEMBERS WHERE EMAIL=#{param1} AND PASSWORD=#{param2}
-   </select>
+	 <insert id="write"><!-- 인터페이스에서 정의한 메소드의 이름을 아이디로 해준다. -->
+		INSERT INTO MEMBERS(USERNAME,PHONE,EMAIL,PASSWORD,BIRTH,SEX,GROUPS,WRITEDAY)
+				VALUES(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},NOW())
+		</insert>
 
-   <update id="updateok" > <!--resulttype은 ResultSet 대체 라고 보면된다 -->
-     UPDATE BOARD SET NAME=#{param1},TITLE=#{param2},CONTENT=#{param3} WHERE ID=#{param4}
-   </update>
-   
-   <delete id="delete"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
-     DELETE FROM BOARD WHERE ID=#{PARAM1}
-   </delete>
-</mapper>
+	<!--  -->
+	   <select id="list" resultType="kr.co.connect.member.Member"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+	     SELECT * FROM BOARD ORDER BY ID DESC
+	   </select>
+
+	    <select id="content" resultType="kr.co.connect.member.Member">
+	     SELECT * FROM BOARD WHERE ID=#{PARAM1}
+	   </select>
+
+	   <select id="update" resultType="kr.co.connect.member.Member">
+	     SELECT * FROM BOARD WHERE ID=#{PARAM1}
+	   </select>
+
+	     <select id="findid" resultType="kr.co.connect.member.Member">
+		 SELECT * FROM MEMBERS WHERE PHONE=#{param1} AND USERNAME=#{param2}
+	   </select>
+
+	      <select id="findpwd" resultType="kr.co.connect.member.Member">
+		 SELECT * FROM MEMBERS WHERE PHONE=#{param1} AND USERNAME=#{param2} AND EMAIL=#{param3}
+	   </select>
+
+	   <select id="login" resultType="kr.co.connect.member.Member">
+		 SELECT * FROM MEMBERS WHERE EMAIL=#{param1} AND PASSWORD=#{param2}
+	   </select>
+
+	   <update id="updateok" > <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+	     UPDATE BOARD SET NAME=#{param1},TITLE=#{param2},CONTENT=#{param3} WHERE ID=#{param4}
+	   </update>
+
+	   <delete id="delete"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+	     DELETE FROM BOARD WHERE ID=#{PARAM1}
+	   </delete>
+	</mapper>
