@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/connect/resources/main.css?ver=header20">
-<script src="/connect/resources/main.js?ver=main"></script>
+<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header20">
+<script src="/Connect-team/resources/main.js?ver=main"></script>
 </head>
 <body>
 <div class="floor_h7 shadow container_w100 ">
