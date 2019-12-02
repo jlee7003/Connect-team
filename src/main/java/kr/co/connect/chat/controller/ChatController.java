@@ -34,13 +34,6 @@ public class ChatController {
 	}
 	
 	
-	@RequestMapping(value="/mainboard")//브라우저에 입력된 주소(사용자가 입력하는 주소)
-	public String mainboard()
-	{
-		return "board/mainboard"; //실제 주소(실제로 입력이 되는 주소)
-	}
-	
-	
 	@RequestMapping(value="/test")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String Joinus(String err,Model model,HttpSession session)
 	{
