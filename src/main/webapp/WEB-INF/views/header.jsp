@@ -5,14 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header20">
+<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header21">
 <script src="/Connect-team/resources/main.js?ver=main"></script>
 </head>
 <body>
 <div class="floor_h7 shadow container_w100 ">
 <!--  -->
 <div class="font_design2 container_w5">
-<a href="/connect"><img alt="logo" class="margin_left_10 padding" width=74 height=55 src="resources/img/logo2.PNG">
+<a href="/Connect-team"><img alt="logo" class="margin_left_10 padding" width=74 height=55 src="resources/img/logo2.PNG">
 </a>
 </div>
 <div class="container_w30 flex center">

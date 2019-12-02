@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.connect.chat.Chat;
 import kr.co.connect.chat.dao.ichatDao;
+import kr.co.connect.member.Member;
+import kr.co.connect.member.dao.imemberDao;
 
 @Controller
 public class ChatController {
@@ -23,6 +25,20 @@ public class ChatController {
 	
 	@Autowired //자동으로 아래의 메소드들과 연결시켜줌
 	 public SqlSession sqlSession;
+	
+
+	@RequestMapping(value="/nogroups")//브라우저에 입력된 주소(사용자가 입력하는 주소)
+	public String nogroups()
+	{
+		return "chat/nogroups"; //실제 주소(실제로 입력이 되는 주소)
+	}
+	
+	
+	@RequestMapping(value="/mainboard")//브라우저에 입력된 주소(사용자가 입력하는 주소)
+	public String mainboard()
+	{
+		return "board/mainboard"; //실제 주소(실제로 입력이 되는 주소)
+	}
 	
 	
 	@RequestMapping(value="/test")//브라우저에 입력된 주소(사용자가 입력하는 주소)
@@ -35,13 +51,31 @@ public class ChatController {
 	
 	@RequestMapping("/chatroom")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String chatroom(Model model,HttpServletResponse response, Chat chat, HttpSession session, HttpServletRequest request) 
-	{
+	{   
+		
+//		   imemberDao memdao=sqlSession.getMapper(imemberDao.class);
+//			ArrayList<Member> list1=memdao.list();
+//		   model.addAttribute("list",list);
+//		   model.addAttribute("list",dao.list());
+//		   model.addAttribute("list",list1);
+//		
+		String groups="";
 		String content=request.getParameter("content");
-		String groups=session.getAttribute("groups").toString();
+		if(session.getAttribute("groups")==null)
+		{
+			return "chat/nogroups"; //실제 주소(실제로 입력이 되는 주소)
+		}
+		else {
+	    groups=session.getAttribute("groups").toString();
+		}
+		System.out.println(groups);
 		String username=session.getAttribute("username").toString();
 		model.addAttribute("list2",content);
 		ichatDao dao=sqlSession.getMapper(ichatDao.class);
 		System.out.println("ee");
+		
+		
+
 		
 		/*response.setCharacterEncoding("utf-8");
 		out.print(URLEncoder.encode("홍길동"+username+":"+content )); // 한글이 깨져서!!!

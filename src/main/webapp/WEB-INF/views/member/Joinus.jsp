@@ -20,6 +20,7 @@
 		<!-- joinus -->
 		<div class="width40" align=center>
 			<img alt=""  src="resources/img/join.PNG">
+			<a href="chatroom">chat</a>
 		</div>
 		<div class="width40" align=center>
 			<!-- width, height:auto -->

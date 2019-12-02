@@ -65,7 +65,11 @@ public class MemberController {
 			session.setAttribute("username", logtruevalue.getUsername());//이렇게 하면 select 하기 전의 Username이 들어감으로 X 결과값을 가져와야 함 하지만 어떻게??
 			session.setAttribute("userid", email);
 			session.setAttribute("groups", logtruevalue.getGroups());
-			System.out.println(session.getAttribute("userid"));
+			if(session.getAttribute("groups")==null)
+			{
+				System.out.println("null이다");
+			}
+			System.out.println();
 			return "redirect:/";
 		}
 	}
