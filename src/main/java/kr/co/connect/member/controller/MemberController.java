@@ -39,7 +39,7 @@ public class MemberController {
 	{
 		
 		imemberDao dao=sqlSession.getMapper(imemberDao.class);
-		dao.write(member.getUsername(), member.getPhone(),member.getEmail(),member.getPassword(),member.getBirth(),member.getSex(),member.getGroups(),member.getWriteday()); //WriteCommand으로 내가 dto에 작성한 변수 name,age,juso를 보내줌
+		dao.write(member.getUsername(), member.getPhone(),member.getEmail(),member.getPassword(),member.getBirth(),member.getSex(),member.getWriteday()); //WriteCommand으로 내가 dto에 작성한 변수 name,age,juso를 보내줌
 		// 실행할 커맨드 호출
 		
 		session.setAttribute("username", member.getUsername());
