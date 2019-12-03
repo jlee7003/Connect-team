@@ -65,11 +65,13 @@ public class MemberController {
 			session.setAttribute("username", logtruevalue.getUsername());//이렇게 하면 select 하기 전의 Username이 들어감으로 X 결과값을 가져와야 함 하지만 어떻게??
 			session.setAttribute("userid", email);
 			session.setAttribute("groups", logtruevalue.getGroups());
-			if(session.getAttribute("groups")==null)
+			if(session.getAttribute("groups")==null && session.getAttribute("userid")==null)
 			{
-				System.out.println("null이다");
+				System.out.println("groups가 null이다1");
+				System.out.println("userid가 null이다");
+
 			}
-			System.out.println();
+			System.out.println(session.getAttribute("groups")+"111"+session.getAttribute("userid"));
 			return "redirect:/";
 		}
 	}
@@ -84,7 +86,7 @@ public class MemberController {
 		HttpSession session=request.getSession();
 		session.invalidate();
 	
-		return "redirect:/Joinus"; //실제 주소(실제로 입력이 되는 주소)
+		return "redirect:/"; //실제 주소(실제로 입력이 되는 주소)
 	}
 	
 	@RequestMapping("/findid")//브라우저에 입력된 주소(사용자가 입력하는 주소)

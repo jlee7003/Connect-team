@@ -23,7 +23,12 @@ a:hover {
 	align-items: center;
 	justify-content: center;
 }
-
+.center_a {
+	align-items: center;
+}
+.center_j {
+	justify-content: center;
+}
 .flex {
 	display: flex;
 }
@@ -80,7 +85,9 @@ a:hover {
 .margin_left_20 {
 	margin-left: 20px;
 }
-
+.margin_left_200 {
+	margin-left: 200px;
+}
 .margin_10 {
 	margin: 10px;
 }
@@ -260,6 +267,14 @@ input:focus {
 .width50 {
 	width: 50%;
 }
+.width90 {
+	width: 90%;
+}
+
+.width100 {
+	width: 100%;
+}
+
 .width80 {
 	width: 80%;
 }
@@ -486,6 +501,9 @@ background:#2C3E50;
 {
 	color:#1187CF;
 }
+.background_mint{
+	background:#1ABC9C;
+}
 .button_submit{
 	width:100px;
 	background:black;
@@ -493,4 +511,9 @@ background:#2C3E50;
 	color:white;
 	border-radius: 3px;
 	height:20px;
+}
+.border_logo{
+	padding:50px;
+	border:30px solid #1187CF;
+	border-radius:10px;
 }

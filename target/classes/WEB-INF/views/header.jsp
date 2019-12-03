@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header21">
+<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header22">
 <script src="/Connect-team/resources/main.js?ver=main"></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
 <div class="container_w25 flex center">
 </div>
 <div class="container_w30 flex center font_design3">
-<div class="margin_left_20 width33"><a href="#">GROUPS</a></div>
+<div class="margin_left_20 width33"><a href="joingroup">GROUPS</a></div>
  <div class="margin_left_20 width33"><a href="Joinus">JOINUS</a></div> 
  <div class="margin_left_20 width33">
 

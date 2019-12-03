@@ -53,6 +53,7 @@ function chatListFunction(type)
 				groups: groups
 		},
 	success: function(data){
+  		//console.log(data);
 		if(data == "") return; //오류가 발생하면 그냥 바로 return 하여 종료하겠다는 뜻
 		var parsed = JSON.parse(data); //제이슨 형태로 데이터를 파싱하는 것
 		var result = parsed.result; 
@@ -67,6 +68,7 @@ function chatListFunction(type)
 	});
 	
 }
+
 function addChat(username, content, chattime)
 {
 	
@@ -77,12 +79,12 @@ function addChat(username, content, chattime)
 			'<img class="" src="">' +
 			'</a>' +
 			'<div class="mediabody">' +
-			'<h4 class="mediaheading">' +
+			
 			username +" "+
 			'<div class="alignright">' +
 			chattime +
 			'</div>' +
-			'</h4>' +
+		
 			'<p>' +
 			content + 
 			'</p>' +
@@ -97,6 +99,12 @@ function getInfiniteChat(){
 	setInterval(function(){
 		chatListFunction(lastID);
 	},1000);
+}
+</script>
+<script>
+function changeroom(pp)
+{
+	document.getElementById("groups").value=pp;
 }
 </script>
 </head>
@@ -137,7 +145,7 @@ border:1px solid red;
 	<!-- 	<div class=""> -->
 	<!-- 		<div class=media> -->
 	<!-- 			<a class="" href="#"> <img class="" src=""> -->
-				</a>
+<!-- 				</a> -->
 	<!-- 			<div class="mediabody"> -->
 	<!-- 				<h4 class="mediaheading"> -->
 	<!-- 					username -->
@@ -158,6 +166,13 @@ border:1px solid red;
 	
 	<!-- include 되는 부분 -->
 		<jsp:include page="../board/mainboard.jsp" flush="false" />
+		<c:forEach items="${glist}" var="dto">
+		      <div>출력</div>
+		      
+		      <div class="grouplist" onclick=changeroom(${dto.groupid})>${dto.groupname}</div>
+		      <div>${dto.groupid}</div>
+        </c:forEach>
+		
 <!--  -->
 		<div class="chatsection width25">
 			<div id=chatList></div>
@@ -169,6 +184,8 @@ border:1px solid red;
 
 			</div>
 			<div>
+				<%=session.getAttribute("userid") %>
+				${user}
 				<input type="hidden" name="username" id=username value="${user}">
 				<input type="hidden" name="groups" id=username value="${groups}">
 				<input type="text" name="groups" id=groups value="${groups}">
@@ -198,6 +215,13 @@ border:1px solid red;
 	chatListFunction('ten');
 	getInfiniteChat();
 });
+ 
+ 
+ $('.grouplist').click(function(){
+		$('#chatList').empty();
+		chatListFunction('ten');
+		getInfiniteChat();
+	});
 
 </script>
 <script>

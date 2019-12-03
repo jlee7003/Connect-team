@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.connect.chat.Chat;
 import kr.co.connect.chat.dao.ichatDao;
-import kr.co.connect.member.Member;
-import kr.co.connect.member.dao.imemberDao;
+import kr.co.connect.egroup.Egroup;
+import kr.co.connect.egroup.dao.iegroupDao;
 
 @Controller
 public class ChatController {
@@ -30,6 +30,7 @@ public class ChatController {
 	@RequestMapping(value="/nogroups")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String nogroups()
 	{
+		System.out.println("nogroup");
 		return "chat/nogroups"; //실제 주소(실제로 입력이 되는 주소)
 	}
 	
@@ -51,21 +52,27 @@ public class ChatController {
 //		   model.addAttribute("list",list);
 //		   model.addAttribute("list",dao.list());
 //		   model.addAttribute("list",list1);
-//		
+	System.out.println("정상출력2");
+		String email=session.getAttribute("userid").toString();
+		iegroupDao dao1=sqlSession.getMapper(iegroupDao.class);
+		ArrayList<Egroup> glist=dao1.grouplist(email);
+		System.out.println("정상출력");
+		model.addAttribute("glist", glist);
+		ArrayList<Egroup> checkifhavegroup;
+		checkifhavegroup = dao1.groupliststring(session.getAttribute("userid").toString());
+
 		String groups="";
 		String content=request.getParameter("content");
-		if(session.getAttribute("groups")==null)
+		if(checkifhavegroup==null)
 		{
-			return "chat/nogroups"; //실제 주소(실제로 입력이 되는 주소)
+			return "egroup/joingroup"; //실제 주소(실제로 입력이 되는 주소)
 		}
-		else {
-	    groups=session.getAttribute("groups").toString();
-		}
-		System.out.println(groups);
+		
+		
 		String username=session.getAttribute("username").toString();
 		model.addAttribute("list2",content);
 		ichatDao dao=sqlSession.getMapper(ichatDao.class);
-		System.out.println("ee");
+		System.out.println("username:: "+username);
 		
 		
 

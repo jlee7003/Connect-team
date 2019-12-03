@@ -19,7 +19,7 @@
 
 		<!-- joinus -->
 		<div class="width40" align=center>
-			<img alt=""  src="resources/img/join.PNG">
+			<img alt=""  src="resources/img/join.PNG" class="border_logo">
 			<a href="chatroom">chat</a>
 		</div>
 		<div class="width40" align=center>
