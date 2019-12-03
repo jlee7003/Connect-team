@@ -107,6 +107,20 @@ function changeroom(pp)
 	document.getElementById("groups").value=pp;
 }
 </script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+chatListFunction('ten');
+getInfiniteChat();
+});
+
+
+$('.grouplist').click(function(){
+	$('#chatList').empty();
+	chatListFunction('ten');
+	getInfiniteChat();
+});
+</script>
 </head>
 <style>
 #border {
@@ -169,7 +183,7 @@ border:1px solid red;
 		<c:forEach items="${glist}" var="dto">
 		      <div>출력</div>
 		      
-		      <div class="grouplist" onclick=changeroom(${dto.groupid})>${dto.groupname}</div>
+		      <div class="grouplist" onclick="changeroom(${dto.groupid})">${dto.groupname}</div>
 		      <div>${dto.groupid}</div>
         </c:forEach>
 		
@@ -209,26 +223,11 @@ border:1px solid red;
 
 
 
-
-	<script type="text/javascript">
- $(document).ready(function(){
-	chatListFunction('ten');
-	getInfiniteChat();
-});
- 
- 
- $('.grouplist').click(function(){
-		$('#chatList').empty();
-		chatListFunction('ten');
-		getInfiniteChat();
-	});
-
-</script>
 <script>
-function alert1()
-{
-alert();	
-}
+// function alert1()
+// {
+// alert();	
+// }
 </script>
 </body>
 </html>
