@@ -6,6 +6,26 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+#red{
+color:red;
+}
+</style>
+<script>
+function login_check() 
+{
+if(document.loginform.email.value == "" || document.loginform.password.value == "" || document.loginform.email.value == null || document.loginform.password.value == null) 
+	{
+	document.loginform.email.value == ""
+	return false;
+	}
+	else
+		{
+	
+		return true;
+		}
+}
+</script>
 <body>
 	<jsp:include page="../header.jsp" flush="false" />
 	<div class="floor_h70 flex center">
@@ -18,7 +38,7 @@
 					</div>
 					<hr>
 				</div>
-				<form method="post" action="login_ok">
+				<form method="post" action="login_ok" name=loginform>
 					<table>
 						<%
 							if (session.getAttribute("userid") == null)//세션변수가 없다면
@@ -41,7 +61,7 @@
 							<td align=center><input type=password name=password	class="input_width100 bd_radius height_20 inputtag"></td>
 						</tr><!--  -->
 						<tr>
-							<td>${err}</td>
+							<td id=red>${err}</td>
 						</tr>
 
 						<tr>
@@ -57,7 +77,7 @@
 						<tr align=center>
 							<td align=center>
 								<!-- <a href="Joinus">LOGIN</a><p> --> <input 
-								class="input_login font_design color_white" type="submit"
+								class="input_login font_design color_white" type="submit" onclick="return login_check()"
 								value="Login">
 								<p>
 									<%

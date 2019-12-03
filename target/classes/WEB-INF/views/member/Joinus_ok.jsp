@@ -29,7 +29,7 @@ html, body {
     <div class="wrapper" align=center>
     <div class="box">
        <span><h1> welecome to Connect!</h1><p>
-       <a href="view">go to main</a>
+       <a href="/Connect-team">go to main</a>
        </span>
 
     

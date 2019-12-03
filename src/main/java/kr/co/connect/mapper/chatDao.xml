@@ -11,12 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
    
    	<insert id="writechat">
-	INSERT INTO CHAT(USERNAME,CONTENT,GROUPS)
-			VALUES(#{param1},#{param2},#{param3})
-	</insert>
-		<insert id="writechatstr">
-	INSERT INTO CHAT(USERNAME,CONTENT,GROUPS)
-			VALUES(#{param1},#{param2},#{param3})
+	INSERT INTO CHAT(USERNAME,CONTENT,GROUPS) VALUES(#{param1},#{param2},#{param3})
 	</insert>
 
 

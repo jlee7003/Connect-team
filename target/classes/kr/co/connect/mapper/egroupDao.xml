@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.connect.egroup.dao.iegroupDao"> <!--content.xml에서 모든 xml을 찾는다  -->
+    <select id="select"  resultType="int">
+    SELECT  GROUPID FROM EGROUP ORDER BY GROUPID DESC LIMIT 1;
+    </select>
+
+	<insert id="write"><!-- 태그 이름은 구분하기 편하라고 write라고 해준것 -->
+	INSERT INTO EGROUP(GROUPID,EMAIL,GROUPNAME,MANAGER,WRITEDAY)
+			VALUES(#{param1}+1,#{param2},#{param3},#{param4},NOW())
+	</insert>
+	
+	<select id="grouplist" resultType="kr.co.connect.egroup.Egroup">
+	 SELECT * FROM EGROUP WHERE EMAIL=#{param1};
+	</select>
+	
+	<select id="groupliststring" resultType="kr.co.connect.egroup.Egroup">
+	 SELECT EMAIL FROM EGROUP WHERE EMAIL=#{param1}; 
+	 <!-- 내가 들어간 그룹이 있을 경우 레코드가 존재 -->
+	</select>
+</mapper>

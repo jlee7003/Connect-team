@@ -53,6 +53,7 @@ function chatListFunction(type)
 				groups: groups
 		},
 	success: function(data){
+  		//console.log(data);
 		if(data == "") return; //오류가 발생하면 그냥 바로 return 하여 종료하겠다는 뜻
 		var parsed = JSON.parse(data); //제이슨 형태로 데이터를 파싱하는 것
 		var result = parsed.result; 
@@ -67,6 +68,7 @@ function chatListFunction(type)
 	});
 	
 }
+
 function addChat(username, content, chattime)
 {
 	
@@ -77,12 +79,12 @@ function addChat(username, content, chattime)
 			'<img class="" src="">' +
 			'</a>' +
 			'<div class="mediabody">' +
-			'<h4 class="mediaheading">' +
+			
 			username +" "+
 			'<div class="alignright">' +
 			chattime +
 			'</div>' +
-			'</h4>' +
+		
 			'<p>' +
 			content + 
 			'</p>' +
@@ -99,6 +101,12 @@ function getInfiniteChat(){
 	},1000);
 }
 </script>
+<script>
+function changeroom(pp)
+{
+	document.getElementById("groups").value=pp;
+}
+</script>
 </head>
 <style>
 #border {
@@ -107,64 +115,113 @@ function getInfiniteChat(){
 	border: 1px solid black;
 }
 
-.row {
+#chatList {
+	overflow: auto;
+	height:75%;
+	border: 1px solid blue;
+}
+
+.chatsection {
+	border: 1px solid black;
 }
 
 .alignright {
 	text-align: right;
 }
+.media
+{
+height:100px;
+}
+.chatwritesection{
+height:25%;
+border:1px solid red;
+}
+
 </style>
 
 <body>
+	<jsp:include page="../header.jsp" flush="false" />
 
-<!-- 	<div class=""> -->
-<!-- 		<div class=media> -->
-<!-- 			<a class="" href="#"> <img class="" src=""> -->
-<!-- 			</a> -->
-<!-- 			<div class="mediabody"> -->
-<!-- 				<h4 class="mediaheading"> -->
-<!-- 					username -->
-<!-- 			    <div class="alignright"> 2019-04-42 </div> -->
-<!-- 				</h4> -->
-<!-- 				<p>안녕</p> -->
-<!-- 		ddd	</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- 	<hr> -->
-<!-- f	<div id=border> -->
-<!-- 		<div>채팅창</div> -->
-<!-- 
+	<!-- 	<div class=""> -->
+	<!-- 		<div class=media> -->
+	<!-- 			<a class="" href="#"> <img class="" src=""> -->
+<!-- 				</a> -->
+	<!-- 			<div class="mediabody"> -->
+	<!-- 				<h4 class="mediaheading"> -->
+	<!-- 					username -->
+	<!-- 			    <div class="alignright"> 2019-04-42 </div> -->
+	<!-- 				</h4> -->
+	<!-- 				<p>안녕</p> -->
+	<!-- 		ddd	</div> -->
+	<!-- 		</div> -->
+	<!-- 	</div> -->
+	<!-- 	<hr> -->
+	<!-- f	<div id=border> -->
+	<!-- 		<div>채팅창</div> -->
+	<!-- 
 <input type=text maxlength=8>
 이렇게 length 길이를 제한해두면 8글자 밖에 못쓴다
  -->
-		<div id=chatList></div>
-		<%--    		<c:forEach items="${list2}" var="dto"> --%>
-		<%--    		<div>${dto.content}</div> --%>
-		<%--         </c:forEach> --%>
-		<%-- 		<c:forEach items="${list}" var="dto"> --%>
-		<%-- 			<div>${dto.username}:${dto.content}</div> --%>
-		<%-- 		</c:forEach> --%>
-		<div>
+	<div class="floor_h73 ">
 	
-		</div>
-	</div>
-			<span>입력창</span>
+	<!-- include 되는 부분 -->
+		<jsp:include page="../board/mainboard.jsp" flush="false" />
+		<c:forEach items="${glist}" var="dto">
+		      <div>출력</div>
+		      
+		      <div class="grouplist" onclick=changeroom(${dto.groupid})>${dto.groupname}</div>
+		      <div>${dto.groupid}</div>
+        </c:forEach>
+		
+<!--  -->
+		<div class="chatsection width25">
+			<div id=chatList></div>
+			<div id=chatwritesection class=chatwritesection>
+			
+			<div id=grouplist>
+				<span>group 선택창</span>
+
+
+			</div>
 			<div>
-				<!-- 				<form action="" method="post"> -->
+				<%=session.getAttribute("userid") %>
+				${user}
 				<input type="hidden" name="username" id=username value="${user}">
 				<input type="hidden" name="groups" id=username value="${groups}">
 				<input type="text" name="groups" id=groups value="${groups}">
 				<textarea name=content id=content></textarea>
-				<p>
+				<br>
 					<input type=submit value="전송" id=citizenRegistration
 						onclick=submitFunction();>
 			</div>
-				<button onclick="chatListFunction(type)">추가</button>
-<script type="text/javascript">
+			<button onclick="chatListFunction(type)">추가</button>
+				
+				</div>
+		</div>
+		
+	</div>
+<div class="floor_h10">
+
+</div>
+	<jsp:include page="../footer.jsp" flush="false" />
+
+
+
+
+
+
+	<script type="text/javascript">
  $(document).ready(function(){
 	chatListFunction('ten');
 	getInfiniteChat();
 });
+ 
+ 
+ $('.grouplist').click(function(){
+		$('#chatList').empty();
+		chatListFunction('ten');
+		getInfiniteChat();
+	});
 
 </script>
 <script>

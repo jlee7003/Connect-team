@@ -15,12 +15,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.connect.chat.Chat;
 import kr.co.connect.chat.dao.ichatDao;
+import kr.co.connect.egroup.Egroup;
+import kr.co.connect.egroup.dao.iegroupDao;
 
 @Controller
 public class ChatController {
 	
+	
+	
 	@Autowired //자동으로 아래의 메소드들과 연결시켜줌
 	 public SqlSession sqlSession;
+	
+
+	@RequestMapping(value="/nogroups")//브라우저에 입력된 주소(사용자가 입력하는 주소)
+	public String nogroups()
+	{
+		System.out.println("nogroup");
+		return "chat/nogroups"; //실제 주소(실제로 입력이 되는 주소)
+	}
 	
 	
 	@RequestMapping(value="/test")//브라우저에 입력된 주소(사용자가 입력하는 주소)
@@ -33,13 +45,37 @@ public class ChatController {
 	
 	@RequestMapping("/chatroom")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String chatroom(Model model,HttpServletResponse response, Chat chat, HttpSession session, HttpServletRequest request) 
-	{
+	{   
+		
+//		   imemberDao memdao=sqlSession.getMapper(imemberDao.class);
+//			ArrayList<Member> list1=memdao.list();
+//		   model.addAttribute("list",list);
+//		   model.addAttribute("list",dao.list());
+//		   model.addAttribute("list",list1);
+	System.out.println("정상출력2");
+		String email=session.getAttribute("userid").toString();
+		iegroupDao dao1=sqlSession.getMapper(iegroupDao.class);
+		ArrayList<Egroup> glist=dao1.grouplist(email);
+		System.out.println("정상출력");
+		model.addAttribute("glist", glist);
+		ArrayList<Egroup> checkifhavegroup;
+		checkifhavegroup = dao1.groupliststring(session.getAttribute("userid").toString());
+
+		String groups="";
 		String content=request.getParameter("content");
-		String groups=session.getAttribute("groups").toString();
+		if(checkifhavegroup==null)
+		{
+			return "egroup/joingroup"; //실제 주소(실제로 입력이 되는 주소)
+		}
+		
+		
 		String username=session.getAttribute("username").toString();
 		model.addAttribute("list2",content);
 		ichatDao dao=sqlSession.getMapper(ichatDao.class);
-		System.out.println("ee");
+		System.out.println("username:: "+username);
+		
+		
+
 		
 		/*response.setCharacterEncoding("utf-8");
 		out.print(URLEncoder.encode("홍길동"+username+":"+content )); // 한글이 깨져서!!!
@@ -60,7 +96,7 @@ public class ChatController {
 		String content=request.getParameter("content");
 		String username=request.getParameter("username");
 		ichatDao dao=sqlSession.getMapper(ichatDao.class);
-		dao.writechatstr(username,content,groups); //DB 작성하기
+		dao.writechat(username,content,groups); //DB 작성하기
 		dao.chatlist(groups); // DB저장후 20개 읽어오기
 		out.print("#");
 	}
