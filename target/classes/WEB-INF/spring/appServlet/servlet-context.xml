@@ -50,6 +50,7 @@
 			value="jdbc:mysql://localhost:3307/connect" />
 		<beans:property name="username" value="root" />
 		<beans:property name="password" value="1234" />
+>>>>>>> Stashed changes
 	</beans:bean>
 
 	<beans:bean name="sqlSessionFactory"
