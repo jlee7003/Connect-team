@@ -22,4 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 SELECT EMAIL FROM EGROUP WHERE EMAIL=#{param1}; 
 	 <!-- 내가 들어간 그룹이 있을 경우 레코드가 존재 -->
 	</select>
+		
+	<delete id="delinvite">
+	DELETE * FROM INVITE WHERE GROUPID=#{param1};
+	</delete>
 </mapper>

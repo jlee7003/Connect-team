@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.connect.invite.dao.iinviteDao"> <!--content.xml에서 모든 xml을 찾는다 -->
+	<insert id="writeinvite"><!-- 태그 이름은 구분하기 편하라고 write라고 해준것 -->
+		INSERT INTO INVITE(INVITED,GROUPID,AUTHNUM,USERNAME,GROUPNAME)
+		VALUES(#{param1},#{param2},#{param3},#{param4},#{param5})
+	</insert>
+
+
+	<select id="invitednum" resultType="string">
+		select count(*) from invite where invited=#{param1};
+	</select>
+
+
+	<select id="invitelist" resultType="kr.co.connect.invite.invite">
+		SELECT * FROM INVITE WHERE INVITED=#{param1};
+	</select>
+	
+	
+	<select id="whoismanager" resultType="String">
+	SELECT MANAGER FROM EGROUP WHERE EMAIL=MANAGER AND GROUPID=#{param1};
+	</select>
+
+</mapper>

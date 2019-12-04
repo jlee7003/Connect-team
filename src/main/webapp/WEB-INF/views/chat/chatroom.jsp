@@ -106,20 +106,63 @@ function changeroom(pp)
 {
 	document.getElementById("groups").value=pp;
 }
-</script>
-<script type="text/javascript">
 
-$(document).ready(function(){
-chatListFunction('ten');
-getInfiniteChat();
-});
+function checkall()
+{
+	var one=document.getElementById("email1").value;
+	var two=document.getElementById("email2").value;
+	document.plusemail.username.value=document.getElementById("username").value;
+	document.plusemail.phone.value=document.getElementById("phone").value;
+	document.plusemail.email.value=one+"@"+two;
+	if(document.getElementById("username").value == "")
+	{
+	alert("이름을 입력 해주세요");
+	return false;
+	}
+	else if(document.getElementById("hv").value != 1)
+		{
+		document.getElementById("aaa").innerHTML="<b style='color:red'>이메일 인증코드를 입력하세요</b>";
+	    alert(document.getElementById("hv").value);
+	    alert("wrongvalue");
+		return false;
+		}
+	else
+		alert();
+		return true;
+}
+function emailcheck(email1, email2 ,groups,groupname)
+{
+	if(!insertform.email1.value || !insertform.email2.value){ 
+		alert("emailerror");
+		insertform.email1.focus();
+		return;
+	}else{
+		if(insertform.email1.value){
+			if(insertform.email2.value==0){
+				// 직접입력
+				if(insertform.email1.value.indexOf("@")==-1){
+					alert("emailerror");
+					insertform.email1.focus();
+					return false;
+				}
+			}else{
+				// 선택입력
+				if(insertform.email1.value.indexOf("@")!=-1){
+					alert("emailerror");
+					insertform.email1.focus();
+					return false;
+				}
+			}
+		}
+	}
+// 	alert("회원님을 초대하였습니다.");
+    // 인증을 위해 새창으로 이동
+	var url="invitecheck?email1="+email1+"&email2="+email2+"&groups="+groups+"&groupname="+groupname;
+	open(url,"emailwindow", "statusbar=no, scrollbar=no, menubar=no, width=400, height=200" );
+}
 
 
-$('.grouplist').click(function(){
-	$('#chatList').empty();
-	chatListFunction('ten');
-	getInfiniteChat();
-});
+
 </script>
 </head>
 <style>
@@ -150,12 +193,59 @@ height:100px;
 height:25%;
 border:1px solid red;
 }
-
+.invitelayer{
+/* display:none; */
+position: absolute;
+	left: 300px;
+	 	top: 300px;
+	visibility: hidden;
+	background: white;
+	border: 1px solid black;
+}
 </style>
+
+ <script>  
+ $(function()
+ {
+	 $(".invitelayer").draggable(
+			 {
+
+			 });
+ });
+</script>
+  
+ 
+
+
 
 <body>
 	<jsp:include page="../header.jsp" flush="false" />
 
+
+  
+  
+	<div class="invitelayer ">
+		<form name="insertform" action="checkemail">
+		<div>
+			<div  class="flex center_j">초대하기<div align=right onclick="closeinvitelayer()">X</div>	</div>
+	
+		</div>
+			<input type="text" name="email1" maxlength="15"
+				class="input_width45 bd_radius height_20 inputtag" size=10 id=email1>
+			@ <select name="email2" id="email2"
+				class="input_width40 bd_radius height_35 inputtag">
+				<option value="0">직접입력</option>
+				<option value="naver.com">naver.com</option>
+				<option value="daum.net">daum.net</option>
+				<option value="nate.com">nate.com</option>
+				<option value="gmail.com">gmail.com</option>
+			</select> <input type="button" name="emailconfirm_btn" value="초대하기"
+				class="button_submit"
+				onclick="emailcheck(insertform.email1.value, insertform.email2.value,document.getElementById('groups').value,document.getElementById('groupname').value)">
+			<p>
+				<span id=aaa></span>
+		</form>
+	</div>
 	<!-- 	<div class=""> -->
 	<!-- 		<div class=media> -->
 	<!-- 			<a class="" href="#"> <img class="" src=""> -->
@@ -175,17 +265,17 @@ border:1px solid red;
 	<!-- 
 <input type=text maxlength=8>
 이렇게 length 길이를 제한해두면 8글자 밖에 못쓴다
- -->
+ --><span style="font-size:40px;">${gname}</span>
 	<div class="floor_h73 ">
 	
 	<!-- include 되는 부분 -->
 		<jsp:include page="../board/mainboard.jsp" flush="false" />
-		<c:forEach items="${glist}" var="dto">
+<%-- 		<c:forEach items="${glist}" var="dto">
 		      <div>출력</div>
 		      
-		      <div class="grouplist" onclick="changeroom(${dto.groupid})">${dto.groupname}</div>
+		      <div class="grouplist" onclick=changeroom(${dto.groupid})>${dto.groupname}</div>
 		      <div>${dto.groupid}</div>
-        </c:forEach>
+        </c:forEach> --%>
 		
 <!--  -->
 		<div class="chatsection width25">
@@ -193,41 +283,85 @@ border:1px solid red;
 			<div id=chatwritesection class=chatwritesection>
 			
 			<div id=grouplist>
-				<span>group 선택창</span>
 
 
 			</div>
 			<div>
 				<%=session.getAttribute("userid") %>
 				${user}
+				<br>
+				<input type="hidden" name="groupname" id=groupname value="${gname}">
 				<input type="hidden" name="username" id=username value="${user}">
-				<input type="hidden" name="groups" id=username value="${groups}">
-				<input type="text" name="groups" id=groups value="${groups}">
+				<input type="hidden" name="groups" id=groups value="${groups}">
 				<textarea name=content id=content></textarea>
 				<br>
 					<input type=submit value="전송" id=citizenRegistration
 						onclick=submitFunction();>
 			</div>
-			<button onclick="chatListFunction(type)">추가</button>
+				
+						
+		    <form action="joingroup_ok" method="post">
+		    	<input type="hidden" name="email" value=<%=session.getAttribute("userid") %>>
+				<input type="text" name="groupname" placeholder="그룹의 이름" />
+				<input type="text" name="manager" placeholder="그룹 관리자" />
+				<input type="submit" value="그룹 만들기"/>
+			</form>
+			
+			
+			<input type="button" onclick="showinvitelayer()" value="초대하기">
+			
+				
 				
 				</div>
 		</div>
+		
 		
 	</div>
 <div class="floor_h10">
 
 </div>
+
+
+
 	<jsp:include page="../footer.jsp" flush="false" />
 
 
-
-
-
-<script>
-// function alert1()
-// {
-// alert();	
-// }
-</script>
 </body>
+
+
+
+	<script type="text/javascript">
+	
+	function showinvitelayer()
+	{
+	document.getElementsByClassName("invitelayer")[0].style.visibility="visible";
+	}
+	
+
+	function closeinvitelayer()
+	{
+	document.getElementsByClassName("invitelayer")[0].style.visibility="hidden";
+	}
+	
+ $(document).ready(function(){
+	chatListFunction('ten');
+	getInfiniteChat();
+	changeroom(${gid});
+});
+ 
+ 
+ $('.grouplist').click(function(){
+		$('#chatList').empty();
+		chatListFunction('ten');
+		getInfiniteChat();
+	});
+
+</script>
+<script>
+function alert1()
+{
+alert();	
+}
+</script>
+
 </html>

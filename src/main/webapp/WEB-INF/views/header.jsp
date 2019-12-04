@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+      
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header22">
+<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header28">
 <script src="/Connect-team/resources/main.js?ver=main"></script>
 </head>
 <body>
@@ -53,7 +55,12 @@
 </div>
 <!--  -->
 </div>
-<div class="container_w10 flex center ">미정</div>
+<div class="container_w10 flex center ">
+	
+	<a href="invited" class="flex center">${messege}<span class="messege flex center fontweight900" onclick=""> ${invitenum}</span></a>
+	
+	
+</div>
 </div>
 
 <div class="floor_h10">

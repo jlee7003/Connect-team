@@ -32,7 +32,7 @@ public class EmailConfirm{
            = Session.getInstance(props,new javax.mail.Authenticator(){
 			    protected PasswordAuthentication getPasswordAuthentication(){
 				    return new PasswordAuthentication
-                                        ("ehlee7003@gmail.com","ant3275gh823"); // gmail계정
+                                        ("ehlee3275@gmail.com","ant3275gh823"); // gmail계정
 			}
 		});
 		

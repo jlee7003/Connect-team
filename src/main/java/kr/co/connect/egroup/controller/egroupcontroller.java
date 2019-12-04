@@ -2,6 +2,7 @@ package kr.co.connect.egroup.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.connect.egroup.Egroup;
 import kr.co.connect.egroup.dao.iegroupDao;
+import kr.co.connect.invite.invite;
+import kr.co.connect.invite.dao.iinviteDao;
+import kr.co.connect.member.service.EmailConfirm;
 
 @Controller
 public class egroupcontroller {
@@ -21,16 +25,20 @@ public class egroupcontroller {
 
 	@RequestMapping(value = "/joingroup") // 브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String joingroup(Model model, HttpSession session) {
-		String email=session.getAttribute("userid").toString();
-		iegroupDao dao12=sqlSession.getMapper(iegroupDao.class);
-		ArrayList<Egroup> glist=dao12.grouplist(email);
+	
+	
 		System.out.println("정상출력");
-		model.addAttribute("glist", glist);
+		inc(session,model);
 		ArrayList<Egroup> checkifhavegroup;
 		iegroupDao dao1 = sqlSession.getMapper(iegroupDao.class);
 		if (session.getAttribute("userid") == null) {
 			return "chat/nogroups";
 		} else {
+			String email=session.getAttribute("userid").toString();
+			iegroupDao dao12=sqlSession.getMapper(iegroupDao.class);
+			ArrayList<Egroup> glist=dao12.grouplist(email);
+			model.addAttribute("glist", glist);
+			
 			checkifhavegroup = dao1.groupliststring(session.getAttribute("userid").toString());
 			System.out.println(checkifhavegroup+"wewe");
 			if (checkifhavegroup == null) {
@@ -44,14 +52,89 @@ public class egroupcontroller {
 	}
 
 	@RequestMapping(value = "/joingroup_ok") // 브라우저에 입력된 주소(사용자가 입력하는 주소)
-	public String joingroup_ok(Egroup egroup) {
+	public String joingroup_ok(Egroup egroup,Model model, HttpSession session) {
 
 		iegroupDao dao1 = sqlSession.getMapper(iegroupDao.class);
 		int groupid = dao1.select();
 
 		iegroupDao dao = sqlSession.getMapper(iegroupDao.class);
 		dao.write(groupid, egroup.getEmail(), egroup.getGroupname(), egroup.getManager(), egroup.getWriteday());
-
+		inc(session,model);
 		return "egroup/joingroup_ok"; // 실제 주소(실제로 입력이 되는 주소)
 	}
+	
+	@RequestMapping(value = "/invited") // 브라우저에 입력된 주소(사용자가 입력하는 주소)
+	public String invited(Model model,invite invite, HttpSession session) {
+		if(session.getAttribute("groups")!=null)//로그인이 되어 있다면
+		{
+		String email=session.getAttribute("userid").toString();
+		iinviteDao dao = sqlSession.getMapper(iinviteDao.class);
+		ArrayList<invite> invitelist= dao.invitelist(email);
+		model.addAttribute("invitelist",invitelist);
+		
+		return "egroup/invited"; // 실제 주소(실제로 입력이 되는 주소)
+		}
+		else //로그인이 안되어 있다면
+		{
+			return "chat/nogroups";
+		}
+		
+	}
+	
+	@RequestMapping(value = "/oksign") // 브라우저에 입력된 주소(사용자가 입력하는 주소)
+	public String oksign(HttpServletRequest request,Egroup egroup,Model model, HttpSession session) {
+		String groupname=request.getParameter("groupname");
+        String username=request.getParameter("username");
+        String groupid2=request.getParameter("groupid");
+        int groupid=Integer.parseInt(request.getParameter("groupid"));
+        
+        String email=session.getAttribute("userid").toString();
+        iinviteDao dao1 = sqlSession.getMapper(iinviteDao.class);
+        String manager=dao1.whoismanager(groupid2);
+		iegroupDao dao = sqlSession.getMapper(iegroupDao.class);
+
+		dao.write(groupid,email, egroup.getGroupname(),manager, egroup.getWriteday());
+		inc(session,model);
+		dao1.delinvite(groupid2);
+		return "egroup/inviteok"; // 실제 주소(실제로 입력이 되는 주소)
+	}
+	
+	@RequestMapping(value = "/invitecheck") // 브라우저에 입력된 주소(사용자가 입력하는 주소)
+	public String invitecheck(HttpServletRequest request,Model model, HttpSession session) {
+		int groupid =Integer.parseInt(request.getParameter("groups"));
+		String groupname=request.getParameter("groupname");
+		if(session.getAttribute("groups")!=null)
+		{
+		String username=session.getAttribute("username").toString();
+		String email1=request.getParameter("email1");
+		String email2=request.getParameter("email2");
+		String email = email1 + "@" + email2;//
+		EmailConfirm emailconfirm = new EmailConfirm();
+		String authNum = emailconfirm.connectEmail(email);//
+		iinviteDao dao = sqlSession.getMapper(iinviteDao.class);
+		dao.writeinvite(email,groupid,authNum,username,groupname);
+		inc(session,model);
+
+		return "member/invitecheck"; // 실제 주소(실제로 입력이 되는 주소)
+		}
+		else {
+			return "chat/nogroups";
+		}
+	}
+	
+	 public void inc(HttpSession session, Model model)
+		{
+		  if (session.getAttribute("userid") == null)
+		  {
+		  String messege="로그인 해주세요"; 
+		  model.addAttribute("messege", messege); 
+		  } else
+		  {
+		  String email=session.getAttribute("userid").toString();
+		  iinviteDao dao = sqlSession.getMapper(iinviteDao.class);
+		  String invitenum=dao.invitednum(email); String messege="그룹초대";
+		  model.addAttribute("invitenum", invitenum);
+		  model.addAttribute("messege",messege); 
+		  }
+		}
 }
