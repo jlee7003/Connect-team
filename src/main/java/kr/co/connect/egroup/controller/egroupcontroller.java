@@ -42,9 +42,10 @@ public class egroupcontroller {
 			checkifhavegroup = dao1.groupliststring(session.getAttribute("userid").toString());
 			System.out.println(checkifhavegroup+"wewe");
 			if (checkifhavegroup == null) {
-				
+				System.out.println(checkifhavegroup+"1");
 				return "redirect:/chatroom";
 			} else {
+				System.out.println(checkifhavegroup+"2");
 				return "egroup/joingroup"; // 실제 주소(실제로 입력이 되는 주소)
 			}
 		}
@@ -65,7 +66,7 @@ public class egroupcontroller {
 	
 	@RequestMapping(value = "/invited") // 브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String invited(Model model,invite invite, HttpSession session) {
-		if(session.getAttribute("groups")!=null)//로그인이 되어 있다면
+		if(session.getAttribute("userid")!=null)//로그인이 되어 있다면
 		{
 		String email=session.getAttribute("userid").toString();
 		iinviteDao dao = sqlSession.getMapper(iinviteDao.class);
@@ -76,6 +77,7 @@ public class egroupcontroller {
 		}
 		else //로그인이 안되어 있다면
 		{
+			
 			return "chat/nogroups";
 		}
 		
@@ -86,39 +88,70 @@ public class egroupcontroller {
 		String groupname=request.getParameter("groupname");
         String username=request.getParameter("username");
         String groupid2=request.getParameter("groupid");
+        String invited=session.getAttribute("userid").toString();
         int groupid=Integer.parseInt(request.getParameter("groupid"));
         
         String email=session.getAttribute("userid").toString();
         iinviteDao dao1 = sqlSession.getMapper(iinviteDao.class);
         String manager=dao1.whoismanager(groupid2);
 		iegroupDao dao = sqlSession.getMapper(iegroupDao.class);
-
-		dao.write(groupid,email, egroup.getGroupname(),manager, egroup.getWriteday());
+	    int groupoverlap=dao.groupoverlap(email, groupid);
+	    if(groupoverlap == 0)
+	    {
+	    	System.out.println(email+" "+groupid);
+	    	System.out.println("groupoverlap :"+groupoverlap );
+		dao.write2(groupid,email, egroup.getGroupname(),manager, egroup.getWriteday());
+	    }
+	    else
+	    {
+	    	System.out.println("groupoverlap :"+groupoverlap );
+	    	System.out.println(email+" "+groupid);
+	    	String overlap="회원님은 이미 가입하셨습니다.";
+			model.addAttribute("overlap",overlap);
+			return "egroup/inviteok";
+	    }
 		inc(session,model);
-		dao1.delinvite(groupid2);
+		dao1.delinvite(invited,groupid2);
 		return "egroup/inviteok"; // 실제 주소(실제로 입력이 되는 주소)
 	}
 	
 	@RequestMapping(value = "/invitecheck") // 브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String invitecheck(HttpServletRequest request,Model model, HttpSession session) {
 		int groupid =Integer.parseInt(request.getParameter("groups"));
+		String groupid2 =request.getParameter("groups");
 		String groupname=request.getParameter("groupname");
-		if(session.getAttribute("groups")!=null)
+        iinviteDao dao1 = sqlSession.getMapper(iinviteDao.class);
+        String manager=dao1.whoismanager(groupid2);
+        String username=session.getAttribute("username").toString();
+		if(session.getAttribute("groups")!=null || manager==username)
 		{
-		String username=session.getAttribute("username").toString();
 		String email1=request.getParameter("email1");
 		String email2=request.getParameter("email2");
 		String email = email1 + "@" + email2;//
+		int inviteoverlap;
 		EmailConfirm emailconfirm = new EmailConfirm();
 		String authNum = emailconfirm.connectEmail(email);//
 		iinviteDao dao = sqlSession.getMapper(iinviteDao.class);
-		dao.writeinvite(email,groupid,authNum,username,groupname);
+		inviteoverlap=dao.overlapinvite(email,groupid);
+		System.out.println(inviteoverlap+"123");
+		if(inviteoverlap != 0)
+		{
+			String overlap="회원님을 이미 초대하셨습니다.";
+			model.addAttribute("overlap",overlap);
+		}
+		else
+		{
+			System.out.println("초대리스트작성");
+			dao.writeinvite(email,groupid,authNum,username,groupname);
+		}
+		
 		inc(session,model);
 
 		return "member/invitecheck"; // 실제 주소(실제로 입력이 되는 주소)
 		}
 		else {
-			return "chat/nogroups";
+			System.out.println("해당그룹의 매니저가 아닙니다.");
+			return "member/youarenotmanager";
 		}
 	}
 	

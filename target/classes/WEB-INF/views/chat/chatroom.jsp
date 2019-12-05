@@ -205,13 +205,19 @@ position: absolute;
 </style>
 
  <script>  
- $(function()
+ $(function()/* 드래그 가능하게 해주는 jquery 플러그인 */
  {
 	 $(".invitelayer").draggable(
 			 {
 
 			 });
  });
+ 
+ function makedir()
+ {
+	 
+	 location.href="makedir";
+ }
 </script>
   
  
@@ -246,38 +252,26 @@ position: absolute;
 				<span id=aaa></span>
 		</form>
 	</div>
-	<!-- 	<div class=""> -->
-	<!-- 		<div class=media> -->
-	<!-- 			<a class="" href="#"> <img class="" src=""> -->
-<!-- 				</a> -->
-	<!-- 			<div class="mediabody"> -->
-	<!-- 				<h4 class="mediaheading"> -->
-	<!-- 					username -->
-	<!-- 			    <div class="alignright"> 2019-04-42 </div> -->
-	<!-- 				</h4> -->
-	<!-- 				<p>안녕</p> -->
-	<!-- 		ddd	</div> -->
-	<!-- 		</div> -->
-	<!-- 	</div> -->
-	<!-- 	<hr> -->
-	<!-- f	<div id=border> -->
-	<!-- 		<div>채팅창</div> -->
-	<!-- 
-<input type=text maxlength=8>
-이렇게 length 길이를 제한해두면 8글자 밖에 못쓴다
- --><span style="font-size:40px;">${gname}</span>
+    <span style="font-size:40px;">${gname}</span>
 	<div class="floor_h73 ">
 	
 	<!-- include 되는 부분 -->
-		<jsp:include page="../board/mainboard.jsp" flush="false" />
-<%-- 		<c:forEach items="${glist}" var="dto">
-		      <div>출력</div>
-		      
-		      <div class="grouplist" onclick=changeroom(${dto.groupid})>${dto.groupname}</div>
-		      <div>${dto.groupid}</div>
-        </c:forEach> --%>
-		
-<!--  -->
+	<div class="width15 border_black navi">
+	<!--------------- -디렉토리부분- -------------------->
+	<div onclick=makedir()>디렉토리 만들기</div>
+	
+	
+	    <c:forEach items="${list}" var="dto">
+	    <div>
+	    
+	    </div>
+        </c:forEach>
+	
+	
+	
+	<!--------------- -디렉토리부분- -------------------->
+	</div>
+	 <iframe src="http://localhost:8080/Connect-team/list?gid=${gid}&gname=${gname}" name="board" width="1340" height="746" scrolling="no"></iframe>
 		<div class="chatsection width25">
 			<div id=chatList></div>
 			<div id=chatwritesection class=chatwritesection>
@@ -299,13 +293,6 @@ position: absolute;
 						onclick=submitFunction();>
 			</div>
 				
-						
-		    <form action="joingroup_ok" method="post">
-		    	<input type="hidden" name="email" value=<%=session.getAttribute("userid") %>>
-				<input type="text" name="groupname" placeholder="그룹의 이름" />
-				<input type="text" name="manager" placeholder="그룹 관리자" />
-				<input type="submit" value="그룹 만들기"/>
-			</form>
 			
 			
 			<input type="button" onclick="showinvitelayer()" value="초대하기">

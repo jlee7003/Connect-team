@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.connect.board.dao.iboardDao"> <!--content.xml에서 모든 xml을 찾는다  -->
+  
+   <select id="list" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM BOARD WHERE GROUPID=#{param1} ORDER BY ID DESC
+   </select>
+   
+   <insert id="write"><!-- 태그 이름은 구분하기 편하라고 write라고 해준것 -->
+INSERT INTO BOARD(USERNAME,TITLE,WRITEDAY,WRITEREMAIL,CONTENT,GROUPID) VALUES(#{param1},#{param2},now(),#{param3},#{param4},#{param5})
+</insert>
+   
+   <select id="content" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM BOARD WHERE ID=#{param1} AND GROUPID=#{param2}
+   </select>
+   
+      <select id="update" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM BOARD WHERE ID=#{param1} AND GROUPID=#{param2}
+   </select>
+   
+      <update id="updateok" >
+     UPDATE BOARD SET TITLE=#{param1},CONTENT=#{param2} WHERE ID=#{param3} AND GROUPID=#{param4}
+   </update>
+   
+   <delete id="delete"> 
+     DELETE FROM BOARD WHERE ID=#{param1} AND GROUPID=#{param2}
+   </delete>
+   
+</mapper>

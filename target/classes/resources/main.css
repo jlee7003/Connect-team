@@ -313,6 +313,9 @@ input:focus {
 .width50 {
 	width: 50%;
 }
+.width15 {
+	width: 15%;
+}
 
 .width90 {
 	width: 90%;
@@ -358,8 +361,8 @@ input:focus {
 	width: 20%;
 }
 
-.width10 {
-	width: 33%;
+.width5 {
+	width: 5%;
 }
 .groupbox{
 	border:1px solid black;
@@ -624,6 +627,10 @@ input:focus {
 	color: white;
 	border-radius: 3px;
 	height: 20px;
+}
+.navi
+{
+	height:100%;
 }
 .border_logo {
 	padding: 50px;

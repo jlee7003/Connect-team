@@ -9,11 +9,25 @@
 </head>
 <body>
 <div>
-아이디 로그인 -> 자신이 속해 있는 그룹 표시 -> 해당 그룹의 계시판으로 이동
-
-  <c:forEach items="${list}" var="dto">
-  <div> </div>
-  </c:forEach>
+		   <table width=500>  
+        <tr>
+           <td> 번호 </td>
+           <td> 작성자 </td>
+           <td> 제목 </td>
+           <td> 작성일 </td>
+        </tr>
+        <c:forEach items="${list}" var="dto">
+            <tr>
+               <td> ${dto.id} </td>
+               <td> ${dto.username} </td>
+               <td> <a href="content?id=${dto.id}&gid=${gid}"> ${dto.title} </a> </td>
+               <td> ${dto.writeday} </td>
+            </tr>
+        </c:forEach>
+        <tr>
+          <td colspan=4 align=center> <a href="write?gid=${gid}"> 글쓰기 </a> </td>
+        </tr>
+     </table>
 </div>
 </body>
 </html>

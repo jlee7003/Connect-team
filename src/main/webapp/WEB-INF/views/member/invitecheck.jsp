@@ -54,12 +54,7 @@ function confirmemail(emailconfirm_value, authNum)
 			<th colspan="2"><%=email1%>@<%=email2%> 회원님을 초대하셨습니다.</th>
 		</tr>
 		<tr>
-			<td><input type="text" name="emailconfirm"> <!-- emailcheck.mailconfirm.value -->
-			</td>
-			
-			<td><input type="button" value="확인"
-				onclick="confirmemail(emailcheck.emailconfirm.value, <%=authNum%>)">
-			</td>
+			<td><span> ${overlap}</span></td>
 		</tr>
 	</table>
 </form>

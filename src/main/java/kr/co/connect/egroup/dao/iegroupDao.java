@@ -13,4 +13,6 @@ public interface iegroupDao {
 	public ArrayList<Egroup> grouplist(String email);
 	public ArrayList<Egroup> groupliststring(String email);
 	public void write(String groupid2, String email, String groupname, String manager, String writeday);
+	public int groupoverlap(String email, int groupid);
+	public void write2(int groupid, String email, String groupname, String manager, String writeday);
 }

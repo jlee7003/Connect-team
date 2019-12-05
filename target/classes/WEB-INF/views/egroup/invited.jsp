@@ -47,7 +47,6 @@
 			
 			
 			
-			S
 		</div>
 	</div>
 	<jsp:include page="../footer.jsp" flush="false" />

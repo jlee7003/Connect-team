@@ -20,9 +20,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM INVITE WHERE INVITED=#{param1};
 	</select>
 	
+	<select id="overlapinvite" resultType="Int">
+		SELECT count(*) FROM INVITE WHERE INVITED=#{param1} AND GROUPID=#{param2};
+	</select>
+	
 	
 	<select id="whoismanager" resultType="String">
 	SELECT MANAGER FROM EGROUP WHERE EMAIL=MANAGER AND GROUPID=#{param1};
 	</select>
 
+	<delete id="delinvite">
+	DELETE FROM INVITE WHERE INVITED=#{param1} AND GROUPID=#{param2};
+	</delete>
 </mapper>
