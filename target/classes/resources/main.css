@@ -265,6 +265,21 @@ input:focus {
 	outline: none;
 }
 
+.hidden
+{
+visibility: hidden;
+}
+
+.invitelayer{
+/* display:none; */
+position: absolute;
+	left: 300px;
+	top: 300px;
+	visibility: hidden;
+	background: white;
+	border: 1px solid black;
+}
+
 .input_login {
 	width: 291.98px;
 	background: #1187CF;

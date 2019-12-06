@@ -26,10 +26,11 @@ public class boardcontroller {
 	{
 		
 		int groupid=Integer.parseInt(request.getParameter("groupid"));
+		int boardid=0;
         String username=session.getAttribute("username").toString();
         String writeremail=session.getAttribute("userid").toString();
 		iboardDao dao=sqlSession.getMapper(iboardDao.class);
-		dao.write(username,board.getTitle(),writeremail,board.getContent(),groupid);
+		dao.write(username,board.getTitle(),writeremail,board.getContent(),groupid,boardid);
 		//write의 역할을 dao에 적어놓지 않았는데 그 역할을 xml에 적는다
 		return "redirect:/list?gid="+groupid;
 	}

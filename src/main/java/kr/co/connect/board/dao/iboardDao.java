@@ -9,7 +9,7 @@ public interface iboardDao {
 
 	public ArrayList<Board> list(String groupid);
 
-	public void write(String username, String title, String writeremail, String content, int groupid);
+	public void write(String username, String title, String writeremail, String content, int groupid, int boardid);
 
 	public Board content(String id, String groupid);
 
@@ -18,5 +18,6 @@ public interface iboardDao {
 	public void updateok(String title, String content, String id, String groupid);
 
 	public void delete(String id, String groupid);
+
 
 }

@@ -1,10 +1,11 @@
 package kr.co.connect.directory;
 
-public class directory {
+public class Directory {
  private String id;
  private String directoryid;
  private String directoryname;
  private String groupid;
+ 
 public String getId() {
 	return id;
 }
@@ -29,11 +30,12 @@ public String getGroupid() {
 public void setGroupid(String groupid) {
 	this.groupid = groupid;
 }
-public directory(String id, String directoryid, String directoryname, String groupid) {
+public Directory(String id, String directoryid, String directoryname, String groupid) {
 	super();
 	this.id = id;
 	this.directoryid = directoryid;
 	this.directoryname = directoryname;
 	this.groupid = groupid;
 }
+public Directory(){}
 }

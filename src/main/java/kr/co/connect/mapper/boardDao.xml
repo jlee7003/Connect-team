@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    </select>
    
    <insert id="write"><!-- 태그 이름은 구분하기 편하라고 write라고 해준것 -->
-INSERT INTO BOARD(USERNAME,TITLE,WRITEDAY,WRITEREMAIL,CONTENT,GROUPID) VALUES(#{param1},#{param2},now(),#{param3},#{param4},#{param5})
+INSERT INTO BOARD(USERNAME,TITLE,WRITEDAY,WRITEREMAIL,CONTENT,GROUPID,BOARDID) VALUES(#{param1},#{param2},now(),#{param3},#{param4},#{param5},#{param6})
 </insert>
    
    <select id="content" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->

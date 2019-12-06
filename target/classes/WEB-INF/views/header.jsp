@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header29">
+<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header31">
 <script src="/Connect-team/resources/main.js?ver=main"></script>
 </head>
 <body>

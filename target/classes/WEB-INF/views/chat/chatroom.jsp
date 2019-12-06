@@ -193,15 +193,6 @@ height:100px;
 height:25%;
 border:1px solid red;
 }
-.invitelayer{
-/* display:none; */
-position: absolute;
-	left: 300px;
-	 	top: 300px;
-	visibility: hidden;
-	background: white;
-	border: 1px solid black;
-}
 </style>
 
  <script>  
@@ -212,12 +203,7 @@ position: absolute;
 
 			 });
  });
- 
- function makedir()
- {
-	 
-	 location.href="makedir";
- }
+
 </script>
   
  
@@ -258,14 +244,8 @@ position: absolute;
 	<!-- include 되는 부분 -->
 	<div class="width15 border_black navi">
 	<!--------------- -디렉토리부분- -------------------->
-	<div onclick=makedir()>디렉토리 만들기</div>
-	
-	
-	    <c:forEach items="${list}" var="dto">
-	    <div>
-	    
-	    </div>
-        </c:forEach>
+	 <iframe src="http://localhost:8080/Connect-team/makedir?gid=${gid}&gname=${gname}" name="dir" width="1340" height="746" scrolling="no"></iframe>
+
 	
 	
 	
