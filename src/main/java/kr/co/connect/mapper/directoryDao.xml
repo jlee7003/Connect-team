@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.connect.directory.dao.idirectoryDao"> <!--content.xml에서 모든 xml을 찾는다  -->
+  
+    <select id="listboarddir" resultType="kr.co.connect.boarddir.boarddir"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM BOARDDIR WHERE DIRECTORYID=#{param1} ORDER BY BOARDNAME ASC;
+   </select>
+   	<insert id="insertboarddir">
+	INSERT INTO BOARDDIR(BOARDNAME,BOARDID,DIRECTORYID,DIRECTORYNAME) VALUES(#{param1},#{param2},#{param3},#{param4})
+	</insert>
+	<select id="selectboardid" resultType="int"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT BOARDID FROM BOARDDIR ORDER BY BOARDID DESC LIMIT 1;
+   </select>
+  
+   	<insert id="insertdir">
+	INSERT INTO DIRECTORY(DIRECTORYID,DIRECTORYNAME,GROUPID) VALUES(#{param1},#{param2},#{param3})
+	</insert>
+	
+	<insert id="insertdir2">
+	INSERT INTO DIRECTORY2(DIRECTORYID,DIRECTORYNAME,GROUPID) VALUES(#{param1},#{param2},#{param3})
+	</insert>
+	
+	<insert id="insertdir3">
+	INSERT INTO DIRECTORY3(DIRECTORYID,DIRECTORYNAME,GROUPID) VALUES(#{param1},#{param2},#{param3})
+	</insert>
+  
+  <select id="listdir" resultType="kr.co.connect.directory.Directory"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM DIRECTORY WHERE GROUPID=#{param1} ORDER BY DIRECTORYNAME ASC;
+   </select>
+   
+     <select id="opendir" resultType="kr.co.connect.directory.Directory"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+<!--      미완성 -->
+   </select>
+   
+   	<delete id="deletedir">
+	DELETE FROM DIRECTORY WHERE GROUPID=#{param1} AND DIRECTORYNAME=#{param2};
+	</delete>
+</mapper>
