@@ -269,6 +269,13 @@ input:focus {
 {
 visibility: hidden;
 }
+.hiddenx
+{
+visibility: hidden;
+}
+.float_left{
+	float:left;
+}
 
 .invitelayer{
 /* display:none; */

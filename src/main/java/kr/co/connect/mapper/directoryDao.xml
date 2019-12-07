@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      SELECT * FROM BOARDDIR WHERE DIRECTORYID=#{param1} ORDER BY BOARDNAME ASC;
    </select>
    	<insert id="insertboarddir">
-	INSERT INTO BOARDDIR(BOARDNAME,BOARDID,DIRECTORYID,DIRECTORYNAME) VALUES(#{param1},#{param2},#{param3},#{param4})
+	INSERT INTO BOARDDIR(BOARDNAME,BOARDID,DIRECTORYID,DIRECTORYNAME,GROUPID) VALUES(#{param1},#{param2},#{param3},#{param4},#{param5})
 	</insert>
 	<select id="selectboardid" resultType="int"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
      SELECT BOARDID FROM BOARDDIR ORDER BY BOARDID DESC LIMIT 1;
@@ -32,9 +32,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      SELECT * FROM DIRECTORY WHERE GROUPID=#{param1} ORDER BY DIRECTORYNAME ASC;
    </select>
    
+     <select id="getboardgroupid" resultType="int"> 
+     SELECT GROUPID FROM BOARDDIR WHERE GROUPID=#{param1} ORDER BY DIRECTORYNAME ASC;
+   </select>
+   
      <select id="opendir" resultType="kr.co.connect.directory.Directory"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
 <!--      미완성 -->
    </select>
+   
+      <delete id="deleteboarddir"> 
+     DELETE FROM BOARDDIR WHERE BOARDNAME=#{param1} AND DIRECTORYID=#{param2}
+   </delete>
+   
+      <delete id="deletealldir"> 
+     DELETE FROM BOARDDIR WHERE BOARDNAME=#{param1} AND DIRECTORYNAME=#{param2} AND GROUPID=#{param3}
+   </delete>
    
    	<delete id="deletedir">
 	DELETE FROM DIRECTORY WHERE GROUPID=#{param1} AND DIRECTORYNAME=#{param2};

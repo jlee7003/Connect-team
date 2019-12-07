@@ -72,7 +72,34 @@ public class directorycontroller {
 		
 		return "dir/makedir";
 	}
-	
+	@RequestMapping("/deletedirok")
+	public String deletedirok(HttpServletRequest request, Model model)
+	{
+		String boardname=request.getParameter("boardname");
+		int groupid=Integer.parseInt(request.getParameter("gid"));
+		int directoryid=Integer.parseInt(request.getParameter("directoryid"));
+		model.addAttribute("gid", groupid);
+		model.addAttribute("boardname", boardname);
+		idirectoryDao dao=sqlSession.getMapper(idirectoryDao.class);
+		dao.deleteboarddir(boardname,directoryid);
+		
+		return "redirect:/makedir";
+	}
+	@RequestMapping("/deletefolderok")
+	public String deletefolderok(HttpServletRequest request, Model model)
+	{
+		String boardname=request.getParameter("boardname");
+		int groupid=Integer.parseInt(request.getParameter("gid"));
+		int directoryid=Integer.parseInt(request.getParameter("directoryid"));
+		model.addAttribute("gid", groupid);
+		String directoryname=request.getParameter("directoryname");
+		idirectoryDao dao=sqlSession.getMapper(idirectoryDao.class);
+		dao.deletedir(groupid,directoryname);
+		dao.deletealldir(boardname,directoryname,groupid);
+		System.out.println(boardname+" "+directoryname+" "+groupid);
+		System.out.println("실행완료");
+		return "redirect:/makedir";
+	}
 	
 	@RequestMapping("/opendirok")
 	public String opendirok(HttpServletRequest request, Model model)
@@ -109,16 +136,17 @@ public class directorycontroller {
 	@RequestMapping("/makeboarddir")
 	public String makeboarddir(HttpServletRequest request, Model model)
 	{   
+		int groupid=Integer.parseInt(request.getParameter("gid"));
 		String directoryname=request.getParameter("directoryname");
 		System.out.println(directoryname+"directoryname");
 		idirectoryDao dao=sqlSession.getMapper(idirectoryDao.class);
 		int boardid=dao.selectboardid();
 		int directoryid=Integer.parseInt(request.getParameter("directoryid"));
 		String boardname=request.getParameter("boardname");
-		dao.insertboarddir(boardname,boardid,directoryid,directoryname);
+		dao.insertboarddir(boardname,boardid,directoryid,directoryname,groupid);
 		
 		
-		int groupid=Integer.parseInt(request.getParameter("gid"));
+
 		model.addAttribute("gid", groupid);
 		model.addAttribute("boardname", boardname);
 		

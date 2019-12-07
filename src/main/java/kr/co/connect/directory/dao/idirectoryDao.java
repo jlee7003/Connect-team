@@ -19,7 +19,12 @@ public interface idirectoryDao {
 
 	public int selectboardid();
 
-	public void insertboarddir(String boardname, int boardid, int directoryid, String directoryname);
 
-	
+	public void deleteboarddir(String boardname, int directoryid);
+
+	public void insertboarddir(String boardname, int boardid, int directoryid, String directoryname, int groupid);
+
+	public int getboardgroupid(int groupid);
+
+	public void deletealldir(String boardname, String directoryname, int groupid);
 }

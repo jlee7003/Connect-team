@@ -25,12 +25,15 @@ position: absolute;
 	border: 1px solid black;
 visibility: hidden;
 }
+.flex{
+display:flex;
+}
 
 </style>
 <script>
 function makedir()
 {
-	 var directoryname=document.getElementById("directoryname").value;
+	 var directoryname=document.getElementById("directorynameon").value;
 	 if(directoryname=="")
 		 {
 		 alert("값이 비었습니다.");
@@ -73,11 +76,46 @@ function makeboard()
 
 function showinvitelayer(pp,aa)
 {
+	confirm();
 	alert(pp+" "+aa);
 	document.getElementById("directoryname").value=aa;
 	document.getElementById("directoryid").value=pp;
 alert(document.getElementById("directoryid").value+" "+document.getElementById("directoryname").value);
 document.getElementsByClassName("hidden")[0].style.visibility="visible";
+}
+
+function deleteboarddir(pp,aa)
+{
+    msg = "계시판을 삭제하시겠습니까?";
+    if (confirm(msg)!=0) {
+     var directoryid=pp;
+   	 var boardname=aa;
+	 var directoryname=aa;
+	location.href="deletedirok?gid="+${gid}+"&boardname="+boardname+"&directoryid="+directoryid+"&directoryname="+directoryname;
+    } else 
+    {
+    	   alert("취소하셨습니다");
+    		alert(pp+" "+aa);
+    }
+
+}
+function deletefolderdir(pp,aa,bb)
+{
+    msg = "폴더를 삭제하시겠습니까? 계시물도 함께 사라집니다.";
+    var directoryid=pp;
+ 	 var boardname=bb;
+	 var directoryname=aa;
+    if (confirm(msg)!=0) {
+   
+
+	location.href="deletefolderok?gid="+${gid}+"&boardname="+boardname+"&directoryid="+directoryid+"&directoryname="+directoryname;
+    } else 
+    {
+   	 alert(directoryid+""+boardname+""+directoryname);
+    	   alert("취소하셨습니다");
+    		alert(pp+" "+aa);
+    }
+
 }
 
 
@@ -97,9 +135,11 @@ document.getElementsByClassName("hidden")[0].style.visibility="hidden";
 // 					 });
 // 		 });
 </script>
+
 </head>
 <body>
 자유계시판
+
 	<div  class="hidden">
 	<div  class="flex center_j">계시판레이어
 	<span  onclick="closeinvitelayer()">X</span>
@@ -114,25 +154,30 @@ document.getElementsByClassName("hidden")[0].style.visibility="hidden";
 	</div>
 	
 	
+	
 	<div onclick="makedir()">디렉토리 만들기</div>
 	<div onclick="makeboard()">계시판 만들기</div>
-	<input type="text" name="directoryname" id="directoryname">
+	<input type="text" name="directorynameon" id="directorynameon">
 	<c:forEach items="${list}" var="dto">
 		<div>
 <!-- 		document.getElementsByClassName('directoryname')[0].value --> 
                                      <!-- onclick="makeboard()" -->
 			<input type="button" value="${dto.directoryname}" onclick="opendir(this.value,${dto.directoryid})">
 <%-- 			<input type="button" value="${dto.directoryname}" onclick="showinvitelayer(${dto.directoryid},this.value)"> --%>
-			<span class="hidden2" onclick="showinvitelayer(${dto.directoryid},'${dto.directoryname}')">○</span> <!-- 왜 폴더네임은 오류가 날까? -->
+			<span class="hidden2" onclick="showinvitelayer(${dto.directoryid},'${dto.directoryname}')">○</span>
+			<span class="hiddenfx" onclick="deletefolderdir(${dto.directoryid},'${dto.directoryname}',${dto2.boardname})">X</span>
+			 <!-- 왜 폴더네임은 오류가 날까? -->
 			<div>
 				<c:forEach items="${list2}" var="dto2">
 					<div>
-					
+				<c:set var="name4" value="${dto2.groupid}" />	
+				<c:set var="name5" value="${dto.groupid}" />	
 				<c:set var="name1" value="${dirname}" />
 				<c:set var="name2" value="${dto2.directoryname}" />
 				<c:set var="name3" value="${dto.directoryname}" />
-				<c:if test="${name1 eq name2 && name2 eq name3}"><!-- 내가 클릭한 디렉토리 이름을 비교해야함 -->
-				    &nbsp;<div onclick="opendir2()">${dto2.boardname}</div>
+				<c:if test="${name1 eq name2 && name2 eq name3 && name4 eq name5}"><!-- 내가 클릭한 디렉토리 이름을 비교해야함 -->
+				    <div class="flex center">&nbsp;<div onclick="opendir2()">${dto2.boardname} </div><span class="hiddenx" onclick="deleteboarddir(${dto.directoryid},'${dto2.boardname}')">X</span></div>
+				   
 				</c:if>
 
 
