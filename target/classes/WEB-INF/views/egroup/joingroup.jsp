@@ -12,7 +12,7 @@
 	<jsp:include page="../header.jsp" flush="false" />
 	<div class="floor_h40 center" >
 	<div>
-	<div class="flex center fontsize_ font_git">Group</div>
+	<div class="flex center fontsize_ font_git">Groups</div>
 	<div><img alt="logo" class="" src="resources/img/group.PNG">
 	</div>
 	</div>

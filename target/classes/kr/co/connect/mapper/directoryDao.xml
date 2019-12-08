@@ -9,6 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="listboarddir" resultType="kr.co.connect.boarddir.boarddir"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
      SELECT * FROM BOARDDIR WHERE DIRECTORYID=#{param1} ORDER BY BOARDNAME ASC;
    </select>
+   <select id="listboardnamedir" resultType="String"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT BOARDNAME FROM BOARDDIR WHERE DIRECTORYID=#{param1} ORDER BY BOARDNAME ASC;
+   </select>
    	<insert id="insertboarddir">
 	INSERT INTO BOARDDIR(BOARDNAME,BOARDID,DIRECTORYID,DIRECTORYNAME,GROUPID) VALUES(#{param1},#{param2},#{param3},#{param4},#{param5})
 	</insert>

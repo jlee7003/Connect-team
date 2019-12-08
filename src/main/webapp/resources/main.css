@@ -102,8 +102,14 @@ a:hover {
 	margin-right: 20px;
 }
 
+.margin_right_30 {
+	margin-right: 30px;
+}
 .margin_left_20 {
 	margin-left: 20px;
+}
+.margin_left_30 {
+	margin-left: 30px;
 }
 
 .margin_left_200 {
@@ -650,6 +656,15 @@ position: absolute;
 	border-radius: 3px;
 	height: 20px;
 }
+.button_transfer {
+	width: 60px;
+	background: white;
+	border-color: rgb(169, 169, 169);
+	color: black;
+	border-radius: 3px;
+	border:1px solid rgb(169, 169, 169);
+	height: 20px;
+}
 .navi
 {
 	height:100%;
@@ -658,4 +673,25 @@ position: absolute;
 	padding: 50px;
 	border: 30px solid #1187CF;
 	border-radius: 10px;
+}
+.btn-3 {
+  background: lighten($red, 3%);  
+  border: 1px solid darken($red, 4%);
+  box-shadow: 0px 2px 0 darken($red, 5%), 2px 4px 6px darken($red, 2%);
+  font-weight: 900;
+  letter-spacing: 1px;
+  transition: all 150ms linear;
+}
+.hover:hover{
+	background:black;
+	color:white;
+}
+.btn-3:hover {
+  background: darken($red, 1.5%);
+  border: 1px solid rgba(#000, .05);
+  box-shadow: 1px 1px 2px rgba(#fff, .2);
+  color: lighten($red, 18%); 
+  text-decoration: none;
+  text-shadow: -1px -1px 0 darken($red, 9.5%);
+  transition: all 250ms linear;
 }

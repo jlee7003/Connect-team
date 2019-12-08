@@ -27,4 +27,6 @@ public interface idirectoryDao {
 	public int getboardgroupid(int groupid);
 
 	public void deletealldir(String boardname, String directoryname, int groupid);
+
+	public String listboardnamedir(int directoryid);
 }

@@ -9,6 +9,7 @@
 <body>
 <form method="post" action="write_ok">
 <input type="hidden" name="groupid" value="${gid}">
+<input type="hidden" name="boardid" value="${bid}">
 <table width="500">
 <tr>
 <td>이름</td>

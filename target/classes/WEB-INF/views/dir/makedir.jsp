@@ -29,6 +29,41 @@ visibility: hidden;
 display:flex;
 }
 
+.hiddenx{
+display:none;
+}
+.hiddenfx{
+display:none;
+}
+	.dropdown-button {
+			padding: 8px;
+			font-size: 15px;
+			border: none;
+			width:150px;
+			background-color: white;
+		}
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: white;
+			min-width: 75px;
+			padding: 5px;
+		}
+		.dropdown-content a {
+			color: black;
+			padding: 8px;
+			text-decoration: none;
+			display: block;
+		}
+		.dropdown-content div:hover { background-color: black; color:white; }
+		.dropdown:hover .dropdown-content { display: block; }
+		.dropdown:hover .dropdown-button { background-color: black; color:white; }
+
+
 </style>
 <script>
 function makedir()
@@ -124,6 +159,24 @@ function closeinvitelayer()
 document.getElementsByClassName("hidden")[0].style.visibility="hidden";
 }
 
+function showfx()
+{
+	var pp=document.getElementsByClassName("hiddenfx").length;
+	 for(i=0;i<pp;i++)
+	 {
+ document.getElementsByClassName("hiddenfx")[i].style.display="block";
+	 }
+}
+
+function showx()
+{
+	 var pp=document.getElementsByClassName("hiddenx").length;
+	 for(i=0;i<pp;i++)
+	 {
+ document.getElementsByClassName("hiddenx")[i].style.display="block";
+	 }
+}
+
 
 
 
@@ -138,7 +191,6 @@ document.getElementsByClassName("hidden")[0].style.visibility="hidden";
 
 </head>
 <body>
-자유계시판
 
 	<div  class="hidden">
 	<div  class="flex center_j">계시판레이어
@@ -154,12 +206,19 @@ document.getElementsByClassName("hidden")[0].style.visibility="hidden";
 	</div>
 	
 	
-	
+	<div class="dropdown">
+		<button class="dropdown-button">Dropdown</button>
+		<div class="dropdown-content">
+		<div onclick="showfx()">파일 삭제하기</div>
+	<div onclick="showx()">계시판 삭제하기</div>
 	<div onclick="makedir()">디렉토리 만들기</div>
 	<div onclick="makeboard()">계시판 만들기</div>
+		</div>
+	</div>
+	<br>
 	<input type="text" name="directorynameon" id="directorynameon">
 	<c:forEach items="${list}" var="dto">
-		<div>
+		<div class="">
 <!-- 		document.getElementsByClassName('directoryname')[0].value --> 
                                      <!-- onclick="makeboard()" -->
 			<input type="button" value="${dto.directoryname}" onclick="opendir(this.value,${dto.directoryid})">
@@ -176,8 +235,13 @@ document.getElementsByClassName("hidden")[0].style.visibility="hidden";
 				<c:set var="name2" value="${dto2.directoryname}" />
 				<c:set var="name3" value="${dto.directoryname}" />
 				<c:if test="${name1 eq name2 && name2 eq name3 && name4 eq name5}"><!-- 내가 클릭한 디렉토리 이름을 비교해야함 -->
-				    <div class="flex center">&nbsp;<div onclick="opendir2()">${dto2.boardname} </div><span class="hiddenx" onclick="deleteboarddir(${dto.directoryid},'${dto2.boardname}')">X</span></div>
-				   
+				    <div class="flex center">
+<%-- 				    <iframe src="http://localhost:8080/Connect-team/list?gid=${gid}&gname=${gname}" name="board" width="1340" height="746" class="border_none" scrolling="no"></iframe> --%>
+				    <a href="list?gid=${gid}&gname=${gname}&boardid=${dto2.id}" target=iframe>
+				   ${dto2.boardname}
+				    </a>
+				    <span class="hiddenx" onclick="deleteboarddir(${dto.directoryid},'${dto2.boardname}')">X</span>
+				    </div>
 				</c:if>
 
 

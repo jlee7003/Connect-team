@@ -26,8 +26,12 @@
 				</div>
 			</div>
 			
-			
 			<c:forEach items="${invitelist}" var="dto">
+	        <c:if test="${dto.groupname eq null || dto.groupname != ''}">
+			초대 받은 그룹이 없습니다.
+			</c:if>
+			
+	<c:if test="${dto.groupname != '' || dto.groupname ne null}">
 		      <div class="grouplist groupbox" >
 		        
 		        ${dto.username}님이 ${dto.groupname} 그룹으로 초대하셨습니다. 
@@ -38,8 +42,15 @@
 		        <input type="submit" value="수락">
 		        </form>
 		        
-		        <span>거절</span>
+		        <form method="post" action="sorry">
+		        <input type="hidden" name="groupname" id="groupname" value="${dto.groupname}">
+		        <input type="hidden" name="username" id="username" value="${dto.username}">
+		        <input type="hidden" name="groupid" id="groupid" value="${dto.groupid}">
+		        <input type="submit" value="거절">
+		        </form>
+		        
 		      </div>
+		      </c:if>
         </c:forEach>
 			
 		 

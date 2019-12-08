@@ -79,8 +79,9 @@ function addChat(username, content, chattime)
 			'<img class="" src="">' +
 			'</a>' +
 			'<div class="mediabody">' +
-			
+			'<span style="font-weight:900;">' +
 			username +" "+
+			'</span>' +
 			'<div class="alignright">' +
 			chattime +
 			'</div>' +
@@ -92,7 +93,8 @@ function addChat(username, content, chattime)
 			'</div>' +
 			'</div>' +
 			'</div>' +
-			'<hr>'); 
+			'<div style="color:blue; background:black; height:1px;">' +
+			'</div>'); 
 	$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
 }
 function getInfiniteChat(){
@@ -171,11 +173,21 @@ function emailcheck(email1, email2 ,groups,groupname)
 	width: 500px;
 	border: 1px solid black;
 }
+#content{
+			width: 70%;
+			height: 70px;
+			padding: 10px;
+			box-sizing: border-box;
+			border: solid 2px initial;
+			border-radius: 5px;
+			font-size: 16px;
+			resize: none;
+}
+
 
 #chatList {
 	overflow: auto;
-	height:75%;
-	border: 1px solid blue;
+	height:70%;
 }
 
 .chatsection {
@@ -190,8 +202,8 @@ function emailcheck(email1, email2 ,groups,groupname)
 height:100px;
 }
 .chatwritesection{
-height:25%;
-border:1px solid red;
+height:166px;
+/* border:1px solid red; */
 }
 </style>
 
@@ -213,7 +225,10 @@ border:1px solid red;
 <body>
 	<jsp:include page="../header.jsp" flush="false" />
 
-
+	<center>
+<!-- <a href="http://www.nzeo.com" target="iframe">Nzeo 제로보드^^</a><p> -->
+<!-- <iframe src="about:blank" width="800" height="600" srcrolling="auto" frameborder="0" border="0" bordercolor="#000000" marginwidth="0" marginheight="0" name="iframe"></iframe><p> -->
+</center>
   
   
 	<div class="invitelayer ">
@@ -239,43 +254,52 @@ border:1px solid red;
 		</form>
 	</div>
     <span style="font-size:40px;">${gname}</span>
-	<div class="floor_h73 ">
+	<div class="floor_h73 bd_radius">
 	
 	<!-- include 되는 부분 -->
 	<div class="width15 border_black navi">
 	<!--------------- -디렉토리부분- -------------------->
-	 <iframe src="http://localhost:8080/Connect-team/makedir?gid=${gid}&gname=${gname}" name="dir" width="1340" height="746" scrolling="no"></iframe>
+	 <iframe src="http://localhost:8080/Connect-team/makedir?gid=${gid}&gname=${gname}" name="dir" width="1340" height="746" class="border_none" scrolling="no"></iframe>
 
 	
-	
-	
+
 	<!--------------- -디렉토리부분- -------------------->
 	</div>
-	 <iframe src="http://localhost:8080/Connect-team/list?gid=${gid}&gname=${gname}" name="board" width="1340" height="746" scrolling="no"></iframe>
+	
+	 <iframe src="http://localhost:8080/Connect-team/list?gid=${gid}&gname=${gname}&boardid=0"  name="iframe" width="1340" height="746" class="border_none" scrolling="no"></iframe>
 		<div class="chatsection width25">
+			<div class="flex center_a" style="height:60px; color:white; font-size:25px; background:#1388CF;"> 
+			
+			<span style="margin-left:20px;">${gname}의 채팅창</span>
+			</div>
 			<div id=chatList></div>
-			<div id=chatwritesection class=chatwritesection>
+			<div id="chatwritesection" class="chatwritesection" style="background:#E0EEFA;">
 			
 			<div id=grouplist>
 
 
 			</div>
 			<div>
-				<%=session.getAttribute("userid") %>
-				${user}
 				<br>
 				<input type="hidden" name="groupname" id=groupname value="${gname}">
 				<input type="hidden" name="username" id=username value="${user}">
 				<input type="hidden" name="groups" id=groups value="${groups}">
-				<textarea name=content id=content></textarea>
-				<br>
-					<input type=submit value="전송" id=citizenRegistration
+				<div>
+				
+				</div>
+				<div class="flex">
+				<textarea class="margin_left_30" name=content id=content></textarea>
+				<div align="right" style="width:30%;">
+						<input type=submit value="전송하기" class="margin_right_30 button_transfer" id=""
 						onclick=submitFunction();>
+				</div>
+				</div>
+			
 			</div>
 				
 			
 			
-			<input type="button" onclick="showinvitelayer()" value="초대하기">
+			<input type="button" onclick="showinvitelayer()" class="margin_left_30" value="초대하기">
 			
 				
 				

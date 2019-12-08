@@ -7,7 +7,7 @@ import kr.co.connect.board.Board;
 public interface iboardDao {
 
 
-	public ArrayList<Board> list(String groupid);
+//	public ArrayList<Board> list(String groupid);
 
 	public void write(String username, String title, String writeremail, String content, int groupid, int boardid);
 
@@ -18,6 +18,8 @@ public interface iboardDao {
 	public void updateok(String title, String content, String id, String groupid);
 
 	public void delete(String id, String groupid);
+
+	public ArrayList<Board> list(String groupid, int boardid);
 
 
 }

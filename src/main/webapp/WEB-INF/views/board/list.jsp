@@ -25,7 +25,7 @@
             </tr>
         </c:forEach>
         <tr>
-          <td colspan=4 align=center> <a href="write?gid=${gid}"> 글쓰기 </a> </td>
+          <td colspan=4 align=center> <a href="write?gid=${gid}&boardid=${bid}"> 글쓰기 </a> </td>
         </tr>
      </table>
 </div>

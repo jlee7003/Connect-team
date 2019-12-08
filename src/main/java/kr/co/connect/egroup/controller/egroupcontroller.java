@@ -64,6 +64,17 @@ public class egroupcontroller {
 		return "egroup/joingroup_ok"; // 실제 주소(실제로 입력이 되는 주소)
 	}
 	
+	@RequestMapping(value = "/sorry") // 브라우저에 입력된 주소(사용자가 입력하는 주소)
+	public String sorry(HttpServletRequest request,Model model, HttpSession session) 
+	{
+		   iinviteDao dao1 = sqlSession.getMapper(iinviteDao.class);
+		   String invited=session.getAttribute("userid").toString();
+		   String groupid2 =request.getParameter("groupid");
+		   System.out.println(invited+"=="+groupid2);
+		dao1.delinvite(invited,groupid2);
+		return "egroup/invitesorry"; // 실제 주소(실제로 입력이 되는 주소)
+	}
+	
 	@RequestMapping(value = "/invited") // 브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String invited(Model model,invite invite, HttpSession session) {
 		if(session.getAttribute("userid")!=null)//로그인이 되어 있다면
@@ -102,6 +113,9 @@ public class egroupcontroller {
 	    	System.out.println("groupoverlap :"+groupoverlap );
 		dao.write2(groupid,email, egroup.getGroupname(),manager, egroup.getWriteday());
 	    }
+//	    else if(){
+//	    	
+//	    }
 	    else
 	    {
 	    	System.out.println("groupoverlap :"+groupoverlap );

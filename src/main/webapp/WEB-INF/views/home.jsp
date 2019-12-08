@@ -18,9 +18,9 @@ of the group task service!</div>
 </div>
 	</div>
 	</div>
-	<div class="floor_h100" >	
+<!-- 	<div class="floor_h100" >	 -->
 
-	</div>
+<!-- 	</div> -->
 
 	<jsp:include page="footer.jsp" flush="false" />
 
