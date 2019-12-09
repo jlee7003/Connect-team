@@ -11,10 +11,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+body{
+width:20%;
+height:740.09px;
+padding:2px;
+margin:0px;
+}
 .hidden2{
 visibility: hidden;
 }
-.hidden
+.hidden222{
+visibility: hidden;
+}
+.center {
+	align-items: center;
+	justify-content: center;
+}
+ .hidden 
 {
 position: absolute;
 	left: 0px;
@@ -36,10 +49,12 @@ display:none;
 display:none;
 }
 	.dropdown-button {
-			padding: 8px;
-			font-size: 15px;
+	margin-top:10px;
+			padding: 5px;
+			font-size: 20px;
 			border: none;
-			width:150px;
+			width:100%;
+			color: #1388CF;
 			background-color: white;
 		}
 		.dropdown {
@@ -59,11 +74,51 @@ display:none;
 			text-decoration: none;
 			display: block;
 		}
-		.dropdown-content div:hover { background-color: black; color:white; }
+		.filelayer {
+			position: absolute;
+			left: 0px;
+			top: 300px;
+			visibility: hidden;
+			background: white;
+			border: 1px solid black;
+		}
+		.dropdown-content div:hover { background-color: #ced4da; color: black; }
 		.dropdown:hover .dropdown-content { display: block; }
-		.dropdown:hover .dropdown-button { background-color: black; color:white; }
+		.dropdown:hover .dropdown-button { background-color: #1388CF; color:white; }
+.button_submit {
+	width: 100px;
+	background: black;
+	border: none;
+ 	color: white; 
+	border-radius: 3px;
+	height: 20px;
+}
+.toplayer
+{
+background:black;
+color:white;
+border:1px solid black;
+}
+.btn-5:hover {
+  border: 0px solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px #427388; 
+}
+a:link {
+	text-decoration: none;
+}
 
+a:visited {
+	color: black;
+	text-decoration: none;
+}
 
+a:hover {
+	color: black;
+	text-decoration: none;
+}
 </style>
 <script>
 function makedir()
@@ -88,7 +143,6 @@ function makedir2()
 }
 function opendir(pp,aa)
 {	
-	alert(pp+" "+aa);
 	var directoryid=aa;
 	 var directoryname=pp;
 	 var trueval=1;
@@ -100,7 +154,7 @@ function makeboard()
 	
 	 var trueval=1;
 	 var pp=document.getElementsByClassName("hidden2").length;
-// 	 alert(pp);//2
+	 alert(pp);//2
 	 for(i=0;i<pp;i++)
 		 {
 	 document.getElementsByClassName("hidden2")[i].style.visibility="visible";
@@ -191,13 +245,14 @@ function showx()
 
 </head>
 <body>
-
+<div class="flex center" style="width:100%;">
+<div style="width:80%;">
 	<div  class="hidden">
 	<div  class="flex center_j">계시판레이어
 	<span  onclick="closeinvitelayer()">X</span>
 	</div>
 	<form method="post" action="makeboarddir">
-	<input type="hidden" name="directoryname" id="directoryname">
+<!-- 	<input type="hidden" name="directoryname" id="directoryname"> -->
 	<input type="hidden" value="${gid}" name="gid" id="gid">
 	<input type="hidden" name="directoryid" id="directoryid">
 	<input type="text" name="boardname" id="boardname">
@@ -205,27 +260,41 @@ function showx()
 	</form>
 	</div>
 	
+	<div class="flex center" style="width:100%;">
+<!-- 	onclick="makedir()" -->
 	
-	<div class="dropdown">
-		<button class="dropdown-button">Dropdown</button>
+	<div class="dropdown" style="width:100%;">
+		<button class="dropdown-button">Menu</button>
 		<div class="dropdown-content">
-		<div onclick="showfx()">파일 삭제하기</div>
-	<div onclick="showx()">계시판 삭제하기</div>
-	<div onclick="makedir()">디렉토리 만들기</div>
-	<div onclick="makeboard()">계시판 만들기</div>
+		<div style="padding:5px;" onclick="showfx()">파일 삭제하기</div>
+	<div style="padding:5px;" onclick="showx()">계시판 삭제하기</div>
+	<div style="padding:5px;" onclick="showfilelayer()">디렉토리 만들기</div>
+	<div style="padding:5px;" onclick="makeboard()">계시판 만들기</div>
 		</div>
+		<hr style="color:black;">
 	</div>
-	<br>
-	<input type="text" name="directorynameon" id="directorynameon">
+	</div>
+	
+	<input type="text" class="hidden222" name="f" id="s">
+	<div style="background:#1388CF; border-radius:5px; min-height:300px; max-height:500px;">
 	<c:forEach items="${list}" var="dto">
 		<div class="">
 <!-- 		document.getElementsByClassName('directoryname')[0].value --> 
                                      <!-- onclick="makeboard()" -->
-			<input type="button" value="${dto.directoryname}" onclick="opendir(this.value,${dto.directoryid})">
+                                     <div class="">
+                                     <div class="flex" style="padding:5px;">
+                                     <div name="inner" style="width:100%;" class="btn-5">
+			<img style="width:20px; margin-left:10px;" src="resources/img/file.PNG">
+			<input type="button" style="margin:3px; border:none; background:none;" value="${dto.directoryname}" onclick="opendir(this.value,${dto.directoryid})">
+                                  
+                                     
 <%-- 			<input type="button" value="${dto.directoryname}" onclick="showinvitelayer(${dto.directoryid},this.value)"> --%>
 			<span class="hidden2" onclick="showinvitelayer(${dto.directoryid},'${dto.directoryname}')">○</span>
 			<span class="hiddenfx" onclick="deletefolderdir(${dto.directoryid},'${dto.directoryname}',${dto2.boardname})">X</span>
-			 <!-- 왜 폴더네임은 오류가 날까? -->
+<!-- 			 왜 폴더네임은 오류가 날까? -->
+			 </div>
+			 </div>
+			   </div>
 			<div>
 				<c:forEach items="${list2}" var="dto2">
 					<div>
@@ -235,9 +304,9 @@ function showx()
 				<c:set var="name2" value="${dto2.directoryname}" />
 				<c:set var="name3" value="${dto.directoryname}" />
 				<c:if test="${name1 eq name2 && name2 eq name3 && name4 eq name5}"><!-- 내가 클릭한 디렉토리 이름을 비교해야함 -->
-				    <div class="flex center">
+				    <div class="flex">
 <%-- 				    <iframe src="http://localhost:8080/Connect-team/list?gid=${gid}&gname=${gname}" name="board" width="1340" height="746" class="border_none" scrolling="no"></iframe> --%>
-				    <a href="list?gid=${gid}&gname=${gname}&boardid=${dto2.id}" target=iframe>
+				  <a class="btn-5" style="width:90%; padding:5px; margin-right:5px; margin-left:55px; color:white; font-size:13px;" href="list?gid=${gid}&gname=${gname}&boardid=${dto2.id}&page=1" target=iframe>
 				   ${dto2.boardname}
 				    </a>
 				    <span class="hiddenx" onclick="deleteboarddir(${dto.directoryid},'${dto2.boardname}')">X</span>
@@ -251,5 +320,49 @@ function showx()
 			</div>
 		</div>
 	</c:forEach>
+	</div>
+	</div>
+	</div>
+	
+	<div class="filelayer">
+	
+		<div class="">
+		<div class="toplayer flex">
+		<div  class="flex center" style="width:90%;">파일 만들기</div>
+		<div align=right style="width:10%; padding:5px;" onclick="closefilelayer()">X</div>	
+		</div>
+		<div style="padding:10px;">
+			파일명 <br>
+			 	<input type="text" class="" name="directorynameon" id="directorynameon">
+		</div>
+			 	<div class="flex center">
+			 <div onclick="makedir()" class="button_submit flex center" style="margin-bottom:10px;">확인</div>
+			 	</div>
+		
+		</div>
+	</div>
 </body>
+<script>  
+ $(function()/* 드래그 가능하게 해주는 jquery 플러그인 */
+ {
+	 $(".filelayer").draggable(
+			 {
+
+			 });
+ });
+
+ 
+	function showfilelayer()
+	{
+		alert();
+	document.getElementsByClassName("filelayer")[0].style.visibility="visible";
+	}
+	
+
+	function closefilelayer()
+	{
+	document.getElementsByClassName("filelayer")[0].style.visibility="hidden";
+	}
+	
+</script>
 </html>

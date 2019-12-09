@@ -33,7 +33,7 @@ public class boardcontroller {
 		System.out.println("boardid :"+boardid );
 		dao.write(username,board.getTitle(),writeremail,board.getContent(),groupid,boardid);
 		//write의 역할을 dao에 적어놓지 않았는데 그 역할을 xml에 적는다
-		return "redirect:/list?gid="+groupid+"&boardid="+boardid;
+		return "redirect:/list?gid="+groupid+"&boardid="+boardid+"&page=1";
 	}
 	@RequestMapping(value="/list")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String list(Model model,HttpSession session,HttpServletRequest request)
@@ -44,6 +44,8 @@ public class boardcontroller {
 		{
 			return "board/selectboardplz";
 		}
+		int page=1;
+		 page=Integer.parseInt(request.getParameter("page"));
 		String groupid=request.getParameter("gid");
 		String groupname=request.getParameter("gname");
 		model.addAttribute("gid", groupid);
@@ -53,9 +55,34 @@ public class boardcontroller {
 		ArrayList<Egroup> glist=dao12.grouplist(email);
 		model.addAttribute("glist", glist);
 		iboardDao dao=sqlSession.getMapper(iboardDao.class);
-			ArrayList<Board> list=dao.list(groupid,boardid);
+		int cntnumber=dao.cntnumber();
+		int pagenumber=cntnumber/15;
+		if (cntnumber % 10 != 0)
+		{
+			pagenumber=pagenumber+1;
+		}
+		System.out.println(pagenumber);
+		System.out.println(cntnumber);
+		int pstart;
+		int pend;
+		 pstart = (int) page / 10;
+		if (page % 10 == 0) {
+			pstart = pstart - 1;
+		}
+		pstart = Integer.parseInt(pstart + "1");
+		pend = pstart + 9;
+		if (pend > pagenumber)
+		{
+			pend = pagenumber;
+		}
+			ArrayList<Board> list=dao.list(groupid,boardid,page);
 		   model.addAttribute("list",list);
 		   model.addAttribute("bid",boardid);
+		   model.addAttribute("pstart",pstart);
+		   model.addAttribute("pend",pend);
+		   model.addAttribute("page",page);
+		   model.addAttribute("cntnumber",cntnumber);
+		   model.addAttribute("pagenumber",pagenumber);
 		
 		return "board/list"; //실제 주소(실제로 입력이 되는 주소)
 	}

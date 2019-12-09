@@ -95,9 +95,11 @@ a:hover {
 .margin_left_10 {
 	margin-left: 10px;
 }
+
 .margin_right_10 {
 	margin-right: 10px;
 }
+
 .margin_right_20 {
 	margin-right: 20px;
 }
@@ -105,9 +107,11 @@ a:hover {
 .margin_right_30 {
 	margin-right: 30px;
 }
+
 .margin_left_20 {
 	margin-left: 20px;
 }
+
 .margin_left_30 {
 	margin-left: 30px;
 }
@@ -128,12 +132,24 @@ a:hover {
 	margin-top: 10px;
 }
 
+.margin_top_20 {
+	margin-top: 20px;
+}
+
+.margin_top_30 {
+	margin-top: 30px;
+}
+
 .margin_top_100 {
 	margin-top: 100px;
 }
 
 .margin_bottom_10 {
 	margin-bottom: 10px;
+}
+
+.margin_bottom_50 {
+	margin-bottom: 50px;
 }
 
 .floor_h5 {
@@ -250,6 +266,10 @@ a:hover {
 	box-shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15) !important;
 }
 
+.shadow2 {
+	box-shadow: 0 .5rem 3.5rem 0 rgba(58, 59, 69, .15) !important;
+}
+
 .border_bottom_red {
 	border-bottom: 3px #73BBFF solid;
 }
@@ -271,21 +291,21 @@ input:focus {
 	outline: none;
 }
 
-.hidden
-{
-visibility: hidden;
-}
-.hiddenx
-{
-visibility: hidden;
-}
-.float_left{
-	float:left;
+.hidden {
+	visibility: hidden;
 }
 
-.invitelayer{
-/* display:none; */
-position: absolute;
+.hiddenx {
+	visibility: hidden;
+}
+
+.float_left {
+	float: left;
+}
+
+.invitelayer {
+	/* display:none; */
+	position: absolute;
 	left: 300px;
 	top: 300px;
 	visibility: hidden;
@@ -318,6 +338,7 @@ position: absolute;
 .input_width {
 	width: 280px;
 }
+
 .input_width1 {
 	width: 400px;
 }
@@ -325,7 +346,9 @@ position: absolute;
 .input_width100 {
 	width: 100%;
 	min-width: 100px;
-}left
+}
+
+left
 
 .input_width45 {
 	width: 45%;
@@ -341,6 +364,7 @@ position: absolute;
 .width50 {
 	width: 50%;
 }
+
 .width15 {
 	width: 15%;
 }
@@ -392,11 +416,13 @@ position: absolute;
 .width5 {
 	width: 5%;
 }
-.groupbox{
-	border:1px solid black;
-	border-radius:5px;
-	width:230px;
+
+.groupbox {
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 100%;
 }
+
 .container_w10 {
 	width: 10%;
 	height: auto;
@@ -456,30 +482,39 @@ position: absolute;
 	width: auto;
 	height: auto;
 }
-.height100{
-	height:100% ;
+
+.height100 {
+	height: 100%;
 }
-.height90{
-	height:90% ;
+
+.height90 {
+	height: 90%;
 }
-.height80{
-	height:80% ;
+
+.height80 {
+	height: 80%;
 }
-.height70{
-	height:70% ;
+
+.height70 {
+	height: 70%;
 }
-.height60{
-	height:60% ;
+
+.height60 {
+	height: 60%;
 }
-.height50{
-	height:50% ;
+
+.height50 {
+	height: 50%;
 }
-.height40{
-	height:40% ;
+
+.height40 {
+	height: 40%;
 }
-.height30{
-	height:30% ;
+
+.height30 {
+	height: 30%;
 }
+
 .height_35 {
 	height: 33px;
 }
@@ -606,11 +641,13 @@ position: absolute;
 	font-weight: 600;
 	/* 	background-color: #31383C; */
 }
-.invitelayer{
-	border:1px solid black;
-	width:600px;
-	height:200px;
+
+.invitelayer {
+	border: 1px solid black;
+	width: 600px;
+	height: 200px;
 }
+
 .color_white {
 	color: white;
 }
@@ -636,18 +673,25 @@ position: absolute;
 .color_footerf2 {
 	background: #1A252F;
 }
+
 .color_connect {
 	color: #1187CF;
 }
+
 .background_mint {
 	background: #1ABC9C;
 }
-.messege{
-	border-radius:10px;
-	width:20px;
-	color:white;
-	background:red;
+
+.messege {
+	border-radius: 10px;
+	width: 20px;
+	color: white;
+	background: red;
 }
+body 
+{
+	font-family :'나눔고딕', 'Malgun Gothic', sans-serif;}
+
 .button_submit {
 	width: 100px;
 	background: black;
@@ -656,42 +700,55 @@ position: absolute;
 	border-radius: 3px;
 	height: 20px;
 }
+
 .button_transfer {
 	width: 60px;
 	background: white;
 	border-color: rgb(169, 169, 169);
 	color: black;
 	border-radius: 3px;
-	border:1px solid rgb(169, 169, 169);
+	border: 1px solid rgb(169, 169, 169);
 	height: 20px;
 }
-.navi
-{
-	height:100%;
+
+.navi {
+	height: 100%;
 }
+
 .border_logo {
 	padding: 50px;
 	border: 30px solid #1187CF;
 	border-radius: 10px;
 }
+
 .btn-3 {
-  background: lighten($red, 3%);  
-  border: 1px solid darken($red, 4%);
-  box-shadow: 0px 2px 0 darken($red, 5%), 2px 4px 6px darken($red, 2%);
-  font-weight: 900;
-  letter-spacing: 1px;
-  transition: all 150ms linear;
+	background: lighten($ red, 3%);
+	border: 1px solid darken($ red, 4%);
+	box-shadow: 0px 2px 0 darken($ red, 5%), 2px 4px 6px darken($ red, 2%);
+	font-weight: 900;
+	letter-spacing: 1px;
+	transition: all 150ms linear;
 }
-.hover:hover{
-	background:black;
-	color:white;
+
+.hover:hover {
+	background: black;
+	color: white;
 }
+
 .btn-3:hover {
-  background: darken($red, 1.5%);
-  border: 1px solid rgba(#000, .05);
-  box-shadow: 1px 1px 2px rgba(#fff, .2);
-  color: lighten($red, 18%); 
-  text-decoration: none;
-  text-shadow: -1px -1px 0 darken($red, 9.5%);
-  transition: all 250ms linear;
+	background: darken($ red, 1.5%);
+	border: 1px solid rgba(#000, .05);
+	box-shadow: 1px 1px 2px rgba(#fff, .2);
+	color: lighten($ red, 18%);
+	text-decoration: none;
+	text-shadow: -1px -1px 0 darken($ red, 9.5%);
+	transition: all 250ms linear;
+}
+
+.btn-5:hover {
+  border: 0px solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px #427388; 
 }

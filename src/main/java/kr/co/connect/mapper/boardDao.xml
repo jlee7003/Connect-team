@@ -5,9 +5,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.connect.board.dao.iboardDao"> <!--content.xml에서 모든 xml을 찾는다  -->
+  	
+    <select id="cntnumber" resultType="int"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+    SELECT COUNT(ID) AS CNT FROM BOARD;  
+   </select>
   
    <select id="list" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
-     SELECT * FROM BOARD WHERE GROUPID=#{param1} AND BOARDID=#{param2} ORDER BY ID DESC
+     SELECT * FROM BOARD WHERE GROUPID=#{param1} AND BOARDID=#{param2} ORDER BY ID DESC LIMIT #{param3},15
+   </select>
+   
+   <select id="list20" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM BOARD WHERE GROUPID=#{param1} AND BOARDID=#{param2} ORDER BY ID DESC LIMIT #{param3},20
+   </select>
+   <select id="list25" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM BOARD WHERE GROUPID=#{param1} AND BOARDID=#{param2} ORDER BY ID DESC LIMIT #{param3},25
+   </select>
+   <select id="list30" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM BOARD WHERE GROUPID=#{param1} AND BOARDID=#{param2} ORDER BY ID DESC LIMIT #{param3},30
    </select>
    
    <insert id="write"><!-- 태그 이름은 구분하기 편하라고 write라고 해준것 -->
@@ -19,7 +33,7 @@ INSERT INTO BOARD(USERNAME,TITLE,WRITEDAY,WRITEREMAIL,CONTENT,GROUPID,BOARDID) V
    </select>
    
       <select id="update" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
-     SELECT * FROM BOARD WHERE ID=#{param1} AND GROUPID=#{param2}
+     SELECT * FROM BOARD WHERE ID=#{param1} AND GROUPID=#{param2} 
    </select>
    
       <update id="updateok" >

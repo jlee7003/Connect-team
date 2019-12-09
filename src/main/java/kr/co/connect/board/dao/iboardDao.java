@@ -19,7 +19,9 @@ public interface iboardDao {
 
 	public void delete(String id, String groupid);
 
-	public ArrayList<Board> list(String groupid, int boardid);
+	public ArrayList<Board> list(String groupid, int boardid,int page);
+	
+	public int cntnumber();
 
 
 }

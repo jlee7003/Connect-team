@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header35">
+<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header37">
 <script src="/Connect-team/resources/main.js?ver=main"></script>
 </head>
 <body>
@@ -28,8 +28,8 @@
 <div class="container_w25 flex center">
 </div>
 <div class="container_w30 flex center font_design3">
-<div class="hover flex center width33 height100"><a href="joingroup" class="width100 height100 hover flex center">GROUPS</a></div>
- <div class="hover flex center width33 height100"><a href="Joinus" class="width100 height100 hover flex center">JOINUS</a></div> 
+<div class=" hover flex center width33 height100"><a href="joingroup" class="btn-5 width100 height100 hover flex center">GROUPS</a></div>
+ <div class="hover flex center width33 height100"><a href="Joinus" class="btn-5 width100 height100 hover flex center">JOINUS</a></div> 
  <div class="hover flex center width33 height100">
 
 
@@ -38,12 +38,12 @@
 				if (session.getAttribute("userid") == null)//세션변수가 없다면
 				{
 			%>
-			<a href="login" class="width100 height100 hover flex center">LOGIN</a>
+			<a href="login" class="btn-5 width100 height100 hover flex center">LOGIN</a>
 			<%
 				} else
 				{
 			%>
-			<a href="logout" class="width100 height100 hover flex center">LOGOUT</a>
+			<a href="logout" class="btn-5 width100 height100 hover flex center">LOGOUT</a>
 			<%
 			} 
 			%>
@@ -57,7 +57,7 @@
 </div>
 <div class="container_w10 flex center ">
 	
-	<a href="invited" class="flex center width100 height100 hover">${messege}<span class="messege flex center fontweight900" onclick=""> ${invitenum}</span></a>
+	<a href="invited" class="flex center width100 height100 hover btn-5">${messege}<span class="messege flex center fontweight900" onclick=""> ${invitenum}</span></a>
 	
 	
 </div>

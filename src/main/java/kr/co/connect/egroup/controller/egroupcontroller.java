@@ -26,7 +26,6 @@ public class egroupcontroller {
 	@RequestMapping(value = "/joingroup") // 브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String joingroup(Model model, HttpSession session) {
 	
-	
 		System.out.println("정상출력");
 		inc(session,model);
 		ArrayList<Egroup> checkifhavegroup;
@@ -45,7 +44,9 @@ public class egroupcontroller {
 				System.out.println(checkifhavegroup+"1");
 				return "redirect:/chatroom";
 			} else {
+				String userid=session.getAttribute("userid").toString();
 				System.out.println(checkifhavegroup+"2");
+				model.addAttribute("userid",userid);
 				return "egroup/joingroup"; // 실제 주소(실제로 입력이 되는 주소)
 			}
 		}
@@ -53,8 +54,12 @@ public class egroupcontroller {
 	}
 
 	@RequestMapping(value = "/joingroup_ok") // 브라우저에 입력된 주소(사용자가 입력하는 주소)
-	public String joingroup_ok(Egroup egroup,Model model, HttpSession session) {
-
+	public String joingroup_ok(HttpServletRequest request, Egroup egroup,Model model, HttpSession session) {
+		String mg=request.getParameter("mg");
+		if( mg=="그룹만들기")
+		{
+			
+		
 		iegroupDao dao1 = sqlSession.getMapper(iegroupDao.class);
 		int groupid = dao1.select();
 
@@ -62,6 +67,13 @@ public class egroupcontroller {
 		dao.write(groupid, egroup.getEmail(), egroup.getGroupname(), egroup.getManager(), egroup.getWriteday());
 		inc(session,model);
 		return "egroup/joingroup_ok"; // 실제 주소(실제로 입력이 되는 주소)
+		}
+		else
+		{
+		String err="정확히 입력해주세요";
+	    model.addAttribute("err",err);
+	    return "egroup/joingroup";
+		}
 	}
 	
 	@RequestMapping(value = "/sorry") // 브라우저에 입력된 주소(사용자가 입력하는 주소)
@@ -70,8 +82,9 @@ public class egroupcontroller {
 		   iinviteDao dao1 = sqlSession.getMapper(iinviteDao.class);
 		   String invited=session.getAttribute("userid").toString();
 		   String groupid2 =request.getParameter("groupid");
+			inc(session,model);
 		   System.out.println(invited+"=="+groupid2);
-		dao1.delinvite(invited,groupid2);
+		   dao1.delinvite(invited,groupid2);
 		return "egroup/invitesorry"; // 실제 주소(실제로 입력이 되는 주소)
 	}
 	
@@ -79,6 +92,7 @@ public class egroupcontroller {
 	public String invited(Model model,invite invite, HttpSession session) {
 		if(session.getAttribute("userid")!=null)//로그인이 되어 있다면
 		{
+	    inc(session,model);
 		String email=session.getAttribute("userid").toString();
 		iinviteDao dao = sqlSession.getMapper(iinviteDao.class);
 		ArrayList<invite> invitelist= dao.invitelist(email);
@@ -168,7 +182,7 @@ public class egroupcontroller {
 			return "member/youarenotmanager";
 		}
 	}
-	
+
 	 public void inc(HttpSession session, Model model)
 		{
 		  if (session.getAttribute("userid") == null)

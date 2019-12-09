@@ -6,7 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
- 계시판을 선택하세여
+<body >
+<div style="width:100%;" class="flex center">
+<div style="width:100%;" align=center>
+ <img alt="" style="width:60%;" src="resources/img/chatroom.PNG">
+</div>
+</div>
 </body>
 </html>

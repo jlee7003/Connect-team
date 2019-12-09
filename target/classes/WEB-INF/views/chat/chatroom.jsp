@@ -79,12 +79,18 @@ function addChat(username, content, chattime)
 			'<img class="" src="">' +
 			'</a>' +
 			'<div class="mediabody">' +
-			'<span style="font-weight:900;">' +
+			
+			'<div class="flex">' +
+			'<span style="font-weight:900; width:50%;">' +
 			username +" "+
 			'</span>' +
-			'<div class="alignright">' +
+			
+			
+			'<div class="alignright" style="width:50%;">' +
 			chattime +
 			'</div>' +
+			'</div>' +
+			
 		
 			'<p>' +
 			content + 
@@ -92,8 +98,6 @@ function addChat(username, content, chattime)
 			'</div>' +
 			'</div>' +
 			'</div>' +
-			'</div>' +
-			'<div style="color:blue; background:black; height:1px;">' +
 			'</div>'); 
 	$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
 }
@@ -186,12 +190,14 @@ function emailcheck(email1, email2 ,groups,groupname)
 
 
 #chatList {
+	background:#E0EEFA;
 	overflow: auto;
-	height:70%;
+	height:72%;
 }
 
 .chatsection {
-	border: 1px solid black;
+/* 	border: 2px solid black; */
+	border-radius:5px;
 }
 
 .alignright {
@@ -199,10 +205,16 @@ function emailcheck(email1, email2 ,groups,groupname)
 }
 .media
 {
-height:100px;
+height:auto;
+}
+.mediabody
+{
+background:white;
+border:10px solid #E0EEFA;
+padding:10px;
 }
 .chatwritesection{
-height:166px;
+height:20%;
 /* border:1px solid red; */
 }
 </style>
@@ -225,10 +237,6 @@ height:166px;
 <body>
 	<jsp:include page="../header.jsp" flush="false" />
 
-	<center>
-<!-- <a href="http://www.nzeo.com" target="iframe">Nzeo 제로보드^^</a><p> -->
-<!-- <iframe src="about:blank" width="800" height="600" srcrolling="auto" frameborder="0" border="0" bordercolor="#000000" marginwidth="0" marginheight="0" name="iframe"></iframe><p> -->
-</center>
   
   
 	<div class="invitelayer ">
@@ -257,7 +265,7 @@ height:166px;
 	<div class="floor_h73 bd_radius">
 	
 	<!-- include 되는 부분 -->
-	<div class="width15 border_black navi">
+	<div class="width15 navi shadow2" style="background:white; border-radius:5px;">
 	<!--------------- -디렉토리부분- -------------------->
 	 <iframe src="http://localhost:8080/Connect-team/makedir?gid=${gid}&gname=${gname}" name="dir" width="1340" height="746" class="border_none" scrolling="no"></iframe>
 
@@ -266,14 +274,14 @@ height:166px;
 	<!--------------- -디렉토리부분- -------------------->
 	</div>
 	
-	 <iframe src="http://localhost:8080/Connect-team/list?gid=${gid}&gname=${gname}&boardid=0"  name="iframe" width="1340" height="746" class="border_none" scrolling="no"></iframe>
+	 <iframe src="http://localhost:8080/Connect-team/list?gid=${gid}&gname=${gname}&boardid=0&page=1" style=" margin-left:10px; margin-right:10px; background:#1187CF;" name="iframe" width="1340" height="100%" class="border_none" scrolling="no"></iframe>
 		<div class="chatsection width25">
-			<div class="flex center_a" style="height:60px; color:white; font-size:25px; background:#1388CF;"> 
+			<div class="flex center_a" style="border-radius: 5px 5px 0px 0px; height:8%; border:0px solid black; color:white; font-size:25px; background:#1388CF;"> 
 			
-			<span style="margin-left:20px;">${gname}의 채팅창</span>
+			<span style="margin-left:20px; ">${gname}의 채팅창</span>
 			</div>
 			<div id=chatList></div>
-			<div id="chatwritesection" class="chatwritesection" style="background:#E0EEFA;">
+			<div id="chatwritesection" class="chatwritesection" style="background:#E0EEFA; border-radius:0px 0px 5px 5px;">
 			
 			<div id=grouplist>
 
@@ -290,7 +298,7 @@ height:166px;
 				<div class="flex">
 				<textarea class="margin_left_30" name=content id=content></textarea>
 				<div align="right" style="width:30%;">
-						<input type=submit value="전송하기" class="margin_right_30 button_transfer" id=""
+						<input type=submit value="전송하기" class="margin_right_30 button_transfer flex center" style="width:60px; height:40px;" id=""
 						onclick=submitFunction();>
 				</div>
 				</div>
@@ -299,7 +307,7 @@ height:166px;
 				
 			
 			
-			<input type="button" onclick="showinvitelayer()" class="margin_left_30" value="초대하기">
+			<input type="button" onclick="showinvitelayer()" class="margin_top_20 button_transfer margin_left_30 flex center" style="width:60px; height:25px;" value="초대하기">
 			
 				
 				
