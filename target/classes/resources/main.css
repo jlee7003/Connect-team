@@ -711,6 +711,15 @@ body
 	height: 20px;
 }
 
+.button_transfer2 {
+	background: white;
+	border-color: rgb(169, 169, 169);
+	color: black;
+	border-radius: 3px;
+	border: 1px solid rgb(169, 169, 169);
+	height: 20px;
+}
+
 .navi {
 	height: 100%;
 }

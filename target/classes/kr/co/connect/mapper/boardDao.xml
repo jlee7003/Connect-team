@@ -10,7 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     SELECT COUNT(ID) AS CNT FROM BOARD;  
    </select>
   
-   <select id="list" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+   <select id="list10" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM BOARD WHERE GROUPID=#{param1} AND BOARDID=#{param2} ORDER BY ID DESC LIMIT #{param3},10
+   </select>
+  
+   <select id="list15" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
      SELECT * FROM BOARD WHERE GROUPID=#{param1} AND BOARDID=#{param2} ORDER BY ID DESC LIMIT #{param3},15
    </select>
    
@@ -30,6 +34,14 @@ INSERT INTO BOARD(USERNAME,TITLE,WRITEDAY,WRITEREMAIL,CONTENT,GROUPID,BOARDID) V
    
    <select id="content" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
      SELECT * FROM BOARD WHERE ID=#{param1} AND GROUPID=#{param2}
+   </select>
+   
+   <select id="searchusername" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+    SELECT * FROM BOARD WHERE USERNAME LIKE CONCAT('%',#{param1},'%') ORDER BY ID DESC LIMIT #{param2},10;
+   </select>
+   
+   <select id="searchtitle" resultType="kr.co.connect.board.Board">
+    SELECT * FROM BOARD WHERE TITLE LIKE CONCAT('%',#{param1},'%') ORDER BY ID DESC LIMIT #{param2},10;
    </select>
    
       <select id="update" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->

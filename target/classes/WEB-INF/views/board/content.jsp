@@ -26,9 +26,9 @@
 <td> ${dto.writeday }</td>
 </tr>
    <tr>
-     <td colspan=3 align=center><a href="list?id=${dto.id}&gid=${gid}">list</a> 
-   <a href="update?id=${dto.id}&gid=${gid}">update</a> 
-   <a href="delete?id=${dto.id}&gid=${gid}">delete</a></td>
+     <td colspan=3 align=center><a href="list?id=${dto.id}&gid=${gid}&boardid=${bid}&page=1">list</a> 
+   <a href="update?id=${dto.id}&gid=${gid}&boardid=${bid}">update</a> 
+   <a href="delete?id=${dto.id}&gid=${gid}&boardid=${bid}">delete</a></td>
    </tr>
 </table>
 

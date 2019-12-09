@@ -8,6 +8,7 @@
 </head>
 <body>
 <form method="post" action="update_ok"> 
+<input type="hidden" name="boardid" value="${bid}">
 <input type="hidden" name="gid" value="${gid}">
 <input type=hidden name="id" value="${dto.id}">
 이름<input type="text" name="name" value="${dto.username}" disabled ><p>
