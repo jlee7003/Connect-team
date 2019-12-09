@@ -10,6 +10,7 @@
 <div style="width:100%;" class="flex center">
 <div style="width:100%;" align=center>
  <img alt="" style="width:60%;" src="resources/img/chatroom.PNG">
+ <div>${grouphost}</div>
 </div>
 </div>
 </body>

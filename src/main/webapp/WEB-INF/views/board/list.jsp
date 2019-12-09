@@ -129,5 +129,6 @@ html, body {
 
 	</div>
 	</form>
+	<div>rr ${grouphost}</div>
 </body>
 </html>

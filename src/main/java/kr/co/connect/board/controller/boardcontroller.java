@@ -15,6 +15,7 @@ import kr.co.connect.board.Board;
 import kr.co.connect.board.dao.iboardDao;
 import kr.co.connect.egroup.Egroup;
 import kr.co.connect.egroup.dao.iegroupDao;
+import kr.co.connect.invite.dao.iinviteDao;
 
 @Controller
 public class boardcontroller {
@@ -36,6 +37,25 @@ public class boardcontroller {
 		return "redirect:/list?gid="+groupid+"&boardid="+boardid+"&page=1";
 	}
 	
+	
+	@RequestMapping("/selectboardplz")
+	public String selectboardplz(Model model, Board board, HttpServletRequest request,HttpSession session)
+	{
+//		String email=session.getAttribute("userid").toString();
+//		int groupid=Integer.parseInt(request.getParameter("gid"));
+//	     String groupid2=request.getParameter("groupid");
+//		int boardid=Integer.parseInt(request.getParameter("boardid"));
+//		  iinviteDao dao = sqlSession.getMapper(iinviteDao.class);
+//		  String manager=dao.whoismanager(groupid2);
+//		  if(manager==email)
+//		  {
+//			  System.out.println(manager+"  "+email);
+//			  String grouphost="관리자";
+//			  model.addAttribute("grouphost",grouphost);
+//		  }
+//		//write의 역할을 dao에 적어놓지 않았는데 그 역할을 xml에 적는다
+		return "board/selectboardplz";
+	}
 	@RequestMapping("/listseeok")
 	public String listseeok(Board board, HttpServletRequest request,HttpSession session)
 	{
@@ -50,6 +70,7 @@ public class boardcontroller {
 	public String list(Model model,HttpSession session,HttpServletRequest request)
 	{
 		int listsee=10;
+		String groupid=request.getParameter("gid");
 		if(	session.getAttribute("listsee")!=null)
 		{
 		 listsee=Integer.parseInt(session.getAttribute("listsee").toString());;
@@ -62,7 +83,7 @@ public class boardcontroller {
 		int boardid=Integer.parseInt(request.getParameter("boardid"));
 		if(boardid == 0)
 		{
-			return "board/selectboardplz";
+			return "redirect:/selectboardplz?gid="+groupid+"&boardid="+boardid;
 		}
 		int start;
 		int page=1;
@@ -73,11 +94,12 @@ public class boardcontroller {
 			{
 				start = (page - 1) * listsee;
 			}
-		String groupid=request.getParameter("gid");
+	
 		String groupname=request.getParameter("gname");
 		model.addAttribute("gid", groupid);
 		model.addAttribute("gname", groupname);
 		String email=session.getAttribute("userid").toString();
+		String user=session.getAttribute("username").toString();
 		iegroupDao dao12=sqlSession.getMapper(iegroupDao.class);
 		ArrayList<Egroup> glist=dao12.grouplist(email);
 		model.addAttribute("glist", glist);
@@ -130,6 +152,17 @@ public class boardcontroller {
 		   model.addAttribute("cntnumber",cntnumber);
 		   model.addAttribute("pagenumber",pagenumber);
 		
+		   
+		     String groupid2=request.getParameter("gid");
+			  iinviteDao dao1 = sqlSession.getMapper(iinviteDao.class);
+			  String manager=dao1.whoismanager(groupid2);
+			  if(manager==session.getAttribute("userid").toString())
+			  {  //같은 문자가 확실한데 왜 안나오지??
+				  System.out.println(manager+"  "+email);
+				  String grouphost="관리자";
+				  model.addAttribute("grouphost",grouphost);
+			  }
+			  System.out.println(manager+""+email);
 		return "board/list"; //실제 주소(실제로 입력이 되는 주소)
 	}
 	@RequestMapping(value="/content")//브라우저에 입력된 주소(사용자가 입력하는 주소)
