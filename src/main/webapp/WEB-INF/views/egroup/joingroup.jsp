@@ -53,6 +53,7 @@
 
 			
 	</div>
+	<div class="floor_h10"></div>
 
 <jsp:include page="../footer.jsp" flush="false" />
 </body>

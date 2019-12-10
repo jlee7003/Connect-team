@@ -15,9 +15,12 @@
 
 	<div class="floor_h100 center">
 			
-			
-			그룹에 가입되셨습니다.
-			${overlap}
+			<div>
+			<div>그룹에 가입되셨습니다.</div>
+			<div style="color:red;">
+			-> ${overlap}
+			</div>
+			</div>
 			
 			
 		</div>

@@ -30,9 +30,9 @@ visibility: hidden;
  .hidden 
 {
 position: absolute;
-	left: 0px;
+	left: 20px;
  	width:197.81px;
-	top: 640px;
+	top: 440px;
 	visibility: hidden;
 	background: white;
 	border: 1px solid black;
@@ -154,7 +154,6 @@ function makeboard()
 	
 	 var trueval=1;
 	 var pp=document.getElementsByClassName("hidden2").length;
-	 alert(pp);//2
 	 for(i=0;i<pp;i++)
 		 {
 	 document.getElementsByClassName("hidden2")[i].style.visibility="visible";
@@ -165,11 +164,8 @@ function makeboard()
 
 function showinvitelayer(pp,aa)
 {
-	confirm();
-	alert(pp+" "+aa);
 	document.getElementById("directoryname").value=aa;
 	document.getElementById("directoryid").value=pp;
-alert(document.getElementById("directoryid").value+" "+document.getElementById("directoryname").value);
 document.getElementsByClassName("hidden")[0].style.visibility="visible";
 }
 
@@ -184,7 +180,6 @@ function deleteboarddir(pp,aa)
     } else 
     {
     	   alert("취소하셨습니다");
-    		alert(pp+" "+aa);
     }
 
 }
@@ -200,9 +195,7 @@ function deletefolderdir(pp,aa,bb)
 	location.href="deletefolderok?gid="+${gid}+"&boardname="+boardname+"&directoryid="+directoryid+"&directoryname="+directoryname;
     } else 
     {
-   	 alert(directoryid+""+boardname+""+directoryname);
     	   alert("취소하셨습니다");
-    		alert(pp+" "+aa);
     }
 
 }
@@ -247,14 +240,16 @@ function showx()
 <body>
 <div class="flex center" style="width:100%;">
 <div style="width:80%;">
-	<div  class="hidden">
-	<div  class="flex center_j">계시판레이어
-	<span  onclick="closeinvitelayer()">X</span>
-	</div>
+	<div  class="hidden boardlayer">
+		<div class="toplayer flex">
+		<div  class="flex center" style="background:black; width:90%;">계시판만들기</div>
+		<div align=right style="width:10%; padding:5px;" onclick="closeinvitelayer()">X</div>	
+		</div>
 	<form method="post" action="makeboarddir">
 <!-- 	<input type="hidden" name="directoryname" id="directoryname"> -->
 	<input type="hidden" value="${gid}" name="gid" id="gid">
 	<input type="hidden" name="directoryid" id="directoryid">
+	<input type="hidden" name="directoryname" id="directoryname">
 	<input type="text" name="boardname" id="boardname">
 	<input type="submit" value="만들기">
 	</form>
@@ -283,7 +278,7 @@ function showx()
                                      <!-- onclick="makeboard()" -->
                                      <div class="">
                                      <div class="flex" style="padding:5px;">
-                                     <div name="inner" style="width:100%;" class="btn-5">
+                                     <div name="inner" style="width:100%;" class="btn-5 flex">
 			<img style="width:20px; margin-left:10px;" src="resources/img/file.PNG">
 			<input type="button" style="margin:3px; border:none; background:none;" value="${dto.directoryname}" onclick="opendir(this.value,${dto.directoryid})">
                                   
@@ -350,11 +345,21 @@ function showx()
 
 			 });
  });
+ 
+ 
+ $(function()/* 드래그 가능하게 해주는 jquery 플러그인 */
+		 {
+			 $(".boardlayer").draggable(
+					 {
+
+					 });
+		 });
+ 
+ 
 
  
 	function showfilelayer()
 	{
-		alert();
 	document.getElementsByClassName("filelayer")[0].style.visibility="visible";
 	}
 	

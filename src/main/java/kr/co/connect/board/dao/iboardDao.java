@@ -3,6 +3,7 @@ package kr.co.connect.board.dao;
 import java.util.ArrayList;
 
 import kr.co.connect.board.Board;
+import kr.co.connect.egroup.Egroup;
 
 public interface iboardDao {
 
@@ -28,9 +29,17 @@ public interface iboardDao {
 	public ArrayList<Board> list25(String groupid, int boardid, int start);
 	
 	
-	public ArrayList<Board> searchusername(String searchtext, int start);
+	public ArrayList<Board> searchusername(String searchtext,String groupid, int boardid, int start);
 	
-	public ArrayList<Board> searchtitle(String searchtext, int start);
+	public ArrayList<Board> searchtitle(String searchtext, String groupid, int boardid, int start);
 
+
+	public int searchusernamecount(String searchtext, String groupid, int boardid);
+
+	public int searchtitlecount(String searchtext, String groupid, int boardid);
+
+	public String whoiswriter(String id);
+	
+	public ArrayList<Egroup> memlist(String groupid);
 
 }

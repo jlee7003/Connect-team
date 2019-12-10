@@ -240,11 +240,15 @@ height:20%;
   
   
 	<div class="invitelayer ">
-		<form name="insertform" action="checkemail">
-		<div>
-			<div  class="flex center_j">초대하기<div align=right onclick="closeinvitelayer()">X</div>	</div>
-	
+		<form name="insertform" action="checkemail" style="width:100%; height:100%;" >
+		<div class="toplayer flex">
+		<div  class="flex center" style="background:black; width:90%;">그룹원 초대</div>
+		<div align=right style="width:10%; padding:5px;" onclick="closeinvitelayer()">X</div>	
 		</div>
+<!-- 		<div> -->
+<!-- 			<div  class="flex center_j">초대하기<div align=right onclick="closeinvitelayer()">X</div>	</div> -->
+<!-- 		</div> -->
+		<div class="flex center" style="height:100%;">
 			<input type="text" name="email1" maxlength="15"
 				class="input_width45 bd_radius height_20 inputtag" size=10 id=email1>
 			@ <select name="email2" id="email2"
@@ -254,14 +258,15 @@ height:20%;
 				<option value="daum.net">daum.net</option>
 				<option value="nate.com">nate.com</option>
 				<option value="gmail.com">gmail.com</option>
-			</select> <input type="button" name="emailconfirm_btn" value="초대하기"
+			</select> <input type="button" name="emailconfirm_btn" style="margin-left:20px;" value="초대하기"
 				class="button_submit"
 				onclick="emailcheck(insertform.email1.value, insertform.email2.value,document.getElementById('groups').value,document.getElementById('groupname').value)">
 			<p>
 				<span id=aaa></span>
+				</div>
 		</form>
 	</div>
-    <span style="font-size:40px;">${gname}</span>
+    <div style="font-size:40px; width:15.5%; background:#1388CF; color:white;">${gname}</div>
 	<div class="floor_h73 bd_radius">
 	
 	<!-- include 되는 부분 -->
@@ -307,7 +312,7 @@ height:20%;
 				
 			
 			
-			<input type="button" onclick="showinvitelayer()" class="margin_top_20 button_transfer margin_left_30 flex center" style="width:60px; height:25px;" value="초대하기">
+			<input type="button" onclick="showinvitelayer()" class="margin_top_10 button_transfer margin_left_30 flex center" style="width:60px; height:25px;" value="초대하기">
 			
 				
 				

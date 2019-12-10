@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header39">
+<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header40">
 <script src="/Connect-team/resources/main.js?ver=main"></script>
 </head>
 <body>
@@ -63,7 +63,7 @@
 </div>
 </div>
 
-<div class="floor_h10">
+<div class="floor_h5">
 
 </div>
 </body>

@@ -37,11 +37,19 @@ INSERT INTO BOARD(USERNAME,TITLE,WRITEDAY,WRITEREMAIL,CONTENT,GROUPID,BOARDID) V
    </select>
    
    <select id="searchusername" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
-    SELECT * FROM BOARD WHERE USERNAME LIKE CONCAT('%',#{param1},'%') ORDER BY ID DESC LIMIT #{param2},10;
+    SELECT * FROM BOARD WHERE USERNAME LIKE CONCAT('%',#{param1},'%') AND GROUPID=#{param2} AND BOARDID=#{param3} ORDER BY ID DESC LIMIT #{param4},15;
+   </select>
+   
+      <select id="searchusernamecount" resultType="int"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+    SELECT COUNT(ID) AS CNT FROM BOARD WHERE USERNAME LIKE CONCAT('%',#{param1},'%') AND GROUPID=#{param2} AND BOARDID=#{param3} ORDER BY ID DESC;
    </select>
    
    <select id="searchtitle" resultType="kr.co.connect.board.Board">
-    SELECT * FROM BOARD WHERE TITLE LIKE CONCAT('%',#{param1},'%') ORDER BY ID DESC LIMIT #{param2},10;
+    SELECT * FROM BOARD WHERE TITLE LIKE CONCAT('%',#{param1},'%') AND GROUPID=#{param2} AND BOARDID=#{param3} ORDER BY ID DESC LIMIT #{param4},15;
+   </select>
+   
+   <select id="searchtitlecount" resultType="int">
+    SELECT COUNT(ID) AS CNT FROM BOARD WHERE TITLE LIKE CONCAT('%',#{param1},'%') AND GROUPID=#{param2} AND BOARDID=#{param3} ORDER BY ID DESC;
    </select>
    
       <select id="update" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
@@ -55,5 +63,15 @@ INSERT INTO BOARD(USERNAME,TITLE,WRITEDAY,WRITEREMAIL,CONTENT,GROUPID,BOARDID) V
    <delete id="delete"> 
      DELETE FROM BOARD WHERE ID=#{param1} AND GROUPID=#{param2}
    </delete>
+   
+     <select id="whoiswriter" resultType="String"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+	SELECT WRITEREMAIL FROM BOARD WHERE ID=#{param1};
+   </select>
+   
+      <select id="memlist" resultType="String"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+	SELECT EMAIL FROM EGROUP WHERE GROUPID=#{param1};
+   </select>
+   
+   
    
 </mapper>

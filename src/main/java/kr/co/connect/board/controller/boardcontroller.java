@@ -69,6 +69,8 @@ public class boardcontroller {
 	@RequestMapping(value="/list")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String list(Model model,HttpSession session,HttpServletRequest request)
 	{
+		
+		
 		int listsee=10;
 		String groupid=request.getParameter("gid");
 		if(	session.getAttribute("listsee")!=null)
@@ -144,43 +146,151 @@ public class boardcontroller {
 			 model.addAttribute("list",list);
 		}
 		  
-		   model.addAttribute("bid",boardid);
-		   model.addAttribute("start",start);
-		   model.addAttribute("pstart",pstart);
-		   model.addAttribute("pend",pend);
-		   model.addAttribute("page",page);
-		   model.addAttribute("cntnumber",cntnumber);
-		   model.addAttribute("pagenumber",pagenumber);
-		
-		   
 		     String groupid2=request.getParameter("gid");
 			  iinviteDao dao1 = sqlSession.getMapper(iinviteDao.class);
 			  String manager=dao1.whoismanager(groupid2);
-			  if(manager==session.getAttribute("userid").toString())
+			  model.addAttribute("manager",manager);
+			  model.addAttribute("email",email);
+			  System.out.println(email+" 1313"+manager);
+			  if(manager.equals(email))
 			  {  //같은 문자가 확실한데 왜 안나오지??
-				  System.out.println(manager+"  "+email);
+				  System.out.println(manager+" 관리자입니다  "+email);
 				  String grouphost="관리자";
 				  model.addAttribute("grouphost",grouphost);
 			  }
-			  System.out.println(manager+""+email);
-		return "board/list"; //실제 주소(실제로 입력이 되는 주소)
+			  else
+			  {
+			  System.out.println(manager+" 관리자가 아닙니다. "+email);
+			  String grouphost="";
+			  model.addAttribute("grouphost",grouphost);
+			  }
+			  
+			  String selvalue=request.getParameter("selvalue");
+				System.out.println("selvalue :"+selvalue);
+				model.addAttribute("selvalue",selvalue);
+				String searchtext=request.getParameter("searchtext");
+				System.out.println("groupid: "+groupid2+" "+selvalue);
+			model.addAttribute("gid", groupid);
+				iboardDao dao11=sqlSession.getMapper(iboardDao.class);
+				if(selvalue==null)
+				{
+					
+				}
+				else if(selvalue.equals("0"))
+				{
+					
+						iboardDao dao33=sqlSession.getMapper(iboardDao.class);
+						  cntnumber=dao33.searchtitlecount(searchtext,groupid2,boardid);
+						  listsee=10;
+						  pagenumber=cntnumber/listsee;
+						  
+						  start=0;
+							 page=Integer.parseInt(request.getParameter("page"));
+								if(page != 1)
+								{
+									start = (page - 1) * listsee;
+								}
+						  
+						  if (cntnumber % 10 != 0)
+							{
+								pagenumber=pagenumber+1;
+							}
+						  
+						  pstart = (int) page / 10;
+							if (page % 10 == 0) {
+								pstart = pstart - 1;
+							}
+							pstart = Integer.parseInt(pstart + "1");
+							pend = pstart + 9;
+							if (pend > pagenumber)
+							{
+								pend = pagenumber;
+							}
+							   model.addAttribute("searchtext",searchtext);
+							   model.addAttribute("selvalue",selvalue);
+							   model.addAttribute("gid", groupid2);
+							   System.out.println("page:"+ page);
+							   System.out.println("cntnumber : "+cntnumber+"pend : "+pend+"pstart"+pstart+"pagenumber : "+pagenumber+"start : "+start);
+							   System.out.println(searchtext+" d22"+groupid2+" d "+boardid+" d "+start);
+								ArrayList<Board> list=dao11.searchtitle(searchtext,groupid2,boardid,start);
+								 model.addAttribute("list",list);
+				}
+				else if(selvalue.equals("1"))
+				{
+					
+						iboardDao dao33=sqlSession.getMapper(iboardDao.class);
+						 cntnumber=dao33.searchusernamecount(searchtext,groupid2,boardid);
+						 
+						  listsee=10;
+						  pagenumber=cntnumber/listsee;
+						  
+						  start=0;
+							 page=Integer.parseInt(request.getParameter("page"));
+								if(page != 1)
+								{
+									start = (page - 1) * listsee;
+								}
+						  
+						  if (cntnumber % 10 != 0)
+							{
+								pagenumber=pagenumber+1;
+							}
+						  
+						  pstart = (int) page / 10;
+							if (page % 10 == 0) {
+								pstart = pstart - 1;
+							}
+							pstart = Integer.parseInt(pstart + "1");
+							pend = pstart + 9;
+							if (pend > pagenumber)
+							{
+								pend = pagenumber;
+							}
+						   model.addAttribute("searchtext",searchtext);
+						   model.addAttribute("selvalue",selvalue);
+						   model.addAttribute("gid", groupid2);
+						   System.out.println("cntnumber : "+cntnumber+"pend : "+pend+"pstart"+pstart+"pagenumber : "+pagenumber+"start : "+start);
+						   System.out.println(searchtext+" d "+groupid2+" d "+boardid+" d "+start);
+							ArrayList<Board> list=dao.searchusername(searchtext,groupid,boardid,start);
+							 model.addAttribute("list",list);
+				}
+				   model.addAttribute("bid",boardid);
+				   model.addAttribute("start",start);
+				   model.addAttribute("pstart",pstart);
+				   model.addAttribute("pend",pend);
+				   model.addAttribute("page",page);
+				   model.addAttribute("cntnumber",cntnumber);
+				   model.addAttribute("pagenumber",pagenumber);
+		
+			  
+			  
+		  return "board/list"; //실제 주소(실제로 입력이 되는 주소)
 	}
 	@RequestMapping(value="/content")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String content(HttpServletRequest request,Model model,HttpSession session)
 	{
+		String user=session.getAttribute("userid").toString();
+		int page=Integer.parseInt(request.getParameter("page"));
 		int boardid=Integer.parseInt(request.getParameter("boardid"));
 		model.addAttribute("bid", boardid);
+		model.addAttribute("page", page);
 		String id=request.getParameter("id");
 		String groupid=request.getParameter("gid");
 		model.addAttribute("gid", groupid);
 		iboardDao dao=sqlSession.getMapper(iboardDao.class);
-		model.addAttribute("dto",dao.content(id,groupid));
+		String writer=dao.whoiswriter(id);
+		Board board =dao.content(id,groupid);
+		board.setContent(board.getContent().replace("\r\n","<br>"));
+		model.addAttribute("writer",writer);
+		model.addAttribute("dto",board);
+		model.addAttribute("user",user);
 		return "board/content"; //실제 주소(실제로 입력이 되는 주소)
 	}
 	@RequestMapping(value="/update")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String update(HttpServletRequest request,Model model,HttpSession session)
 	{
-
+		int page=Integer.parseInt(request.getParameter("page"));
+		model.addAttribute("page", page);
 		int boardid=Integer.parseInt(request.getParameter("boardid"));
 		model.addAttribute("bid", boardid);
 		String id=request.getParameter("id");
@@ -195,13 +305,24 @@ public class boardcontroller {
 	@RequestMapping("/update_ok")
 	public String update_ok(Model model, Board board, HttpServletRequest request)
 	{ 
+
+		int page=Integer.parseInt(request.getParameter("page"));
+		model.addAttribute("page", page);
 		int boardid=Integer.parseInt(request.getParameter("boardid"));
 		String id=request.getParameter("id");
 		String groupid=request.getParameter("gid");
 		model.addAttribute("gid", groupid);
 		iboardDao dao=sqlSession.getMapper(iboardDao.class);
 	   dao.updateok(board.getTitle(), board.getContent(), id, groupid); 
-		return "redirect:/content?id="+board.getId()+"&gid="+groupid+"&boardid="+boardid;
+		return "redirect:/content?id="+board.getId()+"&gid="+groupid+"&boardid="+boardid+"&page="+page;
+	}
+	
+	@RequestMapping("/memlist")
+	public String memlist(Model model, Board board, HttpServletRequest request)
+	{ 
+
+//		return "redirect:/content?id="+board.getId()+"&gid="+groupid+"&boardid="+boardid+"&page="+page;
+	   return "board/memlist";
 	}
 	
 	
@@ -212,6 +333,8 @@ public class boardcontroller {
 		String username=session.getAttribute("username").toString();
 		String groupid=request.getParameter("gid");
 		String groupname=request.getParameter("gname");
+		int page=Integer.parseInt(request.getParameter("page"));
+		model.addAttribute("page", page);
 		model.addAttribute("gid", groupid);
 		model.addAttribute("gname", groupname);
 		model.addAttribute("username", username);
@@ -232,32 +355,28 @@ public class boardcontroller {
 		   return "redirect:/list?gid="+groupid+"&boardid="+boardid+"&page=1";
 	}
 	
-	@RequestMapping("/search")
-	public String search(HttpServletRequest request,HttpSession session, Model model)
-	{
-		int selvalue=Integer.parseInt(request.getParameter("selvalue"));
-		String searchtext=request.getParameter("searchtext");
-		int start=Integer.parseInt(request.getParameter("start"));
-		int boardid=Integer.parseInt(request.getParameter("boardid"));
-		String id=request.getParameter("id");
-		String groupid=request.getParameter("groupid");
-		System.out.println("groupid: "+groupid);
-	model.addAttribute("gid", groupid);
-		iboardDao dao=sqlSession.getMapper(iboardDao.class);
-		if(selvalue == 0)
-		{
-			System.out.println(searchtext+"  "+start);
-			ArrayList<Board> list=dao.searchtitle(searchtext, start);
-			 model.addAttribute("list",list);
-		}
-		else
-		{
-			System.out.println(searchtext+"  "+start);
-			ArrayList<Board> list=dao.searchusername(searchtext, start);
-			 model.addAttribute("list",list);
-		}
-		return "redirect:/list?gid="+groupid+"&boardid="+boardid+"&page=1";
-	}
+	/*
+	 * @RequestMapping("/search") public String search(HttpServletRequest
+	 * request,HttpSession session, Model model) { // String
+	 * selvalue=request.getParameter("selvalue"); // String
+	 * searchtext=request.getParameter("searchtext"); // int
+	 * start=Integer.parseInt(request.getParameter("start")); // int
+	 * boardid=Integer.parseInt(request.getParameter("boardid")); // String
+	 * id=request.getParameter("id"); // String
+	 * groupid=request.getParameter("groupid"); //
+	 * System.out.println("groupid: "+groupid+" "+selvalue); //
+	 * model.addAttribute("gid", groupid); // iboardDao
+	 * dao=sqlSession.getMapper(iboardDao.class); // if(selvalue.equals("0")) // {
+	 * // System.out.println(searchtext+" a "+start); //
+	 * System.out.println("listbefore"); // ArrayList<Board>
+	 * list=dao.searchtitle(searchtext, start); // //
+	 * model.addAttribute("list",list); // } // else // { //
+	 * System.out.println(searchtext+" d "+start); // ArrayList<Board>
+	 * list=dao.searchusername(searchtext, start); //
+	 * model.addAttribute("list",list); // } // return
+	 * "redirect:/list?gid="+groupid+"&boardid="+boardid+"&page=1&selvalue="+
+	 * selvalue; }
+	 */
 	
 	
 	
