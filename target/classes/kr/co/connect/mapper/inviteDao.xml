@@ -15,6 +15,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from invite where invited=#{param1};
 	</select>
 
+    <select id="viewinvitenum" resultType="string">
+		SELECT AUTHNUM FROM INVITE WHERE INVITED=#{param1} AND GROUPID=#{param2};
+	</select>
 
 	<select id="invitelist" resultType="kr.co.connect.invite.invite">
 		SELECT * FROM INVITE WHERE INVITED=#{param1};

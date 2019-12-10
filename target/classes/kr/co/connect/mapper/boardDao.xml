@@ -68,9 +68,13 @@ INSERT INTO BOARD(USERNAME,TITLE,WRITEDAY,WRITEREMAIL,CONTENT,GROUPID,BOARDID) V
 	SELECT WRITEREMAIL FROM BOARD WHERE ID=#{param1};
    </select>
    
-      <select id="memlist" resultType="String"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
-	SELECT EMAIL FROM EGROUP WHERE GROUPID=#{param1};
+      <select id="memlist" resultType="kr.co.connect.egroup.Egroup"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+	SELECT * FROM EGROUP WHERE GROUPID=#{param1};
    </select>
+   
+    <delete id="delmember"> 
+     DELETE FROM EGROUP WHERE ID=#{param1};
+   </delete>
    
    
    

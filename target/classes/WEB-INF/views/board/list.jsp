@@ -25,16 +25,26 @@ html, body {
 	<div
 		style="background: white; height: 100%; border-radius: 5px; width: 80%;">
 		<table cellspacing=0 width=100% height=100% align=center style="text-align:center; padding:10px;">
-			<tr  style="height:10%; border:1px solid black; background:black; color:white; text-align:center;">
+			<tr  style="height:10%; max-height:120px; border:1px solid black; background:black; color:white; text-align:center;">
 				<td style="border-radius:5px 0px 0px 0px; ">번호</td>
 				<td>작성자</td>
 				<td>제목</td>
 				<td style="border-radius:0px 5px 0px 0px; ">작성일</td>
 			</tr>
+			<c:if test="${list.size() == 0 }">
+			<tr>
+			<td>
+			<div class="flex center">
+			작성된 계시글이 없습니다.
+			</div>
+			</td>
+			</tr>
+			</c:if>
 			<c:forEach items="${list}" var="dto">
 				<tr class="btn-3" style="background:white; border-bottom:5px solid black;">
 					<td style="border-bottom:1px solid #1187CF;">${dto.id}</td>
-					<td style="border-bottom:1px solid #1187CF;">${dto.username}</td>
+					<td style="border-bottom:1px solid #1187CF;"><a href="content?id=${dto.id}&gid=${gid}&boardid=${bid}&page=${page}">
+					${dto.username}</a></td>
 					<td style="border-bottom:1px solid #1187CF;"><a href="content?id=${dto.id}&gid=${gid}&boardid=${bid}&page=${page}">
 							${dto.title} </a></td>
 					<td style="border-bottom:1px solid #1187CF;">${dto.writeday}</td>
@@ -146,7 +156,7 @@ html, body {
 	
 	</form>
 	<div style="height:10%; margin-left:20px;">
-	<a href="memlist">
+	<a href="memlist?page=1&gid=${gid}&gname=${gname}&boardid=${bid}&selvalue=${selvalue}&searchtext=${searchtext}"">
 	${grouphost}
 	</a>
 	</div>

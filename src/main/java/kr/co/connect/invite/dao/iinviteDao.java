@@ -11,4 +11,5 @@ public interface iinviteDao {
 	public String whoismanager(String groupid2);
 	public void delinvite(String invited,String groupid2);
 	public int overlapinvite(String email, int groupid);
+	public String viewinvitenum(String invited, int groupid);
 }

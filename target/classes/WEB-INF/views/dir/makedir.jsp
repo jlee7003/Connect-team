@@ -257,7 +257,9 @@ function showx()
 	
 	<div class="flex center" style="width:100%;">
 <!-- 	onclick="makedir()" -->
-	
+	<!-- ----------menu------------ -->
+	<c:if test="${manager == user}">
+					
 	<div class="dropdown" style="width:100%;">
 		<button class="dropdown-button">Menu</button>
 		<div class="dropdown-content">
@@ -268,6 +270,20 @@ function showx()
 		</div>
 		<hr style="color:black;">
 	</div>
+	</c:if>
+		<c:if test="${manager != user}">
+					
+	<div class="dropdown" style="width:100%;">
+		<button class="dropdown-button">Category</button>
+		<div class="dropdown-content">
+		</div>
+		<hr style="color:black;">
+	</div>
+	</c:if>
+	
+	
+    <!-- ----------menu------------ -->
+	
 	</div>
 	
 	<input type="text" class="hidden222" name="f" id="s">

@@ -40,6 +40,7 @@
 		        </div>
 		        <div class="width100 flex center margin_top_20">
 		        <form method="post" action="oksign">
+		        <input type="text" name="joincode" id="joincode" placeholder="이메일 인증코드 입력">
 		        <input type="hidden" name="groupname" id="groupname" value="${dto.groupname}">
 		        <input type="hidden" name="username" id="username" value="${dto.username}">
 		        <input type="hidden" name="groupid" id="groupid" value="${dto.groupid}">

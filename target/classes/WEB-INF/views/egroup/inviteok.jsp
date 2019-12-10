@@ -18,7 +18,7 @@
 			<div>
 			<div>그룹에 가입되셨습니다.</div>
 			<div style="color:red;">
-			-> ${overlap}
+			 ${overlap}
 			</div>
 			</div>
 			

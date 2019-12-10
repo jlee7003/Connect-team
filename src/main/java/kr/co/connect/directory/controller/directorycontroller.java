@@ -3,6 +3,7 @@ package kr.co.connect.directory.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.co.connect.boarddir.boarddir;
 import kr.co.connect.directory.Directory;
 import kr.co.connect.directory.dao.idirectoryDao;
+import kr.co.connect.invite.dao.iinviteDao;
 
 
 @Controller
@@ -22,9 +24,14 @@ public class directorycontroller {
 	 public SqlSession sqlSession;
 	
 	@RequestMapping("/makedir")
-	public String makedir(HttpServletRequest request, Model model)
+	public String makedir(HttpServletRequest request, Model model, HttpSession session)
 	{
-		
+		String user=session.getAttribute("userid").toString();
+		String groupid2=request.getParameter("gid");
+		  iinviteDao dao1 = sqlSession.getMapper(iinviteDao.class);
+	        String manager=dao1.whoismanager(groupid2);
+	        model.addAttribute("user", user);
+			model.addAttribute("manager", manager);
 		String directoryname=request.getParameter("directoryname");
 		int groupid=Integer.parseInt(request.getParameter("gid"));
 		idirectoryDao dao=sqlSession.getMapper(idirectoryDao.class);
@@ -102,8 +109,19 @@ public class directorycontroller {
 	}
 	
 	@RequestMapping("/opendirok")
-	public String opendirok(HttpServletRequest request, Model model)
+	public String opendirok(HttpServletRequest request, Model model, HttpSession session)
 	{
+		
+		
+		String user=session.getAttribute("userid").toString();
+		String groupid2=request.getParameter("gid");
+		  iinviteDao dao1 = sqlSession.getMapper(iinviteDao.class);
+	        String manager=dao1.whoismanager(groupid2);
+	        model.addAttribute("user", user);
+			model.addAttribute("manager", manager);
+			
+			
+			
 		String directoryname=request.getParameter("directoryname");
 		int directoryid=Integer.parseInt(request.getParameter("directoryid"));
 		int groupid=Integer.parseInt(request.getParameter("gid"));

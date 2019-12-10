@@ -112,29 +112,29 @@ public class egroupcontroller {
 	public String oksign(HttpServletRequest request,Egroup egroup,Model model, HttpSession session) {
 		String groupname=request.getParameter("groupname");
         String username=request.getParameter("username");
+        String joincode=request.getParameter("joincode");
         String groupid2=request.getParameter("groupid");
         String invited=session.getAttribute("userid").toString();
         int groupid=Integer.parseInt(request.getParameter("groupid"));
         
-        String email=session.getAttribute("userid").toString();
         iinviteDao dao1 = sqlSession.getMapper(iinviteDao.class);
         String manager=dao1.whoismanager(groupid2);
+        String email=session.getAttribute("userid").toString();
+        String authnum = dao1.viewinvitenum(invited, groupid);
+        
 		iegroupDao dao = sqlSession.getMapper(iegroupDao.class);
 	    int groupoverlap=dao.groupoverlap(email, groupid);
-	    if(groupoverlap == 0)
+	    if(groupoverlap == 0 && authnum.equals(joincode))
 	    {
 	    	System.out.println(email+" "+groupid);
 	    	System.out.println("groupoverlap :"+groupoverlap );
 		dao.write2(groupid,email, egroup.getGroupname(),manager, egroup.getWriteday());
 	    }
-//	    else if(){
-//	    	
-//	    }
 	    else
 	    {
 	    	System.out.println("groupoverlap :"+groupoverlap );
 	    	System.out.println(email+" "+groupid);
-	    	String overlap="회원님은 이미 가입하셨습니다.";
+	    	String overlap="이미 가입하셨거나 인증번호가 틀렸습니다.";
 			model.addAttribute("overlap",overlap);
 			return "egroup/inviteok";
 	    }

@@ -50,16 +50,18 @@ public class ChatController {
 	public String chatroom(Model model,HttpServletResponse response, Chat chat, HttpSession session, HttpServletRequest request) 
 	{   
 		
-//		   imemberDao memdao=sqlSession.getMapper(imemberDao.class);
-//			ArrayList<Member> list1=memdao.list();
-//		   model.addAttribute("list",list);
-//		   model.addAttribute("list",dao.list());
-//		   model.addAttribute("list",list1);
-	System.out.println("정상출력2");
+		
+		String user22=session.getAttribute("userid").toString();
+		String groupid2=request.getParameter("gid");
+		  iinviteDao dao2 = sqlSession.getMapper(iinviteDao.class);
+	        String manager=dao2.whoismanager(groupid2);
+	        model.addAttribute("user22", user22);
+			model.addAttribute("manager", manager);
+			
+		
 		String email=session.getAttribute("userid").toString();
 		iegroupDao dao1=sqlSession.getMapper(iegroupDao.class);
 		ArrayList<Egroup> glist=dao1.grouplist(email);
-		System.out.println("정상출력");
 		model.addAttribute("glist", glist);
 		ArrayList<Egroup> checkifhavegroup;
 		checkifhavegroup = dao1.groupliststring(session.getAttribute("userid").toString());

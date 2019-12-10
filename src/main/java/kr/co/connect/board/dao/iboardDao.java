@@ -41,5 +41,7 @@ public interface iboardDao {
 	public String whoiswriter(String id);
 	
 	public ArrayList<Egroup> memlist(String groupid);
+	
+	public void delmember(String id);
 
 }

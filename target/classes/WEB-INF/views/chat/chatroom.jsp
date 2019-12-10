@@ -310,9 +310,9 @@ height:20%;
 			
 			</div>
 				
-			
-			
+				<c:if test="${manager == user22}">
 			<input type="button" onclick="showinvitelayer()" class="margin_top_10 button_transfer margin_left_30 flex center" style="width:60px; height:25px;" value="초대하기">
+				</c:if>
 			
 				
 				
