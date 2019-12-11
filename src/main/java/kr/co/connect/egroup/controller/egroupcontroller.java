@@ -56,7 +56,8 @@ public class egroupcontroller {
 	@RequestMapping(value = "/joingroup_ok") // 브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String joingroup_ok(HttpServletRequest request, Egroup egroup,Model model, HttpSession session) {
 		String mg=request.getParameter("mg");
-		if( mg=="그룹만들기")
+		String mkgroup="그룹만들기";
+		if( mg.equals(mkgroup))
 		{
 			
 		
@@ -183,19 +184,23 @@ public class egroupcontroller {
 		}
 	}
 
-	 public void inc(HttpSession session, Model model)
-		{
-		  if (session.getAttribute("userid") == null)
-		  {
-		  String messege="로그인 해주세요"; 
-		  model.addAttribute("messege", messege); 
-		  } else
-		  {
-		  String email=session.getAttribute("userid").toString();
-		  iinviteDao dao = sqlSession.getMapper(iinviteDao.class);
-		  String invitenum=dao.invitednum(email); String messege="그룹초대";
-		  model.addAttribute("invitenum", invitenum);
-		  model.addAttribute("messege",messege); 
-		  }
-		}
+	  public void inc(HttpSession session, Model model)
+			{
+			  if (session.getAttribute("userid") == null)
+			  {
+			  String messege="로그인 해주세요"; 
+			  model.addAttribute("messege", messege); 
+			  } else
+			  {
+			  String email=session.getAttribute("userid").toString();
+			  String user=session.getAttribute("username").toString();
+			  System.out.println("user"+user);
+			  String welcome="님 환영합니다!";
+			  iinviteDao dao = sqlSession.getMapper(iinviteDao.class);
+			  String invitenum=dao.invitednum(email); String messege="그룹초대";
+			  model.addAttribute("invitenum", invitenum);
+			  model.addAttribute("welcome", welcome);
+			  model.addAttribute("messege",messege); 
+			  }
+			}
 }

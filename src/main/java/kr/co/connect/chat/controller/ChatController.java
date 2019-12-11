@@ -132,19 +132,23 @@ public class ChatController {
 	 * return "redirect:/chatroom"; //실제 주소(실제로 입력이 되는 주소) }
 	 */
 	
-	 public void inc(HttpSession session, Model model)
-		{
-		  if (session.getAttribute("userid") == null)
-		  {
-		  String messege="로그인 해주세요"; 
-		  model.addAttribute("messege", messege); 
-		  } else
-		  {
-		  String email=session.getAttribute("userid").toString();
-		  iinviteDao dao = sqlSession.getMapper(iinviteDao.class);
-		  String invitenum=dao.invitednum(email); String messege="그룹초대";
-		  model.addAttribute("invitenum", invitenum);
-		  model.addAttribute("messege",messege); 
-		  }
-		}
+	  public void inc(HttpSession session, Model model)
+			{
+			  if (session.getAttribute("userid") == null)
+			  {
+			  String messege="로그인 해주세요"; 
+			  model.addAttribute("messege", messege); 
+			  } else
+			  {
+			  String email=session.getAttribute("userid").toString();
+			  String user=session.getAttribute("username").toString();
+			  System.out.println("user"+user);
+			  String welcome="님 환영합니다!";
+			  iinviteDao dao = sqlSession.getMapper(iinviteDao.class);
+			  String invitenum=dao.invitednum(email); String messege="그룹초대";
+			  model.addAttribute("invitenum", invitenum);
+			  model.addAttribute("welcome", welcome);
+			  model.addAttribute("messege",messege); 
+			  }
+			}
 }

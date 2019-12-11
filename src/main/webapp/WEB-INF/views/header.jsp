@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header40">
+<link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header42">
 <script src="/Connect-team/resources/main.js?ver=main"></script>
 </head>
 <body>
@@ -18,12 +18,8 @@
 </a>
 </div>
 <div class="container_w30 flex center">
-<div class="input_search flex center height_20 input_width_210">
-<div>
-<input type="text" class="border_none input_width" placeholder="go to connect or search!">
-</div>
-<img alt="" height=20 src="resources/img/search.PNG">
-</div>
+<!-- search 있던 장소 -->
+${username}${welcome}
 </div>
 <div class="container_w25 flex center">
 </div>

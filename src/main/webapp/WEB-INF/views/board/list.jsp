@@ -23,17 +23,20 @@ html, body {
 </head>
 <body class="flex">
 	<div
-		style="background: white; height: 100%; border-radius: 5px; width: 80%;">
-		<table cellspacing=0 width=100% height=100% align=center style="text-align:center; padding:10px;">
-			<tr  style="height:10%; max-height:120px; border:1px solid black; background:black; color:white; text-align:center;">
-				<td style="border-radius:5px 0px 0px 0px; ">번호</td>
-				<td>작성자</td>
-				<td>제목</td>
-				<td style="border-radius:0px 5px 0px 0px; ">작성일</td>
+		style=" background: white; height: 100%; border-radius: 5px; width: 80%;">
+<div style="height:632px;">
+		<table cellspacing=0 width=100% height=632 align=center style="text-align:center; padding:10px;">
+			<tr height=62 style="height:62px; max-height:120px; border:1px solid black; background:black; color:white; text-align:center;">
+				<td height=62  style="border-radius:5px 0px 0px 0px; ">번호</td>
+				<td height=62>작성자</td>
+				<td height=62>제목</td>
+				<td height=62 style="border-radius:0px 5px 0px 0px; ">작성일</td>
 			</tr>
-			<c:if test="${list.size() == 0 }">
+			
+			
+		<c:if test="${list.size() == 0 }">
 			<tr>
-			<td>
+			<td colspan=4> 
 			<div class="flex center">
 			작성된 계시글이 없습니다.
 			</div>
@@ -53,11 +56,14 @@ html, body {
 
 
 
-			<tr height=10%; style=" border-radius:0px 0px 5px 5px; color:white;">
-				<td colspan=4 align=right style=" background:black; border-radius:0px 0px 5px 5px;"><a style="width:100%; height:100%; background:black; border-radius:0px 0px 5px 5px; color:white; margin-right:50px;"
-					href="write?gid=${gid}&boardid=${bid}&page=${page}"> 글쓰기 </a></td>
+			<tr height=62 style=" border-radius:0px 0px 5px 5px; color:white;">
+				<td  colspan=4 align=right style=" background:black; border-radius:0px 0px 5px 5px;"><a style="width:100%; height:100%; background:black; border-radius:0px 0px 5px 5px; color:white; margin-right:50px;"
+					href="write?gid=6&boardid=27&page=1"> 글쓰기 </a></td>
 			</tr>
 		</table>
+		
+		
+		
 <%-- 		${cntnumber}cntnumber ${pend}pend ${pstart}pstart --%>
 <%-- 		${pagenumber}pagenumber  --%>
 <div align=center>
@@ -101,6 +107,7 @@ html, body {
 
 		<a href="list?page=${pagenumber}&gid=${gid}&gname=${gname}&boardid=${bid}&selvalue=${selvalue}&searchtext=${searchtext}">맨끝으로</a>
 	</div>
+			</div>
 	</div>
 	<div style="">
 

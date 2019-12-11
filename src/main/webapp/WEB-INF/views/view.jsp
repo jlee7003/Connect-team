@@ -32,10 +32,31 @@ $(document).ready(function(){
 </style>
 <body>
 <!-- test1 -->
-		<c:set var="name" value="홍길동" />
-					<c:if test="${name eq '홍길동'}">
-    				<c:out value="${str}" />
-					</c:if>
+<table cellspacing=0 width=100% height=632 align=center style="text-align:center; padding:10px;">
+			<tr height=62 style="height:62px; max-height:120px; border:1px solid black; background:black; color:white; text-align:center;">
+				<td height=62  style="border-radius:5px 0px 0px 0px; ">번호</td>
+				<td height=62>작성자</td>
+				<td height=62>제목</td>
+				<td height=62 style="border-radius:0px 5px 0px 0px; ">작성일</td>
+			</tr>
+			
+			
+				<tr class="btn-3" style="background:white; border-bottom:5px solid black;">
+					<td  style="border-bottom:1px solid #1187CF;">247</td>
+					<td style="border-bottom:1px solid #1187CF;"><a href="content?id=247&gid=6&boardid=27&page=1">
+					테스터4</a></td>
+					<td style="border-bottom:1px solid #1187CF;"><a href="content?id=247&gid=6&boardid=27&page=1">
+							overflow </a></td>
+					<td style="border-bottom:1px solid #1187CF;">2019-12-11</td>
+				</tr>
+			
 
+
+
+			<tr height=62 style=" border-radius:0px 0px 5px 5px; color:white;">
+				<td  colspan=4 align=right style=" background:black; border-radius:0px 0px 5px 5px;"><a style="width:100%; height:100%; background:black; border-radius:0px 0px 5px 5px; color:white; margin-right:50px;"
+					href="write?gid=6&boardid=27&page=1"> 글쓰기 </a></td>
+			</tr>
+		</table>
 </body>
 </html>

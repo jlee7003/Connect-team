@@ -707,6 +707,16 @@ body
 	height: 20px;
 }
 
+.button_submit2 {
+	width: 200px;
+	background: #1388CF;
+	border: none;
+	color: white;
+	font-size:1.15384615rem;
+	border-radius: 3px;
+	height: 40px;
+}
+
 .button_transfer {
 	width: 60px;
 	background: white;

@@ -19,8 +19,8 @@ html, body {
 <body class="flex">
 <div style="background: white; height: 100%; border-radius: 5px; width: 80%;">
 <table cellspacing=0 width=100% height=100% align="center" style="padding:10px; width:100%; height:100%;" >
-<tr height="10%" style="background:black; color:white;">
-<td width="15%" style="text-align:center; border-radius:5px 0px 0px 0px;" >이름</td>
+<tr  height=62 style="background:black; color:white;">
+<td width="15%" style="height:10%; text-align:center; border-radius:5px 0px 0px 0px;" >이름</td>
 <td style="text-align:left; border-radius:0px 5px 0px 0px;"> ${dto.username}</td>
 </tr>
 <tr style="text-align:center;">
@@ -28,8 +28,10 @@ html, body {
 <td style="text-align:left;"> ${dto.title}</td>
 </tr>
 <tr style="text-align:center;">
-<td style="background:#e9ecef">내용</td>
-<td style="text-align:left; background:#f1f3f5;"> ${dto.content}</td>
+<td style="height:60%; background:#e9ecef">내용</td>
+<td style=" text-align:left; background:#f1f3f5;"> 
+<div style="height:100%; overflow:auto;">${dto.content}</div>
+</td>
 </tr>
 <tr style="text-align:center;">
 <td height=10% >작성일</td>
@@ -37,8 +39,8 @@ html, body {
 </tr>
 
 
-   <tr height=10%>
-     <td colspan=2 align=center style=" background:black; border-radius:0px 0px 5px 5px;">
+   <tr height=62>
+     <td colspan=2 align=center style="overflow: auto; background:black; border-radius:0px 0px 5px 5px;">
 <!--      <a style="width:100%; height:100%; background:black; border-radius:0px 0px 5px 5px; color:white;"> -->
      <a style="color:white;" href="list?id=${dto.id}&gid=${gid}&boardid=${bid}&page=${page}">list</a> 
 

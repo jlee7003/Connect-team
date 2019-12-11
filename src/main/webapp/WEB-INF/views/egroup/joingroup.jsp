@@ -31,7 +31,7 @@
 		    <form action="joingroup_ok" method="post">
 		    	<input type="hidden" name="email" value=<%=session.getAttribute("userid") %>>
 				<input type="text" name="groupname" placeholder="그룹의 이름" />
-				<input type="text" name="mg" placeholder="그룹 만들기">
+				<input type="text" name="mg" placeholder="그룹만들기">
 				<input type="hidden" name="manager" placeholder="그룹 관리자" value="${userid}" />
 				<input type="submit" value="그룹만들기"/>
 			</form>

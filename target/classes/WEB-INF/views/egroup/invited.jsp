@@ -20,13 +20,14 @@
 			<div class="login container" align=center>
 				<div>
 					<div class="font_design2 container_w5">
-						<img alt="logo" class="margin_left_10 padding margin_bottom_50" width=74 height=55
+						<img alt="logo" class="margin_left_10 padding margin_bottom_40" width=74 height=55
 							src="resources/img/logo2.PNG">
 					</div>
+					<hr>
 				</div>
 			</div>
 			<c:if test="${invitelist.size() == 0 }">
-			<div class="flex center">
+			<div class="flex center" style="margin-top:100px;">
 			초대 받은 그룹이 없습니다.
 			</div>
 			</c:if>

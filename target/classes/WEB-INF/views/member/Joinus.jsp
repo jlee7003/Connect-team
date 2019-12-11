@@ -25,7 +25,7 @@
 			<!-- width, height:auto -->
 
 			<div class="font_git margin_right_20">
-				<span> join to <span class="color_connect ">Connect</span></span>
+				<span> join to <span class="color_connect" style="font-weight:900; font-size:20px;">Connect</span></span>
 				<h1 class="margin_10">create your account</h1>
 			</div>
 			<form method=post action="Joinus_ok" name=joinform
@@ -142,7 +142,7 @@
 						</td>
 					</tr>
 					<tr align=center>
-						<td align=center><input type=submit value="join"></td>
+						<td align=center><input type=submit class="button_submit2" value="join"></td>
 					</tr>
 				</table>
 <div style="width:400px;margin-top:50px;">
