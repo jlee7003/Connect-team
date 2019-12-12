@@ -22,13 +22,14 @@
 			<div class="login container" align=center>
 				<div>
 					<div class="font_design2 container_w5">
-						<img alt="logo" class="margin_left_10 padding margin_bottom_50"
+						<img alt="logo" class="margin_left_10 padding margin_bottom_40"
 							width=74 height=55 src="resources/img/logo2.PNG">
 					</div>
+							<hr>
 				</div>
 			</div>
 			
-			<div class="flex center">가입을 거절하셨습니다.</div>
+			<div class="flex center" style="margin-top:50px; text-align:center;">가입을 거절하셨습니다.</div>
 
 
 

@@ -65,7 +65,7 @@ display:none;
 			display: none;
 			position: absolute;
 			background-color: white;
-			min-width: 75px;
+			width:97%;
 			padding: 5px;
 		}
 		.dropdown-content a {

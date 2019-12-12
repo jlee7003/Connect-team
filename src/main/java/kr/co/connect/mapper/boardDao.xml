@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.co.connect.board.dao.iboardDao"> <!--content.xml에서 모든 xml을 찾는다  -->
   	
     <select id="cntnumber" resultType="int"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
-    SELECT COUNT(ID) AS CNT FROM BOARD;  
+    SELECT COUNT(ID) AS CNT FROM BOARD WHERE GROUPID=#{param1};  
    </select>
   
    <select id="list10" resultType="kr.co.connect.board.Board"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->

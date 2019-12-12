@@ -24,8 +24,8 @@ html, body {
 <body class="flex">
 	<div
 		style=" background: white; height: 100%; border-radius: 5px; width: 80%;">
-<div style="height:632px;">
-		<table cellspacing=0 width=100% height=632 align=center style="text-align:center; padding:10px;">
+<div style="height:100%;">
+		<table cellspacing=0 width=100% height=100% align=center style="text-align:center; padding:10px;">
 			<tr height=62 style="height:62px; max-height:120px; border:1px solid black; background:black; color:white; text-align:center;">
 				<td height=62  style="border-radius:5px 0px 0px 0px; ">번호</td>
 				<td height=62>작성자</td>
@@ -45,12 +45,12 @@ html, body {
 			</c:if>
 			<c:forEach items="${list}" var="dto">
 				<tr class="btn-3" style="background:white; border-bottom:5px solid black;">
-					<td style="border-bottom:1px solid #1187CF;">${dto.id}</td>
-					<td style="border-bottom:1px solid #1187CF;"><a href="content?id=${dto.id}&gid=${gid}&boardid=${bid}&page=${page}">
+					<td style="border-bottom:1px solid #1187CF; width:10%;">${dto.id}</td>
+					<td style="border-bottom:1px solid #1187CF; width:20%;"><a href="content?id=${dto.id}&gid=${gid}&boardid=${bid}&page=${page}">
 					${dto.username}</a></td>
 					<td style="border-bottom:1px solid #1187CF;"><a href="content?id=${dto.id}&gid=${gid}&boardid=${bid}&page=${page}">
 							${dto.title} </a></td>
-					<td style="border-bottom:1px solid #1187CF;">${dto.writeday}</td>
+					<td style="border-bottom:1px solid #1187CF; width:10%;">${dto.writeday}</td>
 				</tr>
 			</c:forEach>
 
@@ -58,7 +58,7 @@ html, body {
 
 			<tr height=62 style=" border-radius:0px 0px 5px 5px; color:white;">
 				<td  colspan=4 align=right style=" background:black; border-radius:0px 0px 5px 5px;"><a style="width:100%; height:100%; background:black; border-radius:0px 0px 5px 5px; color:white; margin-right:50px;"
-					href="write?gid=6&boardid=27&page=1"> 글쓰기 </a></td>
+		href="write?gid=${gid}&boardid=${bid}&page=${page}"> 글쓰기 </a></td>
 			</tr>
 		</table>
 		

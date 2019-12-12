@@ -18,7 +18,7 @@ html, body {
 </head>
 <body class="flex">
 <div style="background: white; height: 100%; border-radius: 5px; width: 80%;">
-<table cellspacing=0 width=100% height=100% align="center" style="padding:10px; width:100%; height:100%;" >
+<table cellspacing=0 width=80% height=100% align="center" style="padding:10px; width:100%; height:100%;" >
 <tr  height=62 style="background:black; color:white;">
 <td width="15%" style="height:10%; text-align:center; border-radius:5px 0px 0px 0px;" >이름</td>
 <td style="text-align:left; border-radius:0px 5px 0px 0px;"> ${dto.username}</td>
@@ -30,7 +30,7 @@ html, body {
 <tr style="text-align:center;">
 <td style="height:60%; background:#e9ecef">내용</td>
 <td style=" text-align:left; background:#f1f3f5;"> 
-<div style="height:100%; overflow:auto;">${dto.content}</div>
+<div style="height:100%; overflow:auto;"><xmp>${dto.content}</xmp></div>
 </td>
 </tr>
 <tr style="text-align:center;">

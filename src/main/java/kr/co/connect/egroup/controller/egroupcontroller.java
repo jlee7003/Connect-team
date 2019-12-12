@@ -152,7 +152,8 @@ public class egroupcontroller {
         iinviteDao dao1 = sqlSession.getMapper(iinviteDao.class);
         String manager=dao1.whoismanager(groupid2);
         String username=session.getAttribute("username").toString();
-		if(session.getAttribute("groups")!=null || manager==username)
+        String useremail=session.getAttribute("userid").toString();
+		if(manager.equals(useremail))
 		{
 		String email1=request.getParameter("email1");
 		String email2=request.getParameter("email2");
@@ -179,7 +180,7 @@ public class egroupcontroller {
 		return "member/invitecheck"; // 실제 주소(실제로 입력이 되는 주소)
 		}
 		else {
-			System.out.println("해당그룹의 매니저가 아닙니다.");
+			System.out.println("해당그룹의 매니저가 아닙니다");
 			return "member/youarenotmanager";
 		}
 	}

@@ -22,7 +22,7 @@ public interface iboardDao {
 
 	public ArrayList<Board> list15(String groupid, int boardid,int page);
 	
-	public int cntnumber();
+	public int cntnumber(String groupid);
 
 	public ArrayList<Board> list10(String groupid, int boardid, int start);
 	public ArrayList<Board> list20(String groupid, int boardid, int start);

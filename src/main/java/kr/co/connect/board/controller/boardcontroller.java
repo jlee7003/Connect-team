@@ -106,7 +106,7 @@ public class boardcontroller {
 		ArrayList<Egroup> glist=dao12.grouplist(email);
 		model.addAttribute("glist", glist);
 		iboardDao dao=sqlSession.getMapper(iboardDao.class);
-		int cntnumber=dao.cntnumber();
+		int cntnumber=dao.cntnumber(groupid);
 		int pagenumber=cntnumber/listsee;
 		if (cntnumber % 10 != 0)
 		{
@@ -280,7 +280,7 @@ public class boardcontroller {
 		iboardDao dao=sqlSession.getMapper(iboardDao.class);
 		String writer=dao.whoiswriter(id);
 		Board board =dao.content(id,groupid);
-		board.setContent(board.getContent().replace("\r\n","<br>"));
+//		board.setContent(board.getContent().replace("\r\n","<br>"));
 		model.addAttribute("writer",writer);
 		model.addAttribute("dto",board);
 		model.addAttribute("user",user);
@@ -322,20 +322,23 @@ public class boardcontroller {
 	{ 
 		String user=session.getAttribute("userid").toString();
 		String groupid=request.getParameter("groupid");
+		String groupid2=request.getParameter("groupid");
 		System.out.println("groupid : "+groupid);
 		iboardDao dao=sqlSession.getMapper(iboardDao.class);
 		ArrayList<Egroup>list=dao.memlist(groupid);
 		model.addAttribute("list", list);
 		model.addAttribute("user", user);
+		model.addAttribute("gid", groupid2);
 	   return "board/delmemlist";
 	}
 	
 	@RequestMapping("/delmember")
 	public String delmember(Model model, Board board, HttpServletRequest request, HttpSession session)
 	{ String id=request.getParameter("id");
+		String groupid=request.getParameter("groupid");
 		iboardDao dao=sqlSession.getMapper(iboardDao.class);
 		dao.delmember(id);
-	   return "board/delmemlist";
+	   return "redirect:/delmemlist?groupid="+groupid;
 	}
 	
 	
@@ -379,7 +382,7 @@ public class boardcontroller {
 		ArrayList<Egroup> glist=dao12.grouplist(email);
 		model.addAttribute("glist", glist);
 		iboardDao dao=sqlSession.getMapper(iboardDao.class);
-		int cntnumber=dao.cntnumber();
+		int cntnumber=dao.cntnumber(groupid);
 		int pagenumber=cntnumber/listsee;
 		if (cntnumber % 10 != 0)
 		{

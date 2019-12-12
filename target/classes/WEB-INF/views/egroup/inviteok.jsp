@@ -15,12 +15,33 @@
 
 	<div class="floor_h100 center">
 			
-			<div>
+			
+			
+			<div class="shadow padding_50 width25 login_minw login_minh">
+		
+		
+			<div class="login container" align=center>
+				<div>
+					<div class="font_design2 container_w5">
+						<img alt="logo" class="margin_left_10 padding margin_bottom_40" width=74 height=55
+							src="resources/img/logo2.PNG">
+					</div>
+					<hr>
+				</div>
+			</div>
+			
+				<div class="" style="margin-top:50px; text-align:center;">
 			<div>그룹에 가입되셨습니다.</div>
 			<div style="color:red;">
 			 ${overlap}
 			</div>
 			</div>
+			
+			
+		</div>
+		
+		
+		
 			
 			
 		</div>

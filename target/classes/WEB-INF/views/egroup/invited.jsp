@@ -35,7 +35,7 @@
 	        
 			
 	<c:if test="${dto.groupname != '' || dto.groupname ne null}">
-		      <div class="grouplist groupbox padding_10" >
+		      <div class="grouplist groupbox padding_10" style="margin-top:30px;" >
 		        <div>
 		        ${dto.username}님이 ${dto.groupname} 그룹으로 초대하셨습니다. 
 		        </div>

@@ -70,7 +70,7 @@ html, body {
 					<td style="border-bottom:1px solid #1187CF;">${dto.email}</td>
 					
 					<c:if test="${dto.email != user}">
-					<td style="border-bottom:1px solid #1187CF;"><a href="delmember?id=${dto.id}">삭제하기</a></td>
+					<td style="border-bottom:1px solid #1187CF;"><a href="delmember?id=${dto.id}&groupid=${gid}">삭제하기</a></td>
 					</c:if>
 					
 					<c:if test="${dto.email == user}">
