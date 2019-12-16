@@ -48,7 +48,11 @@ ${username}${welcome}
 </div>
 <div class="container_w10 flex center ">
 	
-	<a href="invited" class="flex center width100 height100 hover btn-5">${messege}<span class="messege flex center fontweight900" onclick=""> ${invitenum}</span></a>
+	<a href="invited" class="flex center width100 height100 hover btn-5">${messege}<span class="messege flex center fontweight900" onclick="">
+	 	<c:if test="${invitenum != 0}">
+	 	${invitenum}
+				</c:if>
+	 </span></a>
 	
 </div>
 </div>
