@@ -139,7 +139,7 @@ html, body {
 <input type="button" value="회원 목록" onclick="delmember()">
 </div>
 <div>
-<input type="button" value="그룹 삭제하기" onclick="delgroup()">
+<!-- <input type="button" value="그룹 삭제하기" onclick="delgroup()"> -->
 </div>
 </div>
 	<form method="post" action="memlist" class="flex center" style=" height:80%;">

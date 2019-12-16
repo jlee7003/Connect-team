@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.connect.invite.dao.iinviteDao;
 import kr.co.connect.member.Member;
@@ -76,7 +77,6 @@ public class MemberController {
 				System.out.println("userid가 null이다");
 
 			}
-			System.out.println(session.getAttribute("groups")+"111"+session.getAttribute("userid"));
 			  inc(session,model);
 			return "redirect:/";
 		}
@@ -143,9 +143,26 @@ public class MemberController {
 		return "/member/emailcheck";
 	}
 	
-	
 
-	  
+	@RequestMapping("/selectUser")
+	public 	@ResponseBody String selectUser(HttpServletRequest request)
+	{
+		
+		String emailajax=request.getParameter("emailajax");
+		System.out.println("email"+emailajax);
+		imemberDao dao=sqlSession.getMapper(imemberDao.class);
+		ArrayList<Member> list=dao.sameID(emailajax);
+		if(list.size() == 0 && emailajax != ""){
+			return "ok";
+		}else if(emailajax == "" || emailajax.equals(""))
+		{
+			return "empty";
+		}
+		else {
+			return "nope";
+		}
+		
+	}
 	  
 	  
 	  public void inc(HttpSession session, Model model)

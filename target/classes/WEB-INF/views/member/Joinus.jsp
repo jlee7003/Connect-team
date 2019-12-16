@@ -6,9 +6,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <title>Insert title here</title>
 </head>
 <style>
+.r1
+{
+color:red;
+}
+.g1
+{
+color:green;
+}
 </style>
 <!-- body 시작부 -->
 
@@ -66,8 +78,8 @@
 						<td>Email <span style="color:orange;font-weight:900;">*</span></td>
 					</tr>
 					<tr>
-						<td><input type="text" name="email"
-							class="input_width1 bd_radius height_20" onblur=alertout()></td>
+						<td><input type="text" name="email" id="emailajax"
+							class="input_width1 bd_radius height_20" onblur="alertout(); sameid();"></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -142,7 +154,7 @@
 						</td>
 					</tr>
 					<tr align=center>
-						<td align=center><input type=submit class="button_submit2" value="join"></td>
+						<td align=center><input type=submit class="button_submit2" id="" value="join"></td>
 					</tr>
 				</table>
 <div style="width:400px;margin-top:50px;">
@@ -166,6 +178,8 @@ By creating an account, you agree to the Terms of Service.
 
 <script>
 /* joinus1 */
+		var ischecked=0;
+
  	function phonealert()
  	{
  		document.all.innertext2.innerHTML = "<b style='color:#828282'> '-' 표시 없이 입력해주세요</b>";
@@ -181,15 +195,23 @@ By creating an account, you agree to the Terms of Service.
  		document.all.innertext6.innerHTML = "";
  	}
  	
+ 	
+ 	
 	function submit_check() 
 	{
-		
+	alert(ischecked);
+
 		if(document.joinform.username.value == "" ) 
 			{
 			document.all.innertext1.innerHTML = "<b style='color:#828282'>이름을 입력해주세요</b>";
 			document.joinform.username.focus();
 			return false;
 			}
+	 	else if(ischecked==0)
+	 		{
+	 		alert("id중복확인을 해주세요");
+	 	 	return false;
+	 		}
 		else if(document.joinform.phone.value == "" )
 		{
 			document.all.innertext2.innerHTML = "<b style='color:#828282'>전화번호를 입력하세요</b>";
@@ -233,7 +255,7 @@ By creating an account, you agree to the Terms of Service.
    	 	document.all.innertext6.innerHTML = "<b style='color:#828282'>성별을 선택해주세요</b>";
 	 	return false;
 	 		}
-			
+   	
 		else
 			{
 			var birth=document.joinform.year.value+document.joinform.month.value+document.joinform.day.value; 
@@ -241,6 +263,55 @@ By creating an account, you agree to the Terms of Service.
 			alert(document.joinform.birth.value);
 			return true;
 			}
+		
+
+		
+	}
+	
+/* 	$(function(){
+		
+		$("#signupButton").click(function(){
+			if(ischecked){
+				$("signupForm").submit();
+			}else{
+				alert("id중복확인을 해주세요");
+			}
+			
+		})
+		
+
+	}) */
+	
+	function sameid()
+	{
+		
+		$.ajax({
+			
+			url:"selectUser",
+			data:{emailajax:$("#emailajax").val()},
+			type:"get",
+			success:function(dataFromServer){
+				if(dataFromServer=="ok"){
+					ischecked=1;
+					$("#innertext3").html("사용가능한 이메일 입니다.")
+					alert("ischecked"+ischecked);
+					 $("#innertext3").css("color","green");
+
+				}else if(dataFromServer=="empty")
+				{
+					ischecked=0;
+					$("#innertext3").html("이메일을 입력하십시오")
+					 $("#innertext3").css("color","red");
+				}
+				else{
+					ischecked=0;
+					$("#innertext3").html("중복된 이메일 입니다.")
+					 $("#innertext3").css("color","red");
+				}
+				
+			}
+			
+		});
 	}
 </script>
 </html>
