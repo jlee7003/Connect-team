@@ -18,6 +18,7 @@ import kr.co.connect.chat.dao.ichatDao;
 import kr.co.connect.egroup.Egroup;
 import kr.co.connect.egroup.dao.iegroupDao;
 import kr.co.connect.invite.dao.iinviteDao;
+import kr.co.connect.profile.dao.iprofileDao;
 
 @Controller
 public class ChatController {
@@ -148,7 +149,10 @@ public class ChatController {
 			  String invitenum=dao.invitednum(email); String messege="그룹초대";
 			  model.addAttribute("invitenum", invitenum);
 			  model.addAttribute("welcome", welcome);
-			  model.addAttribute("messege",messege); 
+			  model.addAttribute("messege",messege);
+				iprofileDao dao1=sqlSession.getMapper(iprofileDao.class);
+				String imgname= dao1.profileimg(email);
+				model.addAttribute("imgname",imgname);
 			  }
 			}
 }

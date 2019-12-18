@@ -16,6 +16,7 @@ import kr.co.connect.board.dao.iboardDao;
 import kr.co.connect.egroup.Egroup;
 import kr.co.connect.egroup.dao.iegroupDao;
 import kr.co.connect.invite.dao.iinviteDao;
+import kr.co.connect.profile.dao.iprofileDao;
 
 @Controller
 public class boardcontroller {
@@ -615,6 +616,9 @@ public class boardcontroller {
 			  model.addAttribute("invitenum", invitenum);
 			  model.addAttribute("welcome", welcome);
 			  model.addAttribute("messege",messege); 
+				iprofileDao dao1=sqlSession.getMapper(iprofileDao.class);
+				String imgname= dao1.profileimg(email);
+				model.addAttribute("imgname",imgname);
 			  }
 			}
 	 

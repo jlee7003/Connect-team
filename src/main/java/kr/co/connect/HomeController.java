@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.connect.invite.dao.iinviteDao;
+import kr.co.connect.profile.dao.iprofileDao;
 
 @Controller
 public class HomeController {
@@ -42,6 +43,9 @@ public class HomeController {
 			  model.addAttribute("invitenum", invitenum);
 			  model.addAttribute("welcome", welcome);
 			  model.addAttribute("messege",messege); 
+				iprofileDao dao1=sqlSession.getMapper(iprofileDao.class);
+				String imgname= dao1.profileimg(email);
+				model.addAttribute("imgname",imgname);
 			  }
 			}
 }

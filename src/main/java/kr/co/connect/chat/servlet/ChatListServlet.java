@@ -18,6 +18,7 @@ public class ChatListServlet extends HttpServlet {
        
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//아작스로 받은 listtype을 통하여 반환할 함수를 다르게 해주었음
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		String listType = request.getParameter("listType");

@@ -10,6 +10,14 @@
 <link rel="stylesheet" href="/Connect-team/resources/main.css?ver=header43">
 <script src="/Connect-team/resources/main.js?ver=main"></script>
 </head>
+<script>
+
+function seeprofile()
+{
+var url="seeprofile";
+open(url,"emailwindow", "statusbar=no, scrollbar=no, menubar=no, width=600, height=600" );
+}
+</script>
 <body>
 <div class="floor_h7 shadow container_w100 ">
 <!--  -->
@@ -19,6 +27,14 @@
 </div>
 <div class="container_w30 flex center">
 <!-- search 있던 장소 -->
+ 				<c:if test="${invitenum != 0}">
+				</c:if>
+<%-- 			 	<c:if test="${invitenum != 0}"> --%>
+<%-- 				</c:if> --%>
+<!-- onclick="changeprofile()" -->
+	<c:if test="${username != null}">
+<img alt="logo" class="" width="40" onclick="seeprofile()" style="border-radius:50px; margin-right:15px;" src="resources/profile/${imgname}">
+				</c:if>
 ${username}${welcome}
 </div>
 <div class="container_w25 flex center">

@@ -1,9 +1,7 @@
 package kr.co.connect.member.controller;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,15 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.co.connect.invite.dao.iinviteDao;
 import kr.co.connect.member.Member;
 import kr.co.connect.member.dao.imemberDao;
+import kr.co.connect.profile.dao.iprofileDao;
 
 @Controller
 public class MemberController {
@@ -51,6 +47,8 @@ public class MemberController {
 		imemberDao dao=sqlSession.getMapper(imemberDao.class);
 		dao.write(member.getUsername(), member.getPhone(),member.getEmail(),member.getPassword(),member.getBirth(),member.getSex(),member.getWriteday()); //WriteCommand으로 내가 dto에 작성한 변수 name,age,juso를 보내줌
 		// 실행할 커맨드 호출
+		iprofileDao dao1=sqlSession.getMapper(iprofileDao.class);
+		dao1.writeprofile(member.getUsername(),member.getEmail(),member.getSex(),"empty.PNG","프로필 메세지를 변경해주세요.");
 		
 		session.setAttribute("username", member.getUsername());
 		session.setAttribute("userid", member.getEmail());
@@ -88,37 +86,7 @@ public class MemberController {
 	}
 	
 //	
-	@RequestMapping(value="upload", method=RequestMethod.POST)
-	//MultipartHttpServletRequest를 이용하는 방법
-	public String upload(MultipartHttpServletRequest request) {
-		//여기서 이 설정을 하지 않고 web.xml 파일에 인코딩 필터 설정을 해도 됩니다.
-		//파라미터를 읽기 전에 파라미터 인코딩 설정
-		System.out.println("fileupload");
-		try {
-			request.setCharacterEncoding("utf-8");
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		//file 파라미터의 데이터 가져오기
-		MultipartFile file = request.getFile("file");
-		//파일 업로드 : 문서 디렉토리
-		String filepath = "C:\\Users\\Anthony\\Documents\\workspace-teampro\\connect-team\\src\\main\\webapp\\resources\\profile\\";
-//		String filepath = "D:\\";
-		//저장 경로와 원래의 파일 이름을 결합
-		//파일이름의 중복을 제거하기 위해서 랜덤한 문자열을 추가
-		filepath = filepath + 
-				UUID.randomUUID().toString() + 
-				file.getOriginalFilename();
-		try {
-			//파일 업로드
-			file.transferTo(new File(filepath));
-		}catch(Exception e) {
-			System.err.println(e.getMessage());
-		}
-		return "complete";
-	}
-//	
+
 	@RequestMapping("/view")//브라우저에 입력된 주소(사용자가 입력하는 주소)
 	public String view(HttpSession session, Model model)
 	{
@@ -185,6 +153,7 @@ public class MemberController {
 	}
 	
 
+
 	@RequestMapping("/selectUser")
 	public 	@ResponseBody String selectUser(HttpServletRequest request)
 	{
@@ -224,6 +193,9 @@ public class MemberController {
 		  model.addAttribute("invitenum", invitenum);
 		  model.addAttribute("welcome", welcome);
 		  model.addAttribute("messege",messege); 
+			iprofileDao dao1=sqlSession.getMapper(iprofileDao.class);
+			String imgname= dao1.profileimg(email);
+			model.addAttribute("imgname",imgname);
 		  }
 		}
 	 

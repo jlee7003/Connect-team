@@ -113,7 +113,7 @@ color:green;
 							<div class="display_flex center">
 								<select name=year class="select_width bd_radius ">
 									<c:forEach var="i" begin="1905" end="2020" step="1">
-										<option value="${2020 - i + 1905}">${2020 - i + 1905}</option>
+										<option value="${2020 - i + 1905}">${2020 - i + 1905}< /option>
 									</c:forEach>
 								</select> <select name=month class="select_width bd_radius">
 									<option>월</option>

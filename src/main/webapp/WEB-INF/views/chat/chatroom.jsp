@@ -84,14 +84,10 @@ function addChat(username, content, chattime)
 			'<span style="font-weight:900; width:50%;">' +
 			username +" "+
 			'</span>' +
-			
-			
 			'<div class="alignright" style="width:50%;">' +
 			chattime +
 			'</div>' +
 			'</div>' +
-			
-		
 			'<p>' +
 			content + 
 			'</p>' +
