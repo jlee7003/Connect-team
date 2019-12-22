@@ -113,7 +113,7 @@ color:green;
 							<div class="display_flex center">
 								<select name=year class="select_width bd_radius ">
 									<c:forEach var="i" begin="1905" end="2020" step="1">
-										<option value="${2020 - i + 1905}">${2020 - i + 1905}< /option>
+										<option value="${2020 - i + 1905}">${2020 - i + 1905}</option>
 									</c:forEach>
 								</select> <select name=month class="select_width bd_radius">
 									<option>월</option>
@@ -199,7 +199,6 @@ By creating an account, you agree to the Terms of Service.
  	
 	function submit_check() 
 	{
-	alert(ischecked);
 
 		if(document.joinform.username.value == "" ) 
 			{
@@ -260,7 +259,6 @@ By creating an account, you agree to the Terms of Service.
 			{
 			var birth=document.joinform.year.value+document.joinform.month.value+document.joinform.day.value; 
 			document.joinform.birth.value=birth;
-			alert(document.joinform.birth.value);
 			return true;
 			}
 		
@@ -294,7 +292,6 @@ By creating an account, you agree to the Terms of Service.
 				if(dataFromServer=="ok"){
 					ischecked=1;
 					$("#innertext3").html("사용가능한 이메일 입니다.")
-					alert("ischecked"+ischecked);
 					 $("#innertext3").css("color","green");
 
 				}else if(dataFromServer=="empty")

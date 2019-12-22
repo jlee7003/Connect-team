@@ -20,7 +20,7 @@
 <td><img alt="logo" class="" width="100" onclick="changeprofile()" style="" src="resources/profile/${imgname}"></td>
 <td><input type="file" name="file"></td>
 </tr>
-<tr><td>프로필메세지</td><td><textarea name="profilemsg">${profilemsg}</textarea></td></tr>
+<tr><td>프로필메세지</td><td><textarea cols=30 rows=10 name="profilemsg">${profilemsg}</textarea></td></tr>
 <tr><td colspan="3"><input type="submit" value="변경"></td></tr>
 </table>
 </form>

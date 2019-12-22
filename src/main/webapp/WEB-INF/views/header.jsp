@@ -33,7 +33,7 @@ open(url,"emailwindow", "statusbar=no, scrollbar=no, menubar=no, width=600, heig
 <%-- 				</c:if> --%>
 <!-- onclick="changeprofile()" -->
 	<c:if test="${username != null}">
-<img alt="logo" class="" width="40" onclick="seeprofile()" style="border-radius:50px; margin-right:15px;" src="resources/profile/${imgname}">
+<img alt="logo" class="" width="40" height="40" onclick="seeprofile()" style="border-radius:50px; margin-right:15px; overflow:hidden" src="resources/profile/${imgname}">
 				</c:if>
 ${username}${welcome}
 </div>

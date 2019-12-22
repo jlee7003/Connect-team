@@ -86,8 +86,8 @@ if(document.loginform.email.value == "" || document.loginform.password.value == 
 								
 								<div>
 									<input type=button onclick="location='logout'" value=logout>
-								</div> <%=session.getAttribute("username")%>님 환영합니다! <a
-								href="chatroom">chatroom</a> <%
+								</div> <%=session.getAttribute("username")%>님 환영합니다! 
+								 <%
  	}
  %>
 							</td>

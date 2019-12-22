@@ -23,6 +23,7 @@ public class boardcontroller {
 
 	@Autowired //자동으로 아래의 메소드들과 연결시켜줌
 	 public SqlSession sqlSession;
+	
 	@RequestMapping("/write_ok")
 	public String write_ok(Board board, HttpServletRequest request,HttpSession session)
 	{

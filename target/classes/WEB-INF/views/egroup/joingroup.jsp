@@ -6,6 +6,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script>
+function submit_check()
+{
+	if(document.groupform.groupname.value == "" ) 
+	{
+	document.all.innertext1.innerHTML = "<b style='color:#828282'>이름을 입력해주세요</b>";
+	document.groupform.groupname.focus();
+	return false;
+	}
+	else 
+		{
+		return true;
+		}
+}
+function onblur123()
+{
+	document.all.innertext1.innerHTML = "";	
+}
+
+</script>
 <title>Insert title here</title>
 </head>
 <body class="font_git">
@@ -28,9 +48,10 @@
   <div>
 			<div>
 			<div><h4>그룹 만들기</h4></div>
-		    <form action="joingroup_ok" method="post">
+		    <form action="joingroup_ok" name="groupform" method="post"  onsubmit="return submit_check()">
 		    	<input type="hidden" name="email" value=<%=session.getAttribute("userid") %>>
-				<input type="text" name="groupname" placeholder="그룹의 이름" />
+				<input type="text" name="groupname" placeholder="그룹의 이름" onblur="onblur123()" />
+				<div id="innertext1"></div>
 				<input type="text" name="mg" placeholder="그룹만들기">
 				<input type="hidden" name="manager" placeholder="그룹 관리자" value="${userid}" />
 				<input type="submit" value="그룹만들기"/>
