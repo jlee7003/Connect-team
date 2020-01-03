@@ -10,10 +10,10 @@ public class EmailConfirm{
 		String to1=email; // 인증위해 사용자가 입력한 이메일주소
 		String host="smtp.gmail.com"; // smtp 서버
 		String subject="인증번호 전달"; // 보내는 제목 설정
-		String fromName="관리자"; // 보내는 이름 설정
+		String fromName="Connect"; // 보내는 이름 설정
 		String from="ehlee7003@gmail.com"; // 보내는 사람(구글계정)
 		String authNum=EmailConfirm.authNum(); // 인증번호 위한 난수 발생부분
-		String content="인증번호 ["+authNum+"]"; // 이메일 내용 설정
+		String content="CONNECT 인증번호 ["+authNum+"]"; // 이메일 내용 설정
 		
         // SMTP 이용하기 위해 설정해주는 설정값들
 		try{
@@ -32,7 +32,7 @@ public class EmailConfirm{
            = Session.getInstance(props,new javax.mail.Authenticator(){
 			    protected PasswordAuthentication getPasswordAuthentication(){
 				    return new PasswordAuthentication
-                                        ("ehlee7003@gmail.com","ant3275gh823"); // gmail계정
+                                        ("ehlee3275@gmail.com","ant3275gh823"); // gmail계정
 			}
 		});
 		

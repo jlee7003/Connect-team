@@ -14,6 +14,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			VALUES(#{param1}+1,#{param2},#{param3},#{param4},NOW())
 	</insert>
 	
+	<insert id="write2"><!-- 태그 이름은 구분하기 편하라고 write라고 해준것 -->
+	INSERT INTO EGROUP(GROUPID,EMAIL,GROUPNAME,MANAGER,WRITEDAY)
+			VALUES(#{param1},#{param2},#{param3},#{param4},NOW())
+	</insert>
+	
 	<select id="grouplist" resultType="kr.co.connect.egroup.Egroup">
 	 SELECT * FROM EGROUP WHERE EMAIL=#{param1};
 	</select>
@@ -22,4 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 SELECT EMAIL FROM EGROUP WHERE EMAIL=#{param1}; 
 	 <!-- 내가 들어간 그룹이 있을 경우 레코드가 존재 -->
 	</select>
+	
+		<select id="groupoverlap" resultType="int">
+	 SELECT count(*) FROM EGROUP WHERE EMAIL=#{param1} AND GROUPID=#{param2};
+	</select>
+	
+		
+
 </mapper>

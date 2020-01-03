@@ -17,6 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      SELECT * FROM BOARD ORDER BY ID DESC
    </select>
    
+     <select id="sameID" resultType="kr.co.connect.member.Member"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
+     SELECT * FROM MEMBERS WHERE EMAIL=#{param1}
+   </select>
+   
     <select id="content" resultType="kr.co.connect.member.Member"> <!--resulttype은 ResultSet 대체 라고 보면된다 -->
      SELECT * FROM BOARD WHERE ID=#{PARAM1}
    </select>

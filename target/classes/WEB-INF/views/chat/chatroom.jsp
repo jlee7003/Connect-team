@@ -80,19 +80,21 @@ function addChat(username, content, chattime)
 			'</a>' +
 			'<div class="mediabody">' +
 			
+			'<div class="flex">' +
+			'<span style="font-weight:900; width:50%;">' +
 			username +" "+
-			'<div class="alignright">' +
+			'</span>' +
+			'<div class="alignright" style="width:50%;">' +
 			chattime +
 			'</div>' +
-		
+			'</div>' +
 			'<p>' +
 			content + 
 			'</p>' +
 			'</div>' +
 			'</div>' +
 			'</div>' +
-			'</div>' +
-			'<hr>'); 
+			'</div>'); 
 	$('#chatList').scrollTop($('#chatList')[0].scrollHeight);
 }
 function getInfiniteChat(){
@@ -106,20 +108,63 @@ function changeroom(pp)
 {
 	document.getElementById("groups").value=pp;
 }
-</script>
-<script type="text/javascript">
 
-$(document).ready(function(){
-chatListFunction('ten');
-getInfiniteChat();
-});
+function checkall()
+{
+	var one=document.getElementById("email1").value;
+	var two=document.getElementById("email2").value;
+	document.plusemail.username.value=document.getElementById("username").value;
+	document.plusemail.phone.value=document.getElementById("phone").value;
+	document.plusemail.email.value=one+"@"+two;
+	if(document.getElementById("username").value == "")
+	{
+	alert("이름을 입력 해주세요");
+	return false;
+	}
+	else if(document.getElementById("hv").value != 1)
+		{
+		document.getElementById("aaa").innerHTML="<b style='color:red'>이메일 인증코드를 입력하세요</b>";
+	    alert(document.getElementById("hv").value);
+	    alert("wrongvalue");
+		return false;
+		}
+	else
+		alert();
+		return true;
+}
+function emailcheck(email1, email2 ,groups,groupname)
+{
+	if(!insertform.email1.value || !insertform.email2.value){ 
+		alert("emailerror");
+		insertform.email1.focus();
+		return;
+	}else{
+		if(insertform.email1.value){
+			if(insertform.email2.value==0){
+				// 직접입력
+				if(insertform.email1.value.indexOf("@")==-1){
+					alert("emailerror");
+					insertform.email1.focus();
+					return false;
+				}
+			}else{
+				// 선택입력
+				if(insertform.email1.value.indexOf("@")!=-1){
+					alert("emailerror");
+					insertform.email1.focus();
+					return false;
+				}
+			}
+		}
+	}
+// 	alert("회원님을 초대하였습니다.");
+    // 인증을 위해 새창으로 이동
+	var url="invitecheck?email1="+email1+"&email2="+email2+"&groups="+groups+"&groupname="+groupname;
+	open(url,"emailwindow", "statusbar=no, scrollbar=no, menubar=no, width=400, height=200" );
+}
 
 
-$('.grouplist').click(function(){
-	$('#chatList').empty();
-	chatListFunction('ten');
-	getInfiniteChat();
-});
+
 </script>
 </head>
 <style>
@@ -128,15 +173,27 @@ $('.grouplist').click(function(){
 	width: 500px;
 	border: 1px solid black;
 }
+#content{
+			width: 70%;
+			height: 70px;
+			padding: 10px;
+			box-sizing: border-box;
+			border: solid 2px initial;
+			border-radius: 5px;
+			font-size: 16px;
+			resize: none;
+}
+
 
 #chatList {
+	background:#E0EEFA;
 	overflow: auto;
-	height:75%;
-	border: 1px solid blue;
+	height:72%;
 }
 
 .chatsection {
-	border: 1px solid black;
+/* 	border: 2px solid black; */
+	border-radius:5px;
 }
 
 .alignright {
@@ -144,90 +201,167 @@ $('.grouplist').click(function(){
 }
 .media
 {
-height:100px;
+height:auto;
+}
+.mediabody
+{
+background:white;
+border:10px solid #E0EEFA;
+padding:10px;
 }
 .chatwritesection{
-height:25%;
-border:1px solid red;
+height:20%;
+/* border:1px solid red; */
 }
-
 </style>
+
+ <script>  
+ $(function()/* 드래그 가능하게 해주는 jquery 플러그인 */
+ {
+	 $(".invitelayer").draggable(
+			 {
+
+			 });
+ });
+
+</script>
+  
+ 
+
+
 
 <body>
 	<jsp:include page="../header.jsp" flush="false" />
 
-	<!-- 	<div class=""> -->
-	<!-- 		<div class=media> -->
-	<!-- 			<a class="" href="#"> <img class="" src=""> -->
-<!-- 				</a> -->
-	<!-- 			<div class="mediabody"> -->
-	<!-- 				<h4 class="mediaheading"> -->
-	<!-- 					username -->
-	<!-- 			    <div class="alignright"> 2019-04-42 </div> -->
-	<!-- 				</h4> -->
-	<!-- 				<p>안녕</p> -->
-	<!-- 		ddd	</div> -->
-	<!-- 		</div> -->
-	<!-- 	</div> -->
-	<!-- 	<hr> -->
-	<!-- f	<div id=border> -->
-	<!-- 		<div>채팅창</div> -->
-	<!-- 
-<input type=text maxlength=8>
-이렇게 length 길이를 제한해두면 8글자 밖에 못쓴다
- -->
-	<div class="floor_h73 ">
+  
+  
+	<div class="invitelayer ">
+		<form name="insertform" action="checkemail" style="width:100%; height:100%;" >
+		<div class="toplayer flex">
+		<div  class="flex center" style="background:black; width:90%;">그룹원 초대</div>
+		<div align=right style="width:10%; padding:5px;" onclick="closeinvitelayer()">X</div>	
+		</div>
+<!-- 		<div> -->
+<!-- 			<div  class="flex center_j">초대하기<div align=right onclick="closeinvitelayer()">X</div>	</div> -->
+<!-- 		</div> -->
+		<div class="flex center" style="height:100%;">
+			<input type="text" name="email1" maxlength="15"
+				class="input_width45 bd_radius height_20 inputtag" size=10 id=email1>
+			@ <select name="email2" id="email2"
+				class="input_width40 bd_radius height_35 inputtag">
+				<option value="0">직접입력</option>
+				<option value="naver.com">naver.com</option>
+				<option value="daum.net">daum.net</option>
+				<option value="nate.com">nate.com</option>
+				<option value="gmail.com">gmail.com</option>
+			</select> <input type="button" name="emailconfirm_btn" style="margin-left:20px;" value="초대하기"
+				class="button_submit"
+				onclick="emailcheck(insertform.email1.value, insertform.email2.value,document.getElementById('groups').value,document.getElementById('groupname').value)">
+			<p>
+				<span id=aaa></span>
+				</div>
+		</form>
+	</div>
+    <div style="font-size:40px; width:15.5%; background:#1388CF; color:white;">${gname}</div>
+	<div class="floor_h73 bd_radius">
 	
 	<!-- include 되는 부분 -->
-		<jsp:include page="../board/mainboard.jsp" flush="false" />
-		<c:forEach items="${glist}" var="dto">
-		      <div>출력</div>
-		      
-		      <div class="grouplist" onclick="changeroom(${dto.groupid})">${dto.groupname}</div>
-		      <div>${dto.groupid}</div>
-        </c:forEach>
-		
-<!--  -->
+	<div class="width15 navi shadow2" style="background:white; border-radius:5px;">
+	<!--------------- -디렉토리부분- -------------------->
+	 <iframe src="http://localhost:8080/Connect-team/makedir?gid=${gid}&gname=${gname}" name="dir" width="1340" height="746" class="border_none" scrolling="no"></iframe>
+
+	
+
+	<!--------------- -디렉토리부분- -------------------->
+	</div>
+	
+	 <iframe src="http://localhost:8080/Connect-team/list?gid=${gid}&gname=${gname}&boardid=0&page=1" style=" margin-left:10px; margin-right:10px; background:#1187CF;" name="iframe" width="1340" height="100%" class="border_none" scrolling="no"></iframe>
 		<div class="chatsection width25">
+			<div class="flex center_a" style="border-radius: 5px 5px 0px 0px; height:8%; border:0px solid black; color:white; font-size:25px; background:#1388CF;"> 
+			
+			<span style="margin-left:20px; ">${gname}의 채팅창</span>
+			</div>
 			<div id=chatList></div>
-			<div id=chatwritesection class=chatwritesection>
+			<div id="chatwritesection" class="chatwritesection" style="background:#E0EEFA; border-radius:0px 0px 5px 5px;">
 			
 			<div id=grouplist>
-				<span>group 선택창</span>
 
 
 			</div>
 			<div>
-				<%=session.getAttribute("userid") %>
-				${user}
-				<input type="hidden" name="username" id=username value="${user}">
-				<input type="hidden" name="groups" id=username value="${groups}">
-				<input type="text" name="groups" id=groups value="${groups}">
-				<textarea name=content id=content></textarea>
 				<br>
-					<input type=submit value="전송" id=citizenRegistration
+				<input type="hidden" name="groupname" id=groupname value="${gname}">
+				<input type="hidden" name="username" id=username value="${user}">
+				<input type="hidden" name="groups" id=groups value="${groups}">
+				<div>
+				
+				</div>
+				<div class="flex">
+				<textarea class="margin_left_30" name=content id=content></textarea>
+				<div align="right" style="width:30%;">
+						<input type=submit value="전송하기" class="margin_right_30 button_transfer flex center" style="width:60px; height:40px;" id=""
 						onclick=submitFunction();>
+				</div>
+				</div>
+			
 			</div>
-			<button onclick="chatListFunction(type)">추가</button>
+				
+				<c:if test="${manager == user22}">
+			<input type="button" onclick="showinvitelayer()" class="margin_top_10 button_transfer margin_left_30 flex center" style="width:60px; height:25px;" value="초대하기">
+				</c:if>
+			
+				
 				
 				</div>
 		</div>
+		
 		
 	</div>
 <div class="floor_h10">
 
 </div>
+
+
+
 	<jsp:include page="../footer.jsp" flush="false" />
 
 
-
-
-
-<script>
-// function alert1()
-// {
-// alert();	
-// }
-</script>
 </body>
+
+
+
+	<script type="text/javascript">
+	
+	function showinvitelayer()
+	{
+	document.getElementsByClassName("invitelayer")[0].style.visibility="visible";
+	}
+	
+
+	function closeinvitelayer()
+	{
+	document.getElementsByClassName("invitelayer")[0].style.visibility="hidden";
+	}
+	
+ $(document).ready(function(){
+	chatListFunction('ten');
+	getInfiniteChat();
+	changeroom(${gid});
+});
+ 
+ 
+ $('.grouplist').click(function(){
+		$('#chatList').empty();
+		chatListFunction('ten');
+		getInfiniteChat();
+	});
+
+</script>
+<script>
+function alert1()
+{
+alert();	
+}
+</script>
+
 </html>

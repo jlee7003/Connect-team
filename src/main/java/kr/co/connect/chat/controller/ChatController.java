@@ -17,6 +17,8 @@ import kr.co.connect.chat.Chat;
 import kr.co.connect.chat.dao.ichatDao;
 import kr.co.connect.egroup.Egroup;
 import kr.co.connect.egroup.dao.iegroupDao;
+import kr.co.connect.invite.dao.iinviteDao;
+import kr.co.connect.profile.dao.iprofileDao;
 
 @Controller
 public class ChatController {
@@ -28,9 +30,10 @@ public class ChatController {
 	
 
 	@RequestMapping(value="/nogroups")//브라우저에 입력된 주소(사용자가 입력하는 주소)
-	public String nogroups()
+	public String nogroups(Model model,HttpSession session)
 	{
 		System.out.println("nogroup");
+		  inc(session,model);
 		return "chat/nogroups"; //실제 주소(실제로 입력이 되는 주소)
 	}
 	
@@ -40,6 +43,7 @@ public class ChatController {
 	{
 		session.setAttribute("groups", 1);
 		model.addAttribute("err",err);
+		  inc(session,model);
 		return "chat/test"; //실제 주소(실제로 입력이 되는 주소)
 	}
 	
@@ -47,16 +51,18 @@ public class ChatController {
 	public String chatroom(Model model,HttpServletResponse response, Chat chat, HttpSession session, HttpServletRequest request) 
 	{   
 		
-//		   imemberDao memdao=sqlSession.getMapper(imemberDao.class);
-//			ArrayList<Member> list1=memdao.list();
-//		   model.addAttribute("list",list);
-//		   model.addAttribute("list",dao.list());
-//		   model.addAttribute("list",list1);
-	System.out.println("정상출력2");
+		
+		String user22=session.getAttribute("userid").toString();
+		String groupid2=request.getParameter("gid");
+		  iinviteDao dao2 = sqlSession.getMapper(iinviteDao.class);
+	        String manager=dao2.whoismanager(groupid2);
+	        model.addAttribute("user22", user22);
+			model.addAttribute("manager", manager);
+			
+		
 		String email=session.getAttribute("userid").toString();
 		iegroupDao dao1=sqlSession.getMapper(iegroupDao.class);
 		ArrayList<Egroup> glist=dao1.grouplist(email);
-		System.out.println("정상출력");
 		model.addAttribute("glist", glist);
 		ArrayList<Egroup> checkifhavegroup;
 		checkifhavegroup = dao1.groupliststring(session.getAttribute("userid").toString());
@@ -85,6 +91,9 @@ public class ChatController {
 		model.addAttribute("list",list);
 		model.addAttribute("user",username);
 		model.addAttribute("groups",groups);
+		model.addAttribute("gid", request.getParameter("gid"));
+		model.addAttribute("gname", request.getParameter("gname"));
+		  inc(session,model);
 		return "chat/chatroom"; //실제 주소(실제로 입력이 되는 주소)
 	}
 	
@@ -99,16 +108,18 @@ public class ChatController {
 		dao.writechat(username,content,groups); //DB 작성하기
 		dao.chatlist(groups); // DB저장후 20개 읽어오기
 		out.print("#");
+		  inc(session,model);
 	}
 	
 	
 	@RequestMapping("/chatlist")
-	public void chatlist( HttpSession session)
+	public void chatlist( HttpSession session,Model model)
 	{
 		session.setAttribute("groups", 1);
 		String groups=session.getAttribute("groups").toString();
 		ichatDao dao=sqlSession.getMapper(ichatDao.class);
 		dao.getchatlist(groups);
+		  inc(session,model);
 	}
 	
 	
@@ -122,4 +133,26 @@ public class ChatController {
 	 * return "redirect:/chatroom"; //실제 주소(실제로 입력이 되는 주소) }
 	 */
 	
+	  public void inc(HttpSession session, Model model)
+			{
+			  if (session.getAttribute("userid") == null)
+			  {
+			  String messege="로그인 해주세요"; 
+			  model.addAttribute("messege", messege); 
+			  } else
+			  {
+			  String email=session.getAttribute("userid").toString();
+			  String user=session.getAttribute("username").toString();
+			  System.out.println("user"+user);
+			  String welcome="님 환영합니다!";
+			  iinviteDao dao = sqlSession.getMapper(iinviteDao.class);
+			  String invitenum=dao.invitednum(email); String messege="그룹초대";
+			  model.addAttribute("invitenum", invitenum);
+			  model.addAttribute("welcome", welcome);
+			  model.addAttribute("messege",messege);
+				iprofileDao dao1=sqlSession.getMapper(iprofileDao.class);
+				String imgname= dao1.profileimg(email);
+				model.addAttribute("imgname",imgname);
+			  }
+			}
 }

@@ -16,10 +16,10 @@ Location 2215<p>John Daniel Drive<p>Clark, MO 65243
 <span class="fontsize_2 fontweight900">Around the Web</span>
 </div>
 <div align=center class="width33">
-<span class="fontsize_2 fontweight900">About Freelancer</span><p>
-Freelance is a free to use,<p>
- MIT licensed Bootstrap theme <p>
- created by Connect
+<span class="fontsize_2 fontweight900">About Connect</span><p>
+Connect is a free to use,<p>
+ 미래능력개발교육원 <p>
+ created by Anthony
 </div>
 </div>
 </div>

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" flush="false" />
-	<div class="floor_h100 background_mint color_white fontsize_" >
+	<div class="floor_h80 background_mint color_white fontsize_" >
 	<div class="width100 flex center ">
 <div class="width30">	Welcome to the Connect.<br>
 Work together to take advantage <br>
@@ -18,9 +18,9 @@ of the group task service!</div>
 </div>
 	</div>
 	</div>
-	<div class="floor_h100" >	
+<!-- 	<div class="floor_h100" >	 -->
 
-	</div>
+<!-- 	</div> -->
 
 	<jsp:include page="footer.jsp" flush="false" />
 
